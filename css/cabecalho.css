@@ -24,6 +24,7 @@ header h1 {
     display: flex;
     width: 80%;
     justify-content: space-between;
+    align-items: center;
 }
 
 header ul {
