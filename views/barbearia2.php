@@ -108,8 +108,8 @@
                 </div>
             </div>
             <div class="next">
-                <a href="barbearia.php"><button class="estou-aki">1</button></a>
-                <a href="barbearia2.php"><button>2</button></a>
+                <a href="barbearia.php"><button>1</button></a>
+                <a href="barbearia2.php"><button class="estou-aki">2</button></a>
                 <a href="#"><button>3</button></a>
                 <a href="#"><button>...</button></a>
             </div>
