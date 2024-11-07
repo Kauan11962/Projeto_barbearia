@@ -86,9 +86,11 @@ CREATE TABLE `cliente` (
   `email` varchar(100) NOT NULL,
   `celular` varchar(20) NOT NULL,
   `senha` varchar(100) NOT NULL,
+  `foto` blob DEFAULT NULL,
+  `preferencias` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +99,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Felipe','Ortigoza','felipe@gmail.com','14998405428','202cb962ac59075b964b07152d234b70'),(4,'marcos','silva','marcos@gmail.com','14998765466','202cb962ac59075b964b07152d234b70');
+INSERT INTO `cliente` VALUES (1,'Felipe','Ortigoza','felipe@gmail.com','14998405428','202cb962ac59075b964b07152d234b70',NULL,NULL),(4,'marcos','silva','marcos@gmail.com','14998765466','202cb962ac59075b964b07152d234b70',NULL,NULL),(5,'batman','meronha','batman@gmail.com','(14) 99765-3211','202cb962ac59075b964b07152d234b70',NULL,NULL);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,6 +119,7 @@ CREATE TABLE `dono` (
   `senha` varchar(100) NOT NULL,
   `cpf` varchar(20) NOT NULL,
   `data_nasc` varchar(45) NOT NULL,
+  `foto` blob DEFAULT NULL,
   PRIMARY KEY (`id_dono`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `celular_UNIQUE` (`celular`),
@@ -130,7 +133,7 @@ CREATE TABLE `dono` (
 
 LOCK TABLES `dono` WRITE;
 /*!40000 ALTER TABLE `dono` DISABLE KEYS */;
-INSERT INTO `dono` VALUES (1,'joao','pedro','joao@gmail.com','1498213455','202cb962ac59075b964b07152d234b70','549.421.848-19','09/09/2002'),(10,'Felipe','Ortigoza','felipeempresa@gmail.com','1446222509','827ccb0eea8a706c4c34a16891f84e7b','28299874732','24/09/2003');
+INSERT INTO `dono` VALUES (1,'joao','pedro','joao@gmail.com','1498213455','202cb962ac59075b964b07152d234b70','549.421.848-19','09/09/2002',NULL),(10,'Felipe','Ortigoza','felipeempresa@gmail.com','1446222509','827ccb0eea8a706c4c34a16891f84e7b','28299874732','24/09/2003',NULL);
 /*!40000 ALTER TABLE `dono` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-07 15:37:53
+-- Dump completed on 2024-11-07 19:08:35
