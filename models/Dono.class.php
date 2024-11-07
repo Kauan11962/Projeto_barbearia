@@ -1,12 +1,12 @@
 <?php
-	class Cliente
+	class Dono
 	{
-		public function __construct(private int $idcliente = 0, private string $nome = "", private string $sobrenome = "",
+		public function __construct(private int $iddono = 0, private string $nome = "", private string $sobrenome = "",
         private string $email = "", private string $celular= "", private string $senha = "", private string $cpf = "", private string $data_nasc = ""){}
 		
-		public function getIdcliente()
+		public function getIddono()
 		{
-			return $this->idcliente;
+			return $this->iddono;
 		}
 
 		public function getNome()

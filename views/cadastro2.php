@@ -1,12 +1,12 @@
 <?php
 require_once "../views/header.php"; 
 
-$msg = ["","","","","","",""];
+$msg = ["","","","","","","","",""];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "../models/Conexao.class.php";
-    require_once "../models/Cliente.class.php";
-    require_once "../models/clienteDAO.php"; 
+    require_once "../models/Dono.class.php";
+    require_once "../models/donoDAO.php"; 
 
     $erro = false;
 
@@ -40,6 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = true;
     }
 
+    if(empty($_POST["cpf"])) {
+        $msg[6] = "Preencha o CPF";
+        $erro = true;
+    }
+
+    if(empty($_POST["data_nasc"])) {
+        $msg[7] = "Preencha a data de nascimento";
+        $erro = true;
+    }
+
     if ($_POST["senha"] !== $_POST["confirmar_senha"]) {
         $msg[5] = "As senhas não coincidem";
         $erro = true;
@@ -47,24 +57,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if(!$erro) {
         
-        $cliente = new Cliente(nome: $_POST["nome"], sobrenome: $_POST["sobrenome"], email: $_POST["email"], celular: $_POST["celular"], senha:md5($_POST["senha"]));
-        $clienteDAO = new ClienteDAO();
+        $dono = new Dono(nome: $_POST["nome"], sobrenome: $_POST["sobrenome"], email: $_POST["email"], celular: $_POST["celular"], senha:md5($_POST["senha"]), cpf: $_POST["cpf"], 
+        data_nasc: $_POST["data_nasc"]);
 
-        $verificacao = $clienteDAO->verificar($cliente);
+        $donoDAO = new donoDAO();
+
+        $verificacao = $donoDAO->verificar($dono);
 
         if ($verificacao) {
-            $msg[6] = "Dados já cadastrados"; 
+            $msg[8] = "<div style='color: red; font-weight: bold;'>Dados já cadastrados</div>"; 
             $erro = true;
         }
     }
 
     if (!$erro) {
-        $retorno = $clienteDAO->cadastrar($cliente);
-        $msg[6] = "Cliente cadastrado com sucesso"; 
+        $retorno = $donoDAO->cadastrar($dono);
+        $msg[8] = "<div style='color: #28a745; font-weight: bold;'>Dono cadastrado com sucesso</div>"; 
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -74,6 +85,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Cadastro - Barbearia Dark</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/cadastro.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 </head>
 <body>
     <div class="container">
@@ -109,13 +123,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="input-box">
                         <label for="number">Celular</label>
-                        <input id="number" type="tel" name="celular" placeholder="(xx) xxxx-xxxx" required>
+                        <input id="celular" type="tel" name="celular" placeholder="(xx) xxxx-xxxx" required>
                         <div style="color: red;"><?php echo $msg[3]; ?></div>
                     </div>
 
                     <div class="input-box">
                         <label for="password">Senha</label>
-                        <input id="password" type="password" name="senha" placeholder="Digite sua senha" required>
+                        <input id="password" type="password" name="senha" placeholder="Digite sua senha" required><i style="cursor: pointer; margin: 0 auto;" class="bi bi-eye-slash" id="togglePassword"></i>
                         <div style="color: red;"><?php echo $msg[4]; ?></div>
                     </div>
 
@@ -124,12 +138,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input id="confirmPassword" type="password" name="confirmar_senha" placeholder="Digite sua senha novamente" required>
                         <div style="color: red;"><?php echo $msg[5]; ?></div>
                     </div>
-                </div>
 
-                <input id="submitBtn" class="btn" type="submit" value="Cadastrar-se"><br><br>
-                <div style="color: white;"><?php echo $msg[6]; ?></div>
+                    <div class="input-box">
+                        <label for="cpf">CPF</label>
+                        <input id="cpf" type="text" name="cpf" placeholder="Digite seu CPF" required>
+                        <div style="color: red;"><?php echo $msg[6]; ?></div>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="data_nasc">Data de nascimento</label>
+                        <input id="data_nasc" type="text" name="data_nasc" placeholder="Digite sua data de nascimento" required>
+                        <div style="color: red;"><?php echo $msg[7]; ?></div>
+                    </div>
+                </div>
+                
+                
+                <div style="margin-top: -4%">
+                    <input id="submitBtn" class="btn" type="submit" value="Cadastrar-se"><br><br>
+                    <div style="margin-top: -3%">Já possui uma conta?<a style="text-decoration:none; color:#F39C12" href="../views/login2.php"> Entrar</a></div>
+                    <div style="color: white;"><?php echo $msg[8]; ?></div>
+                </div>
             </form>
         </div>
     </div>
+
+<script>
+    $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00', {reverse: true});
+        
+        $('#celular').mask('(00) 00000-0000');
+        
+        $('#data_nasc').mask('00/00/0000');
+    });
+
+    $('#togglePassword').click(function() {
+            const passwordField = $('#password');
+            const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
+            passwordField.attr('type', type);
+            $(this).toggleClass('bi-eye');
+            $(this).toggleClass('bi-eye-slash');
+        });
+</script>
+
 </body>
 </html>

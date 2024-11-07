@@ -1,3 +1,7 @@
+<?php
+require_once "../views/header.php"; 
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,28 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbearias - Barbearia Dark</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/barbearia.css">
-    <link rel="stylesheet" href="../css/cabecalho.css">
-
+    <link rel="stylesheet" href="../css/barbearia2.css">
 </head>
 <body>
-    <header>
-        <div class="container-header">
-            <h1>Barbearia Dark</h1>
-                <ul>
-                    <li><a href="../views/index.php">Home</a></li>
-                    <li><a href="../views/agendamento.php">Agendar</a></li>
-                    <li><a href="../views/contato.php">Contato</a></li>
-                </ul>
-                <ul>
-                    <li><a href="../views/login.php" id="login">Login</a></li>
-                    <li><a href="../views/cadastro.php" class="btn-cadastrar">Cadastrar-se</a></li>
-                </ul>
-        </div>
-    </header>
-
 <main>
-    <section class="barbearias">
+<section class="barbearias">
         <div class="container">
             <h2>Nossas Barbearias</h2>
             <div class="card-pai">
@@ -43,7 +30,7 @@
                             <a href="../views/barber.php" class="btn">Veja Mais</a>
                         </div>
                     </div>
-
+ 
                     <div class="card">
                         <div class="card-front">
                             <img src="imagens/barbearia2.jpg" alt="Barbearia 2">
@@ -56,7 +43,7 @@
                             <a href="#" class="btn">Veja Mais</a>
                         </div>
                     </div>
-
+ 
                     <div class="card">
                         <div class="card-front">
                             <img src="imagens/barbearia3.jpg" alt="Barbearia 3">
@@ -107,12 +94,14 @@
                     </div>
                 </div>
             </div>
+            <!-- o pai fez isso daki -->
             <div class="next">
                 <a href="barbearia.php"><button class="estou-aki">1</button></a>
                 <a href="barbearia2.php"><button>2</button></a>
-                <a href="#"><button>3</button></a>
+                <a href="barbearia3.php"><button>3</button></a>
                 <a href="#"><button>...</button></a>
             </div>
+            <!-- até aki -->
         </div>
     </section>
 </main>

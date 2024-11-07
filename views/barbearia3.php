@@ -14,6 +14,7 @@ require_once "../views/header.php";
 
 </head>
 <body>
+
 <main>
     <section class="barbearias">
         <div class="container">
@@ -98,8 +99,8 @@ require_once "../views/header.php";
             </div>
             <div class="next">
                 <a href="barbearia.php"><button>1</button></a>
-                <a href="barbearia2.php"><button class="estou-aki">2</button></a>
-                <a href="barbearia3.php"><button>3</button></a>
+                <a href="barbearia2.php"><button>2</button></a>
+                <a href="barbearia3.php"><button class="estou-aki">3</button></a>
                 <a href="#"><button>...</button></a>
             </div>
         </div>

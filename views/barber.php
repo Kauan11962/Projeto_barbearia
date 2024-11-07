@@ -1,3 +1,7 @@
+<?php
+require_once "../views/header.php"; 
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,25 +10,8 @@
     <title>Barbearia Dark - Detalhes</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/barber.css">
-    <link rel="stylesheet" href="../css/cabecalho.css">
-
 </head>
 <body>
-    <header>
-        <div class="container-header">
-            <h1>Barbearia Dark</h1>
-                <ul>
-                    <li><a href="../views/index.php">Home</a></li>
-                    <li><a href="../views/agendamento.php">Agendar</a></li>
-                    <li><a href="../views/contato.php">Contato</a></li>
-                </ul>
-                <ul>
-                    <li><a href="../views/login.php" id="login">Login</a></li>
-                    <li><a href="../views/cadastro.php" class="btn-cadastrar">Cadastrar-se</a></li>
-                </ul>
-        </div>
-    </header>
-
 <main>
     <section class="detalhes-barbearia">
         <div class="container">

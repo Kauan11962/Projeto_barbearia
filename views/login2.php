@@ -4,8 +4,8 @@ $msg = ["", "", ""];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "../models/Conexao.class.php";
-    require_once "../models/Cliente.class.php";
-    require_once "../models/clienteDAO.php";
+    require_once "../models/dono.class.php";
+    require_once "../models/DonoDAO.php";
 
     function validarFormulario() {
         global $msg;
@@ -24,15 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return !$erro;
     }
 
-    // Executa a validação e, se passar, faz o login
     if (validarFormulario()) {
-        $cliente = new Cliente(email: $_POST["email"], senha: md5($_POST["senha"]));
+        $dono = new Dono(email: $_POST["email"], senha: md5($_POST["senha"]));
 
-        $clienteDAO = new clienteDAO();
-        $ret = $clienteDAO->login($cliente);
+        $donoDAO = new donoDAO();
+        $ret = $donoDAO->login($dono);
 
         if (count($ret) == 1) {
-            $_SESSION["id"] = $ret[0]->id_cliente;
+            $_SESSION["id"] = $ret[0]->id_dono;
             $_SESSION["nome"] = $ret[0]->nome;
 
             header("location:../views/index.php");
