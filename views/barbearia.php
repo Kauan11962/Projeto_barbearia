@@ -33,7 +33,7 @@ require_once "../views/header.php";
  
                     <div class="card">
                         <div class="card-front">
-                            <img src="imagens/barbearia2.jpg" alt="Barbearia 2">
+                            <img src="../imagens/barbearia2.jpg" alt="Barbearia 2">
                         </div>
                         <div class="card-back">
                             <h3>Barbearia Dark - Bairro Norte</h3>
@@ -46,7 +46,7 @@ require_once "../views/header.php";
  
                     <div class="card">
                         <div class="card-front">
-                            <img src="imagens/barbearia3.jpg" alt="Barbearia 3">
+                            <img src="../imagens/barbearia3.jpg" alt="Barbearia 3">
                         </div>
                         <div class="card-back">
                             <h3>Barbearia Dark - Shopping Sul</h3>
@@ -58,7 +58,7 @@ require_once "../views/header.php";
                     </div>
                     <div class="card">
                         <div class="card-front">
-                            <img src="../imagens/pexels-photo-2076932.jpeg" alt="Barbearia 4">
+                            <img src="../imagens/barbearia4.jpg" alt="Barbearia 4">
                         </div>
                         <div class="card-back">
                             <h3>Barbearia Dark - Centro</h3>
@@ -70,7 +70,7 @@ require_once "../views/header.php";
                     </div>
                     <div class="card">
                         <div class="card-front">
-                            <img src="../imagens/pexels-photo-2076932.jpeg" alt="Barbearia 5">
+                            <img src="../imagens/barbearia5.jpg" alt="Barbearia 5">
                         </div>
                         <div class="card-back">
                             <h3>Barbearia Dark - Centro</h3>
@@ -82,7 +82,7 @@ require_once "../views/header.php";
                     </div>
                     <div class="card">
                         <div class="card-front">
-                            <img src="../imagens/pexels-photo-2076932.jpeg" alt="Barbearia 6">
+                            <img src="../imagens/barbearia6.jpg" alt="Barbearia 6">
                         </div>
                         <div class="card-back">
                             <h3>Barbearia Dark - Centro</h3>
