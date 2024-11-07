@@ -92,7 +92,7 @@ body {
 }
 
 /* Footer */
-footer {
+/*footer {
     background-color: #111;
     text-align: center;
     padding: 20px 0;
@@ -100,7 +100,7 @@ footer {
 
 footer p {
     margin: 0;
-}
+}*/
 
 /* Avaliações */
 .avaliacoes {
@@ -220,11 +220,13 @@ footer p {
     justify-content: center;
     align-items: center;
 }
- 
+
+/* acrecentei border-radius*/
 .banner .banner-carrousel img {
     width: 720px;
     height: 420px;
     display: block;
+    border-radius: 5px;
 }
 
  

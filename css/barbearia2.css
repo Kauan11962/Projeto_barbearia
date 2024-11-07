@@ -92,6 +92,7 @@ main {
 }
  
 .btn:hover {
+    border:2px solid #333;
     background-color: #ffcc00;
     color: #333;
 }

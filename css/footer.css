@@ -1,0 +1,63 @@
+
+
+footer
+{
+    width: 100%;
+    max-width: 100%;
+    background-color: #111;
+}
+
+footer .containerDoFooter a
+{
+    color: #fff;
+    text-decoration: none;
+}
+
+.containerDoFooter
+{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #212121;
+    height: 300px;
+    align-items: center;
+}
+
+.mapa, .suporte
+{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+h4
+{
+    margin-top: 5px;
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 19px;
+}
+
+.copy
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+
+.copy p
+{
+    color: #fff;
+    font-size: 19px;
+}
+
+.texto 
+{
+    width: 15%;
+}
+
+.texto p 
+{
+    color: #fff;
+}
+
