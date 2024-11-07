@@ -129,10 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="input-box">
                         <label for="password">Senha</label>
-                        <div id="container-senha">
-                            <input id="password" type="password" name="senha" placeholder="Digite sua senha" required>
-                            <i style="cursor: pointer; margin: 0 auto;" class="bi bi-eye-slash" id="togglePassword"></i>
-                        </div>
+                        <input id="password" type="password" name="senha" placeholder="Digite sua senha" required><i style="cursor: pointer; margin: 0 auto;" class="bi bi-eye-slash" id="togglePassword"></i>
                         <div style="color: red;"><?php echo $msg[4]; ?></div>
                     </div>
 
@@ -159,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div style="margin-top: -4%">
                     <input id="submitBtn" class="btn" type="submit" value="Cadastrar-se"><br><br>
                     <div style="margin-top: -3%">Já possui uma conta?<a style="text-decoration:none; color:#F39C12" href="../views/login2.php"> Entrar</a></div>
-                    <div style="margin-top:2%"><?php echo $msg[8]; ?></div>
+                    <div style="color: white;"><?php echo $msg[8]; ?></div>
                 </div>
             </form>
         </div>

@@ -22,17 +22,16 @@
                 </ul>
                 <ul>
                 <?php
-                    if (isset($_SESSION["id"])) {
-                        $nome = htmlspecialchars($_SESSION["nome"]);
-                        $imagemPerfil = isset($_SESSION["imagem_perfil"]) ? $_SESSION["imagem_perfil"] : "../imagens/ftpadrao.webp";
 
-                        echo "<li><a href='perfil.php'>Bem-vindo, $nome <img src='$imagemPerfil' alt='Imagem de Perfil' class='imagem-perfil'></a></li>";
-                    } else {
-                        echo '<li><a href="../views/login.php" id="login">Login</a></li>';
-                        echo '<li><a href="../views/cadastro.php" class="btn-cadastrar">Cadastrar-se</a></li>';
-                    }
+                if (isset($_SESSION["id"])) {
+                    echo "<li><a href='perfil.php'>Bem-vindo, " . htmlspecialchars($_SESSION["nome"]) . "</a></li>";
+                }
+                else 
+                {
+                    echo '<li><a href="../views/login.php" id="login">Login</a></li>';
+                    echo '<li><a href="../views/cadastro.php" class="btn-cadastrar">Cadastrar-se</a></li>';
+                }
                 ?>
-
             </ul>
         </div>
     </header>
