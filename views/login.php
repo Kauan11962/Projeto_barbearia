@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (count($ret) == 1) {
             $_SESSION["id"] = $ret[0]->id_cliente;
             $_SESSION["nome"] = $ret[0]->nome;
+            $_SESSION["sobrenome"] = $ret[0]->sobrenome;
 
             header("location:../views/index.php");
             exit();

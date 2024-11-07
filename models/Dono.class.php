@@ -2,7 +2,8 @@
 	class Dono
 	{
 		public function __construct(private int $iddono = 0, private string $nome = "", private string $sobrenome = "",
-        private string $email = "", private string $celular= "", private string $senha = "", private string $cpf = "", private string $data_nasc = ""){}
+        private string $email = "", private string $celular= "", private string $senha = "", private string $cpf = "",
+		private string $data_nasc = "", private string $imagem = ""){}
 		
 		public function getIddono()
 		{
@@ -42,6 +43,11 @@
 		public function getData_nasc()
 		{
 			return $this->data_nasc;
+		}
+
+		public function getImagem()
+		{
+			return $this->imagem;
 		}
 	}
 ?>

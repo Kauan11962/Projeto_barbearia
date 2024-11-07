@@ -1,5 +1,58 @@
 <?php
 require_once "../views/header.php"; 
+require_once "../models/Conexao.class.php"; 
+require_once "../models/Cliente.class.php"; 
+require_once "../models/clienteDAO.php"; 
+
+$nome = htmlspecialchars($_SESSION["nome"]);
+$sobrenome = htmlspecialchars($_SESSION["sobrenome"]);
+
+if($_GET) {
+    $cliente = new Cliente($_GET["id"]);
+    $clienteDAO = new clienteDAO();
+    $ret = $clienteDAO->buscar_cliente($cliente);
+
+    // Verificando se a consulta retornou algum resultado
+    if (isset($ret) && count($ret) > 0) {
+        $nome = htmlspecialchars($ret[0]->nome);
+        $sobrenome = htmlspecialchars($ret[0]->sobrenome);
+    } else {
+        // Caso não tenha retornado resultados
+        echo "Cliente não encontrado.";
+        exit();
+    }
+}
+
+if($_POST) {
+    // Verificando se foi enviado uma nova imagem
+    if (!empty($_FILES["imagem"]["name"])) {
+        $imagem = $_FILES["imagem"]["name"];
+    } else {
+        // Caso contrário, mantendo a imagem atual
+        $imagem = $_POST["imagem_atual"];
+    }
+
+    // Alterando a senha para usar md5 (ou password_hash para mais segurança)
+    $senha = md5($_POST["senha"]); // Mudança de mds() para md5()
+
+    $cliente = new Cliente(
+        nome: $_POST["nome"],
+        sobrenome: $_POST["sobrenome"],
+        email: $_POST["email"],
+        celular: $_POST["celular"],
+        senha: $senha, // A senha foi alterada para ser passada como md5
+        preferencias: $_POST["preferencias"], 
+        imagem: $imagem,
+        id_cliente: $_POST["id_cliente"]
+    );
+
+    $clienteDAO = new clienteDAO();
+    $retorno = $clienteDAO->alterar($cliente);
+
+    header("location:perfil.php?mensagem=$retorno");
+    die();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +69,9 @@ require_once "../views/header.php";
         <section class="perfil-container">
             <!-- Informações do usuário -->
             <div class="perfil-info">
-                <img src="img/usuario.png" alt="Foto do Usuário" class="perfil-foto" id="foto-usuario">
-                <h2 id="nome-usuario">Giuseppe Camoles</h2>
-                <p id="preferencias-usuario">Preferências: Cortes de cabelo modernos, barba detalhada</p>
+                <img src="../imagens/ftpadrao.webp" alt="Foto do Usuário" class="perfil-foto" id="foto-usuario">
+                <?php echo "<h2>$nome $sobrenome </h2>" ?>
+                <p style="font-weight:bold" id="preferencias-usuario">Preferências:<?php echo " ..."  ?></p> 
                 <button onclick="editarPerfil()">Editar Perfil</button>
             </div>
 
@@ -48,18 +101,41 @@ require_once "../views/header.php";
     <!-- Modal para editar perfil -->
     <div id="modal-editar-perfil" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="fecharModal('modal-editar-perfil')">&times;</span>
-            <h2>Editar Perfil</h2>
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" value="Giuseppe Camoles">
-            <label for="preferencias">Preferências:</label>
-            <input type="text" id="preferencias" value="Cortes de cabelo modernos, barba detalhada">
+            <form enctype="multipart/form-data" action="#" method="post">
+
+                <span class="close" onclick="fecharModal('modal-editar-perfil')">&times;</span>
+
+                <h2>Editar Perfil</h2>
+
+                <label for="nome">Nome:</label>
+                <input id="inputs" type="text" id="nome" value="<?php echo isset($ret[0]) ? $ret[0]->nome : ''; ?>">
+
+                <label for="sobrenome">Sobrenome:</label>
+                <input id="inputs" type="text" id="sobrenome" value="<?php echo isset($ret[0]) ? $ret[0]->sobrenome : ''; ?>">
+
+                <label for="email">Email:</label>
+                <input id="inputs" type="text" id="email" value="<?php echo isset($ret[0]) ? $ret[0]->email : ''; ?>">
+
+                <label for="celular">Celular:</label>
+                <input id="inputs" type="text" id="celular" value="<?php echo isset($ret[0]) ? $ret[0]->celular : ''; ?>">
+
+                <label for="senha">Senha:</label>
+                <input id="inputs" type="text" id="senha" value="<?php echo isset($ret[0]) ? $ret[0]->senha : ''; ?>">
+
+                <label for="preferencias">Preferências:</label>
+                <input id="inputs" type="text" id="preferencias" value="<?php echo isset($ret[0]) ? $ret[0]->preferencias : ''; ?>">
             
-            <!-- Campo para upload de foto -->
-            <label for="foto-input">Foto de Perfil:</label>
-            <input type="file" id="foto-input" accept="image/*">
+                <label for="foto-input">Foto de Perfil:</label>
+                <?php if (!empty($ret[0]->imagem)): ?>
+                    <img style="width:10%" src="../imagens/clientes/<?php echo $ret[0]->imagem; ?>" alt="Foto do cliente">
+                <?php else: ?>
+                    <img style="width:10%" src="../imagens/ftpadrao.webp" alt="Foto padrão do cliente">
+                <?php endif; ?>
+                <input id="inputs" type="file" name="imagem" id="foto-input">
             
-            <button onclick="salvarPerfil()">Salvar</button>
+                <input type="submit" class="btn" value="Salvar">
+
+            </form>
         </div>
     </div>
 

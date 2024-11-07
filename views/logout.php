@@ -5,6 +5,7 @@
 	}
 	unset($_SESSION["id"]);
 	unset($_SESSION["nome"]);
+	unset($_SESSION["sobrenome"]);
 	header("location:../views/index.php");
 	die();
 ?>

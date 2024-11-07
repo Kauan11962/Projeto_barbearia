@@ -61,5 +61,53 @@
 				die();
 			}
 		}
+
+		public function buscar_cliente($cliente)
+		{
+			$sql = "SELECT * FROM cliente WHERE id_cliente = ?";
+			try
+			{
+				$stm = $this->db->prepare($sql);
+				$stm->bindValue(1, $cliente->getId_cliente());
+				$stm->execute();
+				$this->db = null;
+				return $stm->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e)
+			{
+				$this->db = null;
+				echo $e->getMessage();
+				echo $e->getCode();
+				die();
+			}
+		}
+
+		public function alterar($cliente)
+		{
+			$sql = "UPDATE cliente SET nome = ?, sobrenome = ?, email = ?, celular = ?, senha = ?, preferencias = ?, imagem = ? WHERE id_cliente = ?";
+			try
+			{
+				$stm = $this->db->prepare($sql);
+				$stm->bindValue(1, $cliente->getNome());
+				$stm->bindValue(2, $cliente->getSobrenome());
+				$stm->bindValue(3, $cliente->getEmail());
+				$stm->bindValue(4, $cliente->getCelular());
+				$stm->bindValue(5, $cliente->getSenha());
+				$stm->bindValue(6, $cliente->getPreferencias());
+				$stm->bindValue(7, $cliente->getImagem());
+				$stm->bindValue(8, $cliente->getId_cliente());
+
+				$stm->execute();
+				$this->db = null;
+				return "Dados alterados com sucesso";
+			}
+			catch(PDOException $e)
+			{
+				$this->db = null;
+				echo $e->getMessage();
+				echo $e->getCode();
+				die();
+			}
+		}
 	}
 ?>

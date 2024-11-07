@@ -2,7 +2,7 @@
 	class Cliente
 	{
 		public function __construct(private int $idcliente = 0, private string $nome = "", private string $sobrenome = "",
-        private string $email = "", private string $celular= "", private string $senha = "", private string $cpf = "", private string $data_nasc = ""){}
+        private string $email = "", private string $celular= "", private string $senha = "", private string $imagem = "", private string $preferencias = ""){}
 		
 		public function getIdcliente()
 		{
@@ -34,14 +34,14 @@
 			return $this->senha;
 		}
 
-		public function getCpf()
+		public function getImagem()
 		{
-			return $this->cpf;
+			return $this->imagem;
 		}
 
-		public function getData_nasc()
+		public function getPreferencias()
 		{
-			return $this->data_nasc;
+			return $this->preferencias;
 		}
 	}
 ?>
