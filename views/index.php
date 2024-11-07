@@ -70,7 +70,7 @@ require_once "../views/header.php";
                         <a href="https://goo.gl/maps/centro" target="_blank"><img class="icon" src="../imagens/iconGoogleMaps.png" alt="Barbearia Dark Centro"></a>
                     </div>
                 </div>
-                <a href="../html/barbearia.html" class="btn">Ver Barbearias</a>
+                <a href="../views/barbearia.php" class="btn">Ver Barbearias</a>
             </div>
         </section>
 

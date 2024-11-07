@@ -1,14 +1,3 @@
-
-/* Estilos globais */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #1e1e1e;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-}
-
-
 .perfil-container {
     width: 80%;
     margin: 20px auto;

@@ -24,7 +24,11 @@
                 <?php
 
                 if (isset($_SESSION["id"])) {
-                    echo "<li><a href='perfil.php'>Bem-vindo, " . htmlspecialchars($_SESSION["nome"]) . "</a></li>";
+
+                    $nome = htmlspecialchars($_SESSION["nome"]);
+                    $imagemPerfil = isset($_SESSION["imagem_perfil"]) ? $_SESSION["imagem_perfil"] : "../imagens/ftpadrao.webp";
+
+                    echo "<li><a href='perfil.php'>Bem-vindo, $nome <img src='$imagemPerfil' alt='Imagem de Perfil' class='imagem-perfil'></a></li>";
                 }
                 else 
                 {

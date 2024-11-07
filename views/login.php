@@ -63,11 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" value="<?php echo isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : ''; ?>">
-                <div id="msg-email" style="color: red;"><?php echo $msg[0]; ?></div>
+                <div id="msg-email" style="color: red; text-align: center;"><?php echo $msg[0]; ?></div>
 
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha">
-                <div id="msg-senha" style="color: red;"><?php echo $msg[1]; ?></div>
+                <div id="msg-senha" style="color: red; text-align: center;"><?php echo $msg[1]; ?></div>
 
                 <input type="submit" class="btn" value="Entrar">
                 <div style="color: red; font-weight: semibold; text-align: center; padding-top:4%;"><?php echo $msg[2]; ?></div>
