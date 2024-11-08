@@ -8,7 +8,7 @@
 		
 		public function login($cliente)
 		{
-			$sql = "SELECT id_cliente, nome FROM cliente WHERE email = ? AND senha = ?";
+			$sql = "SELECT id_cliente, nome, sobrenome FROM cliente WHERE email = ? AND senha = ?";
 			try
 			{
 				$stm = $this->db->prepare($sql);
@@ -62,7 +62,7 @@
 			}
 		}
 
-		public function buscar_cliente($cliente)
+		public function buscar_um_cliente($cliente)
 		{
 			$sql = "SELECT * FROM cliente WHERE id_cliente = ?";
 			try
@@ -84,6 +84,10 @@
 
 		public function alterar($cliente)
 		{
+
+			var_dump($cliente);
+			echo "<br>";
+
 			$sql = "UPDATE cliente SET nome = ?, sobrenome = ?, email = ?, celular = ?, senha = ?, preferencias = ?, imagem = ? WHERE id_cliente = ?";
 			try
 			{
