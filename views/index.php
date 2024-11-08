@@ -74,6 +74,20 @@ require_once "../views/header.php";
             </div>
         </section>
 
+        <!-- Seção Adicional conforme imagem enviada -->
+        <section class="promo-section">
+            <div class="container-promo">
+                <div class="promo-texto">
+                    <h2>Quer trabalhar<br> no NOME?</h2>
+                    <p>Cadastre sua barbearia agora!</p>
+                    <a href="../views/empresa.php" class="btn-promo">Saiba mais</a>
+                </div>
+                <div class="promo-imagem">
+                    <img src="../imagens/barbershop.svg" alt="Imagem Promocional">
+                </div>
+            </div>
+        </section>
+
         <section id="avaliacoes" class="avaliacoes">
             <div class="avaliacoes">
                 <h2>Avaliações dos Nossos Usuários:</h2>
