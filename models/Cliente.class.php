@@ -2,9 +2,9 @@
 	class Cliente
 	{
 		public function __construct(private int $idcliente = 0, private string $nome = "", private string $sobrenome = "",
-        private string $email = "", private string $celular= "", private string $senha = "", private string $imagem = "", private string $preferencias = ""){}
+        private string $email = "", private string $celular= "", private string $senha = "", private string $preferencias = "",  private string $imagem = ""){}
 		
-		public function getIdcliente()
+		public function getId_cliente()
 		{
 			return $this->idcliente;
 		}
