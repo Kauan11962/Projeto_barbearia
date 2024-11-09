@@ -7,7 +7,7 @@ require_once "../models/clienteDAO.php";
 
 $nome = htmlspecialchars($_SESSION["nome"]);
 $sobrenome = htmlspecialchars($_SESSION["sobrenome"]);
-$ftpadrao = "../imagens/ftpadrao.webp";
+$ftpadrao = "../imagens/clientes/ftpadrao.webp"; // Caminho da imagem padrão
 
 $id_cliente = $_SESSION["id"];
 
@@ -15,8 +15,24 @@ $cliente = new Cliente($id_cliente);
 $clienteDAO = new clienteDAO();
 $ret = $clienteDAO->buscar_um_cliente($cliente);
 
+// Define a imagem atual do usuário ou a imagem padrão
+$imagem = $ret[0]->imagem ?? $ftpadrao;
+
 if ($_POST) {
-    $imagem = !empty($_FILES["imagem"]["name"]) ? $_FILES["imagem"]["name"] : $ftpadrao; 
+    $nova_imagem = $_FILES["imagem"]["name"] ?? ""; 
+    $imagemTemp = $_FILES["imagem"]["tmp_name"];
+
+    // Verifica se uma nova imagem foi enviada
+    if ($imagemTemp) {
+        $diretorio = "../imagens/clientes/"; 
+        move_uploaded_file($imagemTemp, $diretorio . $nova_imagem);
+        $_SESSION["imagem"] = $nova_imagem; // Atualiza a imagem na sessão
+    } else {
+        // Usa a imagem atual se nenhuma nova imagem for enviada
+        $nova_imagem = $imagem;
+    }
+
+    $nova_senha = !empty($_POST["senha"]) ? md5($_POST["senha"]) : $ret[0]->senha;
 
     $cliente = new Cliente(
         $id_cliente,
@@ -24,9 +40,9 @@ if ($_POST) {
         $_POST["sobrenome"],
         $_POST["email"],
         $_POST["celular"],
-        md5($_POST["senha"]), 
+        $nova_senha, 
         $_POST["preferencias"], 
-        $imagem
+        $nova_imagem
     );  
 
     $clienteDAO = new clienteDAO();
@@ -34,12 +50,17 @@ if ($_POST) {
 
     $_SESSION["nome"] = $_POST["nome"];
     $_SESSION["sobrenome"] = $_POST["sobrenome"];
-
+    if (!empty($_POST["senha"])) {
+        $_SESSION["senha"] = $_POST["senha"];
+    }
 
     header("location:perfil.php?mensagem=$retorno");
     die();
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -53,15 +74,19 @@ if ($_POST) {
     <main>
         <h2>Perfil do Usuário</h2>
         <section class="perfil-container">
-            <!-- Informações do usuário -->
-            <div class="perfil-info">
-                <img src="../imagens/ftpadrao.webp" alt="Foto do Usuário" class="perfil-foto" id="foto-usuario">
+        <div class="perfil-info">
+                <!-- Exibe a imagem do usuário ou a imagem padrão -->
+                <img src="<?php if($imagem == "") {
+                    echo "../imagens/clientes/ftpadrao.webp";
+                } else {
+                    echo "../imagens/clientes/" . htmlspecialchars($imagem);
+                } ?>" alt="Foto do Usuário" class="perfil-foto" id="foto-usuario">
+
                 <?php echo "<h2>$nome $sobrenome</h2>"; ?>
                 <p style="font-weight:bold" id="preferencias-usuario">Preferências: <?php echo $ret[0]->preferencias ?? 'Não especificadas'; ?></p> 
                 <button onclick="editarPerfil()">Editar Perfil</button>
             </div>
 
-            <!-- Opções do perfil -->
             <div class="perfil-opcoes">
                 <h3>Opções</h3>
                 <div class="opcao" onclick="visualizarFavoritos()">
@@ -115,7 +140,7 @@ if ($_POST) {
             
                 <label for="foto-input">Foto de Perfil:</label>
                 <?php if (!empty($ret[0]->imagem)): ?>
-                    <img style="width:10%" src="../imagens/clientes/<?php echo htmlspecialchars($ret[0]->imagem); ?>" alt="Foto do cliente">
+                    <img style="width:10%" src="../imagens/clientes/<?php echo $ret[0]->imagem; ?>" alt="Foto do cliente">
                 <?php else: ?>
                     <img style="width:10%" src="<?php echo $ftpadrao; ?>" alt="Foto padrão do cliente">
                 <?php endif; ?>
