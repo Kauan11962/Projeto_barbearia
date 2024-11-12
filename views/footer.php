@@ -3,9 +3,6 @@
         <link rel="stylesheet" href="../css/footer.css">
     </head>
     <footer>
-        <div class="copy">
-            <p>&copy; 2024 Barbearia Dark. Todos os direitos reservados.</p>
-        </div>
         <div class="containerDoFooter">
             <div class="texto">
                 <p>A [Nome da Empresa] se dedica a oferecer [descrever o tipo de produto/serviço oferecido] de alta qualidade e excelência. Nosso compromisso é com a inovação, a satisfação dos nossos clientes e a melhoria contínua de nossos serviços.</p>
@@ -31,6 +28,9 @@
                 <img width="32px" src="../imagens/facebook.png"><a href="#"></a>
                 <img width="32px" src="../imagens/instagram.png"><a href="#"></a>
             </div>
+        </div>
+        <div class="copy">
+            <p>&copy; 2024 Barbearia Dark. Todos os direitos reservados.</p>
         </div>
     </footer>
 </html>

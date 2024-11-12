@@ -15,10 +15,10 @@
         <div class="container-header">
             <h1>Barbearia Dark</h1>
                 <ul>
-                    <li><a href="../views/index.php">Home</a></li>
-                    <li><a href="../views/barbearia.php">Barbearias</a></li>
-                    <li><a href="../views/contato.php">Contato</a></li>
-                    <li><a href="../views/empresa.php">Empresa</a></li>
+                    <li><a id="home" href="../views/index.php">Home</a></li>
+                    <li><a id="barbearias" href="../views/barbearia.php">Barbearias</a></li>
+                    <li><a id="contato" href="../views/contato.php">Contato</a></li>
+                    <li><a id="empresa" href="../views/empresa.php">Empresa</a></li>
                 </ul>
                 <ul>
                 <?php

@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
- 
 main {
     padding: 40px 0;
 }
@@ -132,3 +126,6 @@ footer p {
     background: #ffcc00;
 }
  
+#barbearias {
+    color: #f39c12;
+}

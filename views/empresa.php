@@ -9,7 +9,7 @@ require_once "../views/header.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbearia Dark - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../css/empresa.css">
 </head>
 <body>
 
@@ -53,7 +53,7 @@ require_once "../views/header.php";
                         <img src="imagens/unidade3.jpg" alt="Barbearia Dark Shopping Sul">
                     </div>
                 </div>
-                <a href="../html/barbearia.html" class="btn">Ver Barbearias</a>
+                <a href="../php/barbearia.php" class="btn">Ver Barbearias</a>
             </div>
         </section>
 
@@ -89,7 +89,7 @@ require_once "../views/header.php";
     <footer>
         <div class="container">
             <p>&copy; 2024 Barbearia Dark. Todos os direitos reservados.</p>
-            <p><a href="agendamento.html">Agendar agora</a></p>
+            <p><a href="../views/agendamento.php">Agendar agora</a></p>
         </div>
     </footer>
 
