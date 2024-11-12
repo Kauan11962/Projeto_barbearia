@@ -16,7 +16,7 @@ $clienteDAO = new clienteDAO();
 $ret = $clienteDAO->buscar_um_cliente($cliente);
 
 // Define a imagem atual do usuário ou a imagem padrão
-$imagem = $ret[0]->imagem ?? $ftpadrao;
+$imagem = !empty($ret[0]->imagem) ? $ret[0]->imagem : $ftpadrao;
 
 if ($_POST) {
     $nova_imagem = $_FILES["imagem"]["name"] ?? ""; 
@@ -57,6 +57,8 @@ if ($_POST) {
     header("location:perfil.php?mensagem=$retorno");
     die();
 }
+
+
 ?>
 
 
@@ -75,13 +77,11 @@ if ($_POST) {
         <h2>Perfil do Usuário</h2>
         <section class="perfil-container">
         <div class="perfil-info">
-                <!-- Exibe a imagem do usuário ou a imagem padrão -->
-                <img src="<?php if($imagem == "") {
-                    echo "../imagens/clientes/ftpadrao.webp";
-                } else {
-                    echo "../imagens/clientes/" . htmlspecialchars($imagem);
-                } ?>" alt="Foto do Usuário" class="perfil-foto" id="foto-usuario">
-
+                <?php if (!empty($ret[0]->imagem)): ?>
+                    <img src="../imagens/clientes/<?php echo $ret[0]->imagem; ?>" alt="Foto do cliente">
+                <?php else: ?>
+                    <img src="<?php echo $ftpadrao; ?>" alt="Foto padrão do cliente">
+                <?php endif; ?>
                 <?php echo "<h2>$nome $sobrenome</h2>"; ?>
                 <p style="font-weight:bold" id="preferencias-usuario">Preferências: <?php echo $ret[0]->preferencias ?? 'Não especificadas'; ?></p> 
                 <button onclick="editarPerfil()">Editar Perfil</button>

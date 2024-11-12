@@ -35,6 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION["id"] = $ret[0]->id_cliente;
             $_SESSION["nome"] = $ret[0]->nome;
             $_SESSION["sobrenome"] = $ret[0]->sobrenome;
+            
+            $_SESSION["imagem"] = !empty($ret[0]->imagem) ? $ret[0]->imagem : "ftpadrao.webp";
+
 
             header("location:../views/index.php");
             exit();

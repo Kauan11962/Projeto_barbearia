@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <input id="submitBtn" class="btn" type="submit" value="Cadastrar-se"><br><br>
-                <div style="margin-top: -3%">Já possui uma conta?<a style="text-decoration:none; color:#F39C12" href="../views/login2.php"> Entrar</a></div>
+                <div style="margin-top: -3%">Já possui uma conta?<a style="text-decoration:none; color:#F39C12" href="../views/login.php"> Entrar</a></div>
                 <div style="color: white;"><?php echo $msg[6]; ?></div>
             </form>
         </div>
