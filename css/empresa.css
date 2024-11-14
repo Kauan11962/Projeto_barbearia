@@ -262,7 +262,7 @@ main{
 .container-promo {
     display: flex;
     align-items: center;
-    flex-direction: row; /* Para alinhar o texto e a imagem lado a lado */
+    flex-direction: row;
     justify-content: center;
 }
 
@@ -274,9 +274,6 @@ main{
 
 #empresa {
     color: #f39c12;
-    font-size: 0.9em;
-    font-weight: bold;
-    margin-bottom: 0.5em;
 }
 
 .promo-texto h2 {
@@ -304,7 +301,7 @@ main{
 .promo-imagem img {
     width: 400px; 
     height: auto;
-    border-radius: 5px; /* Ajuste para bordas arredondadas */
+    border-radius: 5px; 
 }
 
 

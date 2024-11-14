@@ -7,7 +7,7 @@ require_once "../models/clienteDAO.php";
 
 $nome = htmlspecialchars($_SESSION["nome"]);
 $sobrenome = htmlspecialchars($_SESSION["sobrenome"]);
-$ftpadrao = "../imagens/clientes/ftpadrao.webp"; // Caminho da imagem padrão
+$ftpadrao = "../imagens/clientes/ftpadrao.webp"; 
 
 $id_cliente = $_SESSION["id"];
 
@@ -15,20 +15,17 @@ $cliente = new Cliente($id_cliente);
 $clienteDAO = new clienteDAO();
 $ret = $clienteDAO->buscar_um_cliente($cliente);
 
-// Define a imagem atual do usuário ou a imagem padrão
 $imagem = !empty($ret[0]->imagem) ? $ret[0]->imagem : $ftpadrao;
 
 if ($_POST) {
     $nova_imagem = $_FILES["imagem"]["name"] ?? ""; 
     $imagemTemp = $_FILES["imagem"]["tmp_name"];
 
-    // Verifica se uma nova imagem foi enviada
     if ($imagemTemp) {
         $diretorio = "../imagens/clientes/"; 
         move_uploaded_file($imagemTemp, $diretorio . $nova_imagem);
-        $_SESSION["imagem"] = $nova_imagem; // Atualiza a imagem na sessão
+        $_SESSION["imagem"] = $nova_imagem;
     } else {
-        // Usa a imagem atual se nenhuma nova imagem for enviada
         $nova_imagem = $imagem;
     }
 
@@ -60,9 +57,6 @@ if ($_POST) {
 
 
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="pt-BR">
