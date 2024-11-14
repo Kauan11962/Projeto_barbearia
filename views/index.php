@@ -40,7 +40,19 @@ require_once "../views/header.php";
                     </div>
                 </div>
                 <p>Transforme seu visual com nossos serviços especializados.</p>
-                <a href="../views/agendamento.php" class="btn">Agende seu horário</a>
+
+
+
+                <?php
+                if (isset($_SESSION["id"])) {
+                    echo "<a href='../views/barbearia.php' class='btn'>Agende seu horário</a>";
+                } else {
+                    echo "<a href='../views/login.php' class='btn'>Agende seu horário</a>";
+                }
+                ?>
+
+
+
             </div>
         </section>
  
@@ -74,7 +86,6 @@ require_once "../views/header.php";
             </div>
         </section>
 
-        <!-- Seção Adicional conforme imagem enviada -->
         <section class="promo-section">
             <div class="container-promo">
                 <div class="promo-texto">
@@ -118,13 +129,6 @@ require_once "../views/header.php";
     </main>
 
     <?php require_once "footer.php"; ?>
-
-    <!--<footer>
-        <div class="container">
-            <p>&copy; 2024 Barbearia Dark. Todos os direitos reservados.</p>
-            <p><a href="agendamento.html">Agendar agora</a></p>
-        </div>
-    </footer>-->
 
     <script src="../js/script.js"></script>
     <script src="../js/banner.js"></script>
