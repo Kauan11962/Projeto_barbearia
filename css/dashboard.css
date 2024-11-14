@@ -1,0 +1,80 @@
+/* Estilos Básicos */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1d1d1d;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+/* Cards de Resumo */
+.resumo {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    gap: 8px
+}
+
+.card {
+    background-color: #333;
+    border-radius: 8px;
+    width: 23%;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #aaa;
+}
+
+.card .quantidade {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Área de Gráficos */
+.graficos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.grafico {
+    background-color: #333;
+    border-radius: 8px;
+    width: 48%;
+    padding: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.grafico h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #aaa;
+}

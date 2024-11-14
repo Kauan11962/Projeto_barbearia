@@ -1,0 +1,78 @@
+
+.contato {
+    background-color: #222;
+    padding: 50px;
+    text-align: center;
+}
+
+.contato h2 {
+    margin-bottom: 20px;
+}
+
+.contato p {
+    margin-bottom: 40px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+    
+input:focus, textarea:focus {
+    outline: none;
+    background-color: #444;
+}
+
+button {
+    background-color: #f39c12;
+    color: #111;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #e67e22;
+}
+
+.info-contato {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.info-contato h3 {
+    color: #f39c12;
+    margin-bottom: 10px;
+}
+
+.info-contato p {
+    margin: 5px 0;
+}
+
+footer {
+    background-color: #111;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+    color: #fff;
+}
+
+#contato {
+    color: #f39c12;
+}

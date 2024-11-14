@@ -1,0 +1,116 @@
+/* Estilo geral */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #333;
+    color: #f5f5f5;
+    min-height: 100vh;
+}
+
+
+/* Estilo do container */
+.container {
+    max-width: 400px;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    padding-top: 10%;
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #feca57;
+    font-size: 28px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #feca57;
+}
+
+/* Estilos dos inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color: #888;
+}
+
+/* Botões */
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #f39c12;
+    color: #121212;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border:1px solid #f39c12;
+}
+
+
+button:hover,
+.btn:hover {
+    border:1px solid #f39c12;
+    background-color: transparent;
+    color: #f39c12;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #feca57;
+}
+
+/* Formulário */
+form {
+    margin-top: 20px;
+}
+
+/* Estilo de footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}

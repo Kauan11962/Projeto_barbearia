@@ -1,0 +1,421 @@
+/* Estilos globais */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #333;
+    margin-top: 50px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.hero img {
+    max-width: 80%;
+    height: auto;
+    margin: 20px 0;
+}
+
+.hero .btn {
+    background-color: #f39c12;
+    color: #111;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+/* Estilo das Unidades */
+.unidades {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.unidades h2 {
+    color: #f39c12;
+    margin-bottom: 40px;
+}
+
+.unidades-lista {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 5%;
+}
+
+.unidade {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+    transition: transform 0.3s;
+    margin-bottom: 30px;
+}
+
+.unidade:hover {
+    transform: scale(1.05);
+}
+
+.unidade h3 {
+    color: #f39c12;
+    margin-bottom: 15px;
+}
+
+.unidade img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.unidade p {
+    margin-bottom: 10px;
+}
+
+/* Botão para ver barbearias */
+.unidades .btn {
+    margin-top: 20px;
+    background-color: #f39c12;
+    color: #111;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+/* Footer */
+/*footer {
+    background-color: #111;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}*/
+
+/* Avaliações */
+.avaliacoes {
+    text-align: center;
+    padding-top: 25px;
+    background-color: #333;
+    padding-bottom: 30px;
+    width: 100%;
+}
+
+.avaliacoes h2 {
+    color: #f39c12;
+    margin-bottom: 35px;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: -10px;
+}
+
+
+.slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.item {
+    min-width: 100%;
+    background-color: #444;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.item.active {
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.item h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #f39c12;
+}
+
+.item .data {
+    font-size: 0.9em;
+    color: #999;
+}
+
+.item p {
+    font-size: 1em;
+    color: #ddd;
+    max-width: 75%;
+    margin: 8px auto; 
+}
+
+
+.item .estrela {
+    font-size: 1.2em;
+    color: #f39c12;
+}
+
+/* Botões de navegação */
+#next, #prev {
+    position: absolute;
+    top: 50%;
+    color: #f39c12;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+#next {
+    right: 10px;
+}
+
+#prev {
+    left: 10px;
+}
+
+/* Banner principal */
+
+.banner
+{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner .banner-carrousel
+{
+    display: flex;
+    transition: transform 1s ease-out;
+}
+ 
+ 
+.banner .banner-carrousel figure
+{
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* acrecentei border-radius*/
+.banner .banner-carrousel img {
+    width: 720px;
+    height: 420px;
+    display: block;
+    border-radius: 5px;
+}
+
+ 
+a .icon
+{
+    width: 32px;
+    height: 32px;
+}
+ 
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Promo Section */
+.promo-section {
+    display: flex;
+    padding: 2em 0;
+    background-color: #111;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.container-promo {
+    display: flex;
+    align-items: center;
+    flex-direction: row; /* Para alinhar o texto e a imagem lado a lado */
+    justify-content: center;
+}
+
+.promo-texto {
+    max-width: 50%;
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+
+#empresa {
+    color: #f39c12;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.promo-texto h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    
+}
+
+.promo-texto p {
+    font-size: 1rem;
+    color: #ddd;
+    margin-bottom: 1em;
+    line-height: 1.6;
+}
+
+.btn-promo {
+    background-color: #f39c12;
+    color: #000000;
+    padding: 0.5em 1.5em;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.promo-imagem img {
+    width: 400px; 
+    height: auto;
+    border-radius: 5px; /* Ajuste para bordas arredondadas */
+}
+
+
+.vantagens {
+    margin-bottom: 5%;
+    color: #fff;
+    padding: 2rem;
+}
+
+.vantagens h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #f39c12;
+}
+
+.vantagens-lista {
+    display: flex;
+    gap: 7rem;
+    justify-content: center;
+}
+
+.vantagem {
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 300px;
+    position: relative;
+    perspective: 1000px;
+    transition: transform 0.3s ease;
+}
+
+
+.vantagem-texto {
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.vantagem h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #f5f5f5;
+}
+
+.vantagem p {
+    font-size: 1rem;
+    color: #cccccc;
+    margin-bottom: 2.2em;
+}
+
+.vantagem-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f39c12;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.estatisticas {
+    background-color: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    padding: 3rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 5em;
+    width: 80%;
+}
+
+.estatisticas h2 {
+    color: #f0f0f0;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.estatisticas-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.card-estatistica {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-estatistica:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card-estatistica img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+}
+
+.card-estatistica h3 {
+    color: #ffba00;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-estatistica p {
+    color: #cccccc;
+    font-size: 1rem;
+}
