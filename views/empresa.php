@@ -66,28 +66,28 @@ require_once "../views/header.php";
                     
                     <!-- Card 1 -->
                     <div class="card-estatistica">
-                        <img src="../imagens/hand.png" id="icon" alt="Ícone de Barbearias Cadastradas">
+                        <img src="../imagens/handshake.svg" id="icon" alt="Ícone de Barbearias Cadastradas">
                         <h3>500+</h3>
                         <p>Barbearias cadastradas</p>
                     </div>
 
                     <!-- Card 2 -->
                     <div class="card-estatistica">
-                        <img src="../imagens/Verified.png" id="icon" alt="Ícone de Clientes Satisfeitos">
+                        <img src="../imagens/Verified.svg" id="icon" alt="Ícone de Clientes Satisfeitos">
                         <h3>10.000+</h3>
                         <p>Clientes satisfeitos</p>
                     </div>
 
                     <!-- Card 3 -->
                     <div class="card-estatistica">
-                        <img src="../imagens/Schedule.png" id="icon" alt="Ícone de Agendamentos">
+                        <img src="../imagens/calendar.svg" id="icon" alt="Ícone de Agendamentos">
                         <h3>95%</h3>
                         <p>Taxa de agendamentos bem-sucedidos</p>
                     </div>
 
                     <!-- Card 4 -->
                     <div class="card-estatistica">
-                        <img src="../imagens/grafico-de-crescimento.png" id="icon" alt="Ícone de Crescimento">
+                        <img src="../imagens/trend-up.svg" id="icon" alt="Ícone de Crescimento">
                         <h3>30%</h3>
                         <p>Aumento médio de clientes</p>
                     </div>
