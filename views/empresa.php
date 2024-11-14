@@ -14,48 +14,90 @@ require_once "../views/header.php";
 <body>
 
     <main>
-        <section class="hero">
-            <div class="container">
-                <h2>Cadastre sua empresa em nosso site!</h2>
-                <img src="imagens/barberdescricao.jpeg" alt="Imagem de Barbearia com empresario">
-                <p>Sua barbearia pede visibilidade pra vender mais</p>
-                <a href="../views/cadastro2.php" class="btn">Cadastre-se já!</a>
+        <section class="promo-section">
+            <div class="container-promo">
+                <div class="promo-texto">
+                    <h2>Vamos crescer juntos</h2>
+                    <p>Empresas incríveis começam com pessoas incríveis. Estamos criando um grupo diversificado de pessoas inteligentes e apaixonadas pelo que fazem, que se sentem à vontade em ser como são, e que são motivadas pelo nosso objetivo em comum — melhorar a vida das pessoas por meio do melhor transporte do mundo.</p>
+                    <a href="../views/cadastro2.php" class="btn-promo">Cadastre-se já!</a>
+                </div>
+                <div class="promo-imagem">
+                    <img src="../imagens/barbershop-bro.png" alt="Imagem ilustrativa da empresa">
+                </div>
             </div>
         </section>
 
-        <section id="unidades" class="unidades">
+        <section id="vantagens" class="vantagens">
             <div class="container">
                 <h2>Vantagens de ser parceiro da 'nome do site'</h2>
-                <div class="unidades-lista">
-                    <div class="unidade">
-                        <h3>Vantagem 1</h3>
-                        <p>Aumente sua visibilidade e atraia novos clientes</p>
-                        <p>Ao se cadastrar em nosso site, sua barbearia estará disponível para uma rede de clientes que procuram por serviços de qualidade. 
-                        Aumente sua presença online e permita que novos clientes descubram seu negócio com facilidade. 
-                        Seja encontrado por aqueles que estão prontos para agendar!</p>
-                        <a href="https://goo.gl/maps/centro" target="_blank">Alguma coisa ae</a>
-                        <img src="imagens/unidade1.jpg" alt="Barbearia Dark Centro">
+                <div class="vantagens-lista">
+                    <div class="vantagem">
+                        <div class="vantagem-texto">
+                            <h3>Aumente sua visibilidade e atraia novos clientes</h3>
+                            <p>Ao se cadastrar em nosso site, sua barbearia estará disponível para uma rede de clientes que procuram por serviços de qualidade. Aumente sua presença online e permita que novos clientes descubram seu negócio com facilidade. Seja encontrado por aqueles que estão prontos para agendar!</p>
+                        </div>
+                        <div class="vantagem-footer">Vantagem 1</div>
                     </div>
-                    <div class="unidade">
-                        <h3>Vantegem 2</h3>
-                        <p>Agendamentos online para facilitar o seu dia a dia</p>
-                        <p>Ofereça aos seus clientes a conveniência de agendar cortes e serviços diretamente pelo nosso site.
-                         Com o sistema de agendamentos fácil de usar, você pode otimizar sua agenda, reduzir falhas e garantir que seu fluxo de trabalho seja sempre eficiente.</p>
-                        <a href="https://goo.gl/maps/norte" target="_blank">Ver no Maps</a>
-                        <img src="imagens/unidade2.jpg" alt="Barbearia Dark Bairro Norte">
+
+                    <div class="vantagem">
+                        <div class="vantagem-texto">
+                            <h3>Agendamentos online para facilitar o seu dia </h3>
+                            <p>Ofereça aos seus clientes a conveniência de agendar cortes e serviços diretamente pelo nosso site. Com o sistema de agendamentos fácil de usar, você pode otimizar sua agenda, reduzir falhas e garantir que seu fluxo de trabalho seja sempre eficiente.</p>
+                        </div>
+                        <div class="vantagem-footer">Vantagem 2</div>
                     </div>
-                    <div class="unidade">
-                        <h3>Vantagem 3</h3>
-                        <p>Controle completo do seu negócio na palma da mão</p>
-                        <p>Nosso site oferece a você o controle total sobre sua barbearia, desde a gestão de horários até a visualização de agendamentos.
-                         Acompanhe seu desempenho, receba feedback dos clientes e faça ajustes para sempre oferecer o melhor serviço. Transforme sua barbearia em um negócio ainda mais organizado e de sucesso!</p>
-                        <a href="https://goo.gl/maps/shoppingsul" target="_blank">Ver no Maps</a>
-                        <img src="imagens/unidade3.jpg" alt="Barbearia Dark Shopping Sul">
+
+                    <div class="vantagem">
+                        <div class="vantagem-texto">
+                            <h3>Controle completo do seu negócio </h3>
+                            <p>Oferecemos a você o controle total sobre sua barbearia, desde a gestão de horários até a visualização de agendamentos. Receba feedback dos clientes e faça ajustes para sempre oferecer o melhor serviço. Transforme sua barbearia em um negócio ainda mais organizado e de sucesso!</p>
+                        </div>
+                        <div class="vantagem-footer">Vantagem 3</div>
                     </div>
                 </div>
-                <a href="../php/barbearia.php" class="btn">Ver Barbearias</a>
             </div>
         </section>
+
+
+        <section id="estatisticas" class="estatisticas">
+            <div class="container">
+                <h2>Nossos Números</h2>
+                <div class="estatisticas-cards">
+                    
+                    <!-- Card 1 -->
+                    <div class="card-estatistica">
+                        <img src="../imagens/hand.png" id="icon" alt="Ícone de Barbearias Cadastradas">
+                        <h3>500+</h3>
+                        <p>Barbearias cadastradas</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card-estatistica">
+                        <img src="../imagens/Verified.png" id="icon" alt="Ícone de Clientes Satisfeitos">
+                        <h3>10.000+</h3>
+                        <p>Clientes satisfeitos</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card-estatistica">
+                        <img src="../imagens/Schedule.png" id="icon" alt="Ícone de Agendamentos">
+                        <h3>95%</h3>
+                        <p>Taxa de agendamentos bem-sucedidos</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card-estatistica">
+                        <img src="../imagens/grafico-de-crescimento.png" id="icon" alt="Ícone de Crescimento">
+                        <h3>30%</h3>
+                        <p>Aumento médio de clientes</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
 
         <section id="avaliacoes" class="avaliacoes">
             <div class="avaliacoes">
