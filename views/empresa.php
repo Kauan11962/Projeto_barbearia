@@ -128,12 +128,14 @@ require_once "../views/header.php";
         </section>
     </main>
 
-    <footer>
+    <?php require_once "footer.php"; ?>
+
+    <!--<footer>
         <div class="container">
             <p>&copy; 2024 Barbearia Dark. Todos os direitos reservados.</p>
-            <p><a href="../views/agendamento.php">Agendar agora</a></p>
+            <p><a href="agendamento.html">Agendar agora</a></p>
         </div>
-    </footer>
+    </footer>-->
 
     <script src="../js/script.js"></script>
 </body>

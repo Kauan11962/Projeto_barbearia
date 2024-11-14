@@ -74,7 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div id="msg-senha" style="color: red; text-align: center;"><?php echo $msg[1]; ?></div>
 
                 <input type="submit" class="btn" value="Entrar">
-                <div style="color: red; font-weight: semibold; text-align: center; padding-top:4%;"><?php echo $msg[2]; ?></div>
+                <div style="padding:4% 0 0 0; text-align:center;">Não possui conta?<a style="text-decoration:none; color:#F39C12" href="../views/cadastro.php"> Cadastre-se</a></div>
+                <div style="color: red; font-weight: semibold; text-align: center;"><?php echo $msg[2]; ?></div>
             </form>
         </div>
     </main>
