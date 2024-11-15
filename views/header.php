@@ -29,14 +29,12 @@ if (!isset($_SESSION)) {
                     $id_cliente = $_SESSION["id"];
                     $nome = htmlspecialchars($_SESSION["nome"]);
                     $sobrenome = htmlspecialchars($_SESSION["sobrenome"]);
-                    $ftpadrao = "../imagens/clientes/ftpadrao.webp"; // Caminho da imagem padrão
+                    $ftpadrao = "../imagens/clientes/ftpadrao.webp"; 
 
-                    // Instanciamos ClienteDAO e buscamos a imagem atualizada do cliente
                     $cliente = new Cliente($id_cliente);
                     $clienteDAO = new clienteDAO();
                     $ret = $clienteDAO->buscar_um_cliente($cliente);
 
-                    // Verificamos se há uma imagem definida para o cliente
                     $imagemPerfil = !empty($ret[0]->imagem) ? "../imagens/clientes/" . htmlspecialchars($ret[0]->imagem) : $ftpadrao;
 
                     echo "<li><a href='perfil.php'>Bem-vindo, $nome $sobrenome <img src='$imagemPerfil' alt='Imagem do cliente' class='imagem-perfil'></a></li>";

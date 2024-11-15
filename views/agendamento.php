@@ -42,11 +42,9 @@ require_once "../views/header.php";
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Barbearia Dark. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    <?php
+    require_once "../views/footer.php";
+    ?>
 
     <script src="../js/agendamento.js"></script>
 </body>
