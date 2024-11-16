@@ -14,10 +14,9 @@ if (!isset($_SESSION)) {
         <div class="container-header">
             <h1>Barbearia Dark</h1>
             <ul>
-                <li><a id="home" href="../views/index.php">Home</a></li>
+                <li><a id="home" href="../views/headerDono.php">Home</a></li>
                 <li><a id="barbearias" href="../views/barbearia.php">Barbearias</a></li>
                 <li><a id="contato" href="../views/contato.php">Contato</a></li>
-                <li><a id="empresa" href="../views/empresa.php">Empresa</a></li>
             </ul>
             <ul>
             <?php
@@ -25,29 +24,29 @@ if (!isset($_SESSION)) {
                 require_once "../models/Cliente.class.php"; 
                 require_once "../models/clienteDAO.php";
 
-                if (isset($_SESSION["id"])) {
-                    $id_cliente = $_SESSION["id"];
-                    $nome = htmlspecialchars($_SESSION["nome"]);
-                    $sobrenome = htmlspecialchars($_SESSION["sobrenome"]);
-                    $ftpadrao = "../imagens/clientes/ftpadrao.webp"; // Caminho da imagem padrão
+                // Verifique se o id_dono está na sessão, em vez de id_cliente
+                if (isset($_SESSION["id_dono"])) {  // Verifica a sessão do dono
+                    $id_dono = $_SESSION["id_dono"];  // ID do dono logado
+                    $nome = htmlspecialchars($_SESSION["nome"]);  // Nome do dono
+                    $sobrenome = htmlspecialchars($_SESSION["sobrenome"]);  // Sobrenome do dono
 
-                    // Instanciamos ClienteDAO e buscamos a imagem atualizada do cliente
-                    $cliente = new Cliente($id_cliente);
-                    $clienteDAO = new clienteDAO();
-                    $ret = $clienteDAO->buscar_um_cliente($cliente);
+                    //Instanciamos ClienteDAO e buscamos a imagem atualizada do cliente
+                    //$cliente = new Cliente($id_cliente);
+                    //$clienteDAO = new clienteDAO();
+                    //$ret = $clienteDAO->buscar_um_cliente($cliente);
 
                     // Verificamos se há uma imagem definida para o cliente
-                    $imagemPerfil = !empty($ret[0]->imagem) ? "../imagens/clientes/" . htmlspecialchars($ret[0]->imagem) : $ftpadrao;
+                    //$imagemPerfil = !empty($ret[0]->imagem) ? "../imagens/clientes/" . htmlspecialchars($ret[0]->imagem) : $ftpadrao;
 
-                    echo "<li><a href='perfil.php'>Bem-vindo, $nome $sobrenome <img src='$imagemPerfil' alt='Imagem do cliente' class='imagem-perfil'></a></li>";
+                    echo "<li><a href='perfil.php'>Bem-vindo, $nome $sobrenome</a></li>";  // Exibe o nome do dono
                 } else {
                     echo '<li><a href="../views/login.php" id="login">Login</a></li>';
                     echo '<li><a href="../views/cadastro.php" class="btn-cadastrar">Cadastrar-se</a></li>';
                 }
                 ?>
-
             </ul>
         </div>
     </header>
 </body>
 </html>
+

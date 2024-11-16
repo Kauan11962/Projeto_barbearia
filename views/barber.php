@@ -34,11 +34,12 @@ require_once "../views/header.php";
                         </div>
                         <p>Baseado em 631 avaliações</p>
                     </div>
-                    <a href="#nossos-valores" class="btn">Agendar Agora</a>
+                    <a href="agendamento.php" class="btn">Agendar Agora</a>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Seção Nossos Serviços -->
     <section class="servicos">
         <h2>Nossos Serviços</h2>
         <div class="container-servicos">
@@ -76,7 +77,8 @@ require_once "../views/header.php";
             </div>
         </div>
     </section>
-     <section id="nossos-valores" class="servicos-detalhes">
+     <!-- Seção Nossos Valores -->
+     <section class="servicos-detalhes">
         <div class="container">
             <h2>Nossos Valores</h2>
 
@@ -87,7 +89,6 @@ require_once "../views/header.php";
                     <p>Desde o corte clássico até o design moderno, cuidamos da sua barba com os melhores produtos e técnicas.</p>
                     <p><strong>Preço:</strong> R$ 30,00</p>
                 </div>
-                <a href="../views/agendamento.php" class="btn agendar">Agendar</a>
             </div>
 
             <div class="servico-detalhe">
@@ -97,7 +98,6 @@ require_once "../views/header.php";
                     <p>Oferecemos cortes personalizados que se adequam ao seu estilo. Modernos ou tradicionais, você escolhe.</p>
                     <p><strong>Preço:</strong> R$ 50,00</p>
                 </div>
-                <a href="../views/agendamento.php" class="btn agendar">Agendar</a>
             </div>
 
             <div class="servico-detalhe">
@@ -107,7 +107,6 @@ require_once "../views/header.php";
                     <p>Design de sobrancelhas masculino, garantindo um visual alinhado e impactante.</p>
                     <p><strong>Preço:</strong> R$ 20,00</p>
                 </div>
-                <a href="../views/agendamento.php" class="btn agendar">Agendar</a>
             </div>
 
             <div class="servico-detalhe">
@@ -117,7 +116,6 @@ require_once "../views/header.php";
                     <p>Tratamento capilar para relaxar os fios e proporcionar maciez e brilho.</p>
                     <p><strong>Preço:</strong> R$ 60,00</p>
                 </div>
-                <a href="../views/agendamento.php" class="btn agendar">Agendar</a>
             </div>
 
             <div class="servico-detalhe">
@@ -127,7 +125,6 @@ require_once "../views/header.php";
                     <p>Massagem relaxante para aliviar o estresse e proporcionar bem-estar.</p>
                     <p><strong>Preço:</strong> R$ 40,00</p>
                 </div>
-                <a href="../views/agendamento.php" class="btn agendar">Agendar</a>
             </div>
 
             <div class="servico-detalhe">
@@ -137,50 +134,18 @@ require_once "../views/header.php";
                     <p>Hidratação profunda e tratamento especializado para garantir cabelos saudáveis.</p>
                     <p><strong>Preço:</strong> R$ 70,00</p>
                 </div>
-                <a href="../views/agendamento.php" class="btn agendar">Agendar</a>
             </div>
 
+            <a href="agendamento.php" class="btn">Agende seu horário</a>
         </div>
     </section>
 </main>
 
-
-<!-- Modal de Agendamento -->
-<div id="agendamentoModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="fecharModal()">&times;</span>
-        <h2>Escolha a data e horário</h2>
-        
-        <!-- Navegação de Datas -->
-        <div class="navegacao-datas">
-            <button class="seta" onclick="mudarData(-1)">&#8592;</button>
-            <span id="dataAtual"></span>
-            <button class="seta" onclick="mudarData(1)">&#8594;</button>
-        </div>
-        
-        <!-- Seleção de Profissional -->
-        <div class="profissionais">
-            <h3>Selecione o profissional</h3>
-            <div class="lista-profissionais">
-                <img src="../imagens/clientes/calleri.jpeg" alt="Profissional 1" onclick="selecionarProfissional(1)">
-                <img src="../imagens/clientes/messi.jpg" alt="Profissional 2" onclick="selecionarProfissional(2)">
-                <img src="../imagens/clientes/nj.jpg" alt="Profissional 3" onclick="selecionarProfissional(3)">
-            </div>
-        </div>
-
-        <!-- Horários Disponíveis -->
-        <div id="horarios" class="horarios">
-            <h3>Horários Disponíveis</h3>
-            <div class="lista-horarios" id="listaHorarios"></div>
-        </div>
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Barbearia Dark. Todos os direitos reservados.</p>
     </div>
-</div>
-
-<?php
-    require_once "../views/footer.php";
-?>
-
-<script src="../js/barber.js"></script>
+</footer>
 
 </body>
 </html>
