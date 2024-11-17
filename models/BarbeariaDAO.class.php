@@ -38,5 +38,16 @@ class barbeariaDAO extends Conexao {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function excluirEmpresa(int $idBarbearia): bool {
+        $sql = "DELETE FROM barbearias WHERE id_barbearia = :id";
+        $stmt = $this->db->prepare($sql); // Use prepare() do PDO
+        $stmt->bindValue(':id', $idBarbearia, PDO::PARAM_INT); // Use bindValue() ou bindParam() do PDO
+        return $stmt->execute(); // Execute a query
+    
+        if (!$stmt->execute()) {
+            throw new Exception("Erro ao excluir a empresa: " . $stmt->error);
+        }
+    }    
+
 }
 ?>

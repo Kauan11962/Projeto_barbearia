@@ -2,9 +2,13 @@
 require_once "../views/headerDono.php"; 
 
 //var_dump($_POST);
+//var_dump($_SESSION);
 
+if (!isset($_SESSION['msg'])) {
+    $_SESSION['msg'] = ["", "", "", ""];
+}
 
-$msg = ["","","",""]; // Mensagens de erro ou sucesso
+$msg = ["","","",""];
 $empresasCadastradas = []; // Array para armazenar as empresas cadastradas
 $erro = false; // Inicialize a variável $erro
 
@@ -12,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "../models/Conexao.class.php";   // Conexão com o banco
     require_once "../models/Barbearia.class.php";  // Modelo da Barbearia
     require_once "../models/barbeariaDAO.class.php";     // DAO para realizar operações no banco
+
+    $_SESSION['$msg'] = ["", "", "", ""];
 
     // Validação dos campos
     if (empty($_POST["nome"])) {
@@ -56,7 +62,25 @@ require_once "../models/Conexao.class.php";
 require_once "../models/barbeariaDAO.class.php";
 require_once "../models/Barbearia.class.php";
 $barbeariaDAO = new barbeariaDAO();
-$empresasCadastradas = $barbeariaDAO->listarEmpresas($_POST['id_dono']); // Passando o ID do dono para buscar as empresas relacionadas
+$idDono = $_POST['id_dono'] ?? null;
+
+if ($idDono !== null) {
+    $empresasCadastradas = $barbeariaDAO->listarEmpresas($idDono);
+} else {
+    $empresasCadastradas = [];
+}
+
+// Lógica para exclusão
+if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
+    $idEmpresa = (int)$_POST['id_empresa'];
+    $barbeariaDAO->excluirEmpresa($idEmpresa);
+    
+    // Atualizar a lista de empresas após a exclusão
+    $empresasCadastradas = $barbeariaDAO->listarEmpresas($_SESSION['id_dono']);
+    $msg[3] = "<div style='color: green;margin-top: 5%; font-weight: bold;'>Empresa excluída com sucesso!</div>";
+}
+
+//$empresasCadastradas = $barbeariaDAO->listarEmpresas($_POST['id_dono']); // Passando o ID do dono para buscar as empresas relacionadas
 ?>
 
 <html lang="pt-BR">
@@ -65,6 +89,15 @@ $empresasCadastradas = $barbeariaDAO->listarEmpresas($_POST['id_dono']); // Pass
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Empresa</title>
     <link rel="stylesheet" href="../css/styleDono.css">
+    <style>
+        /* Inicialmente, as mensagens ficam ocultas */
+        .mensagens {
+            display: none;
+        }
+        .mensagens.show {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <main>
@@ -118,11 +151,26 @@ $empresasCadastradas = $barbeariaDAO->listarEmpresas($_POST['id_dono']); // Pass
                         <p><strong>Endereço:</strong> <?php echo htmlspecialchars($empresa['endereco']); ?></p>
                         <p><strong>Telefone:</strong> <?php echo htmlspecialchars($empresa['telefone']); ?></p>
                         <hr>
+                        <form method="POST" action="homeDoDono.php">
+                            <input type="hidden" name="id_empresa" value="<?= htmlspecialchars($empresa['id_barbearia']); ?>">
+                            <button type="submit" name="excluir" value="1">Excluir</button>
+                        </form>
                     </li>
                 <?php } ?>
             </ul>
         </div>
         <?php } ?>
+
+        <?php                       
+            if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
+                $idEmpresa = (int)$_POST['id_empresa'];
+                $barbeariaDAO->excluirEmpresa($idEmpresa);
+                
+                // Atualizar a lista de empresas após a exclusão
+                $empresasCadastradas = $barbeariaDAO->listarEmpresas($_SESSION['id_dono']);
+                $msg = "<div style='display: none;'></div>";
+            }            
+        ?>
 
         <script src="../js/scriptHomeDono.js"></script>
 
