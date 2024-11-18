@@ -1,5 +1,5 @@
 <?php
-require_once "../views/header.php"; 
+require_once "../views/headerDono.php"; 
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +50,7 @@ require_once "../views/header.php";
         </div>
     </div>
     
+    <?php require_once "footer.php"; ?>
 
     <script src="../js/dashboard.js"></script>
 

@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (count($ret) == 1) {
             session_start();
-            $_SESSION["id_dono"] = $ret[0]->id_dono;
+            $_SESSION["id"] = $ret[0]->id_dono;
             $_SESSION["nome"] = $ret[0]->nome;
             $_SESSION["sobrenome"] = $ret[0]->sobrenome;
 
 
-            header("location:../views/homeDoDono.php");
+            header("location:../views/dashboard.php");
             exit();
         } else {
             $msg[2] = "Verifique seus dados";

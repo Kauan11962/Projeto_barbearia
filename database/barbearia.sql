@@ -16,60 +16,64 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `agendamentos`
+-- Table structure for table `agendamento`
 --
 
-DROP TABLE IF EXISTS `agendamentos`;
+DROP TABLE IF EXISTS `agendamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `agendamentos` (
+CREATE TABLE `agendamento` (
   `id_agendamento` int(11) NOT NULL AUTO_INCREMENT,
   `data_hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_cliente` int(11) DEFAULT NULL,
+  `id_profissional` int(11) DEFAULT NULL,
   `id_servico` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_agendamento`),
   KEY `id_cliente` (`id_cliente`),
+  KEY `id_profissional` (`id_profissional`),
   KEY `id_servico` (`id_servico`),
-  CONSTRAINT `agendamentos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
-  CONSTRAINT `agendamentos_ibfk_2` FOREIGN KEY (`id_servico`) REFERENCES `servicos` (`id_servico`)
+  CONSTRAINT `agendamento_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
+  CONSTRAINT `agendamento_ibfk_2` FOREIGN KEY (`id_profissional`) REFERENCES `profissional` (`id_profissional`),
+  CONSTRAINT `agendamento_ibfk_3` FOREIGN KEY (`id_servico`) REFERENCES `servico` (`id_servico`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `agendamentos`
+-- Dumping data for table `agendamento`
 --
 
-LOCK TABLES `agendamentos` WRITE;
-/*!40000 ALTER TABLE `agendamentos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `agendamentos` ENABLE KEYS */;
+LOCK TABLES `agendamento` WRITE;
+/*!40000 ALTER TABLE `agendamento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `agendamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `barbearias`
+-- Table structure for table `barbearia`
 --
 
-DROP TABLE IF EXISTS `barbearias`;
+DROP TABLE IF EXISTS `barbearia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `barbearias` (
+CREATE TABLE `barbearia` (
   `id_barbearia` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `endereco` varchar(100) NOT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
+  `celular` varchar(20) NOT NULL,
+  `cnpj` varchar(20) NOT NULL,
   `id_dono` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_barbearia`),
   KEY `id_dono` (`id_dono`),
-  CONSTRAINT `barbearias_ibfk_1` FOREIGN KEY (`id_dono`) REFERENCES `dono` (`id_dono`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `barbearia_ibfk_1` FOREIGN KEY (`id_dono`) REFERENCES `dono` (`id_dono`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `barbearias`
+-- Dumping data for table `barbearia`
 --
 
-LOCK TABLES `barbearias` WRITE;
-/*!40000 ALTER TABLE `barbearias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `barbearias` ENABLE KEYS */;
+LOCK TABLES `barbearia` WRITE;
+/*!40000 ALTER TABLE `barbearia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `barbearia` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -84,13 +88,13 @@ CREATE TABLE `cliente` (
   `nome` varchar(100) NOT NULL,
   `sobrenome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `celular` varchar(20) NOT NULL,
+  `celular` varchar(20) DEFAULT NULL,
   `senha` varchar(100) NOT NULL,
-  `foto` blob DEFAULT NULL,
+  `imagem` blob DEFAULT NULL,
   `preferencias` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +103,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Felipe','Ortigoza','felipe@gmail.com','14998405428','202cb962ac59075b964b07152d234b70',NULL,NULL),(4,'marcos','silva','marcos@gmail.com','14998765466','202cb962ac59075b964b07152d234b70',NULL,NULL),(5,'batman','meronha','batman@gmail.com','(14) 99765-3211','202cb962ac59075b964b07152d234b70',NULL,NULL);
+INSERT INTO `cliente` VALUES (3,'Felipe','Ortigoza','felipe@gmail.com','(14) 99840-5428','202cb962ac59075b964b07152d234b70',_binary 'calleri.jpeg','');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,14 +121,12 @@ CREATE TABLE `dono` (
   `email` varchar(100) NOT NULL,
   `celular` varchar(20) NOT NULL,
   `senha` varchar(100) NOT NULL,
-  `cpf` varchar(20) NOT NULL,
-  `data_nasc` varchar(45) NOT NULL,
-  `foto` blob DEFAULT NULL,
+  `cpf` varchar(100) NOT NULL,
+  `data_nasc` varchar(100) NOT NULL,
+  `imagem` blob DEFAULT NULL,
   PRIMARY KEY (`id_dono`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `celular_UNIQUE` (`celular`),
-  UNIQUE KEY `cpf_UNIQUE` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,36 +135,64 @@ CREATE TABLE `dono` (
 
 LOCK TABLES `dono` WRITE;
 /*!40000 ALTER TABLE `dono` DISABLE KEYS */;
-INSERT INTO `dono` VALUES (1,'joao','pedro','joao@gmail.com','1498213455','202cb962ac59075b964b07152d234b70','549.421.848-19','09/09/2002',NULL),(10,'Felipe','Ortigoza','felipeempresa@gmail.com','1446222509','827ccb0eea8a706c4c34a16891f84e7b','28299874732','24/09/2003',NULL);
+INSERT INTO `dono` VALUES (1,'Felipe','Ortigoza','felipe@gmail.com','(14) 99840-5428','202cb962ac59075b964b07152d234b70','549.421.848-19','09/03/2005',NULL);
 /*!40000 ALTER TABLE `dono` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `servicos`
+-- Table structure for table `profissional`
 --
 
-DROP TABLE IF EXISTS `servicos`;
+DROP TABLE IF EXISTS `profissional`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `servicos` (
-  `id_servico` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  `descricao` varchar(100) DEFAULT NULL,
-  `preco` decimal(10,2) NOT NULL,
+CREATE TABLE `profissional` (
+  `id_profissional` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(20) NOT NULL,
+  `foto` blob NOT NULL,
   `id_barbearia` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_servico`),
+  PRIMARY KEY (`id_profissional`),
   KEY `id_barbearia` (`id_barbearia`),
-  CONSTRAINT `servicos_ibfk_1` FOREIGN KEY (`id_barbearia`) REFERENCES `barbearias` (`id_barbearia`)
+  CONSTRAINT `profissional_ibfk_1` FOREIGN KEY (`id_barbearia`) REFERENCES `barbearia` (`id_barbearia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `servicos`
+-- Dumping data for table `profissional`
 --
 
-LOCK TABLES `servicos` WRITE;
-/*!40000 ALTER TABLE `servicos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `servicos` ENABLE KEYS */;
+LOCK TABLES `profissional` WRITE;
+/*!40000 ALTER TABLE `profissional` DISABLE KEYS */;
+/*!40000 ALTER TABLE `profissional` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `servico`
+--
+
+DROP TABLE IF EXISTS `servico`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `servico` (
+  `id_servico` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
+  `tempo` time NOT NULL,
+  `preco` decimal(10,2) NOT NULL,
+  `id_barbearia` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_servico`),
+  KEY `id_barbearia` (`id_barbearia`),
+  CONSTRAINT `servico_ibfk_1` FOREIGN KEY (`id_barbearia`) REFERENCES `barbearia` (`id_barbearia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `servico`
+--
+
+LOCK TABLES `servico` WRITE;
+/*!40000 ALTER TABLE `servico` DISABLE KEYS */;
+/*!40000 ALTER TABLE `servico` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -174,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-07 19:08:35
+-- Dump completed on 2024-11-18 16:28:12

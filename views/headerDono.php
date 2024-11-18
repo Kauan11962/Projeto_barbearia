@@ -14,9 +14,9 @@ if (!isset($_SESSION)) {
         <div class="container-header">
             <h1>Barbearia Dark</h1>
             <ul>
-                <li><a id="home" href="../views/headerDono.php">Home</a></li>
-                <li><a id="barbearias" href="../views/barbearia.php">Barbearias</a></li>
-                <li><a id="contato" href="../views/contato.php">Contato</a></li>
+                <li><a id="dashboard" href="../views/dashboard.php">Dashboard</a></li>
+                <li><a id="agendamentos" href="../views/agendamentosbarbeiro.php">Agendamentos</a></li>
+                <li><a id="barbearias" href="../views/cadastroBarbearia.php">Barbearias</a></li>
             </ul>
             <ul>
             <?php
@@ -25,18 +25,9 @@ if (!isset($_SESSION)) {
                 require_once "../models/clienteDAO.php";
 
                 // Verifique se o id_dono está na sessão, em vez de id_cliente
-                if (isset($_SESSION["id_dono"])) {  // Verifica a sessão do dono
-                    $id_dono = $_SESSION["id_dono"];  // ID do dono logado
+                if (isset($_SESSION["id"])) {  // Verifica a sessão do dono
+                    $id_dono = $_SESSION["id"];  // ID do dono logado
                     $nome = htmlspecialchars($_SESSION["nome"]);  // Nome do dono
-                    $sobrenome = htmlspecialchars($_SESSION["sobrenome"]);  // Sobrenome do dono
-
-                    //Instanciamos ClienteDAO e buscamos a imagem atualizada do cliente
-                    //$cliente = new Cliente($id_cliente);
-                    //$clienteDAO = new clienteDAO();
-                    //$ret = $clienteDAO->buscar_um_cliente($cliente);
-
-                    // Verificamos se há uma imagem definida para o cliente
-                    //$imagemPerfil = !empty($ret[0]->imagem) ? "../imagens/clientes/" . htmlspecialchars($ret[0]->imagem) : $ftpadrao;
 
                     echo "<li><a href='perfil2.php'>Bem-vindo, $nome </a></li>";  // Exibe o nome do dono
                 } else {
