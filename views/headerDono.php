@@ -38,7 +38,7 @@ if (!isset($_SESSION)) {
                     // Verificamos se há uma imagem definida para o cliente
                     //$imagemPerfil = !empty($ret[0]->imagem) ? "../imagens/clientes/" . htmlspecialchars($ret[0]->imagem) : $ftpadrao;
 
-                    echo "<li><a href='perfil.php'>Bem-vindo, $nome $sobrenome</a></li>";  // Exibe o nome do dono
+                    echo "<li><a href='perfil2.php'>Bem-vindo, $nome </a></li>";  // Exibe o nome do dono
                 } else {
                     echo '<li><a href="../views/login.php" id="login">Login</a></li>';
                     echo '<li><a href="../views/cadastro.php" class="btn-cadastrar">Cadastrar-se</a></li>';

@@ -30,15 +30,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = true;
     }
 
-    if (empty($_POST["telefone"])) {
-        $msg[2] = "Preencha o telefone";
+    if (empty($_POST["celular"])) {
+        $msg[2] = "Preencha o celular";
         $erro = true;
     }
 
     // Se não houver erro, continua o processo de cadastro
     if (!$erro) {
         // Criação do objeto Barbearia
-        $barbearia = new Barbearia(nome: $_POST["nome"], endereco: $_POST["endereco"], telefone: $_POST["telefone"], idDono: $_POST["id_dono"]);
+        $barbearia = new Barbearia(nome: $_POST["nome"], endereco: $_POST["endereco"], celular: $_POST["celular"], cnpj: $_POST["cnpj"], idDono: $_POST["id_dono"]);
         $barbeariaDAO = new barbeariaDAO();
 
         // Verifica se a empresa já foi cadastrada
@@ -53,7 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Caso não haja erro, realiza o cadastro
     if (!$erro) {
         $retorno = $barbeariaDAO->cadastrar($barbearia);
-        $msg[3] = "<div style='color: green;margin-top: 5%; font-weight: bold;'>Empresa cadastrada com sucesso!</div>"; 
+        //$msg[3] = "<div style='color: green;margin-top: 5%; font-weight: bold;'>Empresa cadastrada com sucesso!</div>"; 
+
     }
 }
 
@@ -133,7 +134,8 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
                 <form action="homeDoDono.php" method="POST">
                     <input type="text" name="nome" placeholder="Nome da Empresa" value="<?php echo $_POST['nome'] ?? ''; ?>" required><br>
                     <input type="text" name="endereco" placeholder="Endereço" value="<?php echo $_POST['endereco'] ?? ''; ?>" required><br>
-                    <input type="text" name="telefone" placeholder="Telefone" value="<?php echo $_POST['telefone'] ?? ''; ?>" required><br>
+                    <input type="text" name="celular" placeholder="Celular" value="<?php echo $_POST['celular'] ?? ''; ?>" required><br>
+                    <input type="text" name="cnpj" placeholder="CNPJ" value="<?php echo $_POST['cnpj'] ?? ''; ?>" required><br>
                     <input type="hidden" name="id_dono" value="<?php echo $_SESSION['id_dono'] ?? '12'; ?>"> <!-- Verifica se há id_dono na sessão -->
                     <button type="submit">Confirmar Cadastro</button>
                 </form>
@@ -149,7 +151,8 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
                     <li>
                         <p><strong>Nome:</strong> <?php echo htmlspecialchars($empresa['nome']); ?></p>
                         <p><strong>Endereço:</strong> <?php echo htmlspecialchars($empresa['endereco']); ?></p>
-                        <p><strong>Telefone:</strong> <?php echo htmlspecialchars($empresa['telefone']); ?></p>
+                        <p><strong>Celular:</strong> <?php echo htmlspecialchars($empresa['celular']); ?></p>
+                        <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($empresa['cnpj']); ?></p>
                         <hr>
                         <form method="POST" action="homeDoDono.php">
                             <input type="hidden" name="id_empresa" value="<?= htmlspecialchars($empresa['id_barbearia']); ?>">
@@ -174,39 +177,9 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
 
         <script src="../js/scriptHomeDono.js"></script>
 
-        
-
-        <section id="avaliacoes" class="avaliacoes">
-            <div class="avaliacoes">
-                <h2>Avaliações dos Nossos Usuários:</h2>
-                <div class="slider">
-                    <div class="item">
-                        <h3>Róger Alves</h3>
-                        <p class="data">14/07/2024</p>
-                        <p>Gostei muito da facilidade do agendamento! Top!</p>
-                        <span class="estrela">★★★★★</span>
-                    </div>
-                    <div class="item">
-                        <h3>Rafael Laurino Neto</h3>
-                        <p class="data">16/07/2024</p>
-                        <p>Atendimento excelente! Ficamos muito satisfeitos e voltaremos.</p>
-                        <span class="estrela">★★★★★</span>
-                    </div>
-                    <div class="item">
-                        <h3>Evandro Gonçalves</h3>
-                        <p class="data">08/09/2024</p>
-                        <p>São os melhores!!!</p>
-                        <span class="estrela">★★★★★</span>
-                    </div>
-                    <button id="next">></button>
-                    <button id="prev"><</button>
-                </div>
-            </div>
-        </section>
     </main>
 
     <?php require_once "footer.php"; ?>
 
-    <script src="../js/script.js"></script>
 </body>
 </html>

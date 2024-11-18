@@ -4,7 +4,8 @@ class Barbearia {
         private int $idBarbearia = 0,
         private string $nome = "",
         private string $endereco = "",
-        private string $telefone = "",
+        private string $celular = "",
+        private string $cnpj = "",
         private int $idDono = 0
     ) {}
 
@@ -20,8 +21,12 @@ class Barbearia {
         return $this->endereco;
     }
 
-    public function getTelefone() {
-        return $this->telefone;
+    public function getCelular() {
+        return $this->celular;
+    }
+
+    public function getCnpj() {
+        return $this->cnpj;
     }
 
     public function getIdDono() {

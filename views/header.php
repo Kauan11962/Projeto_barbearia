@@ -28,7 +28,7 @@ if (!isset($_SESSION)) {
                 if (isset($_SESSION["id"])) {
                     $id_cliente = $_SESSION["id"];
                     $nome = htmlspecialchars($_SESSION["nome"]);
-                    $sobrenome = htmlspecialchars($_SESSION["sobrenome"]);
+                    //$sobrenome = htmlspecialchars($_SESSION["sobrenome"]);
                     $ftpadrao = "../imagens/clientes/ftpadrao.webp"; // Caminho da imagem padrão
 
                     // Instanciamos ClienteDAO e buscamos a imagem atualizada do cliente
@@ -39,7 +39,7 @@ if (!isset($_SESSION)) {
                     // Verificamos se há uma imagem definida para o cliente
                     $imagemPerfil = !empty($ret[0]->imagem) ? "../imagens/clientes/" . htmlspecialchars($ret[0]->imagem) : $ftpadrao;
 
-                    echo "<li><a href='perfil.php'>Bem-vindo, $nome $sobrenome <img src='$imagemPerfil' alt='Imagem do cliente' class='imagem-perfil'></a></li>";
+                    echo "<li><a href='perfil.php'>Bem-vindo, $nome <img src='$imagemPerfil' alt='Imagem do cliente' class='imagem-perfil'></a></li>";
                 } else {
                     echo '<li><a href="../views/login.php" id="login">Login</a></li>';
                     echo '<li><a href="../views/cadastro.php" class="btn-cadastrar">Cadastrar-se</a></li>';
