@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $retorno = $barbeariaDAO->cadastrar($barbearia);
         //$msg[3] = "<div style='color: green;margin-top: 5%; font-weight: bold;'>Empresa cadastrada com sucesso!</div>"; 
 
+        var_dump ($retorno);
     }
 }
 
@@ -77,7 +78,7 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
     $barbeariaDAO->excluirEmpresa($idEmpresa);
     
     // Atualizar a lista de empresas após a exclusão
-    $empresasCadastradas = $barbeariaDAO->listarEmpresas($_SESSION['id_dono']);
+    $empresasCadastradas = $barbeariaDAO->listarEmpresas($_SESSION['id']);
     $msg[3] = "<div style='color: green;margin-top: 5%; font-weight: bold;'>Empresa excluída com sucesso!</div>";
 }
 
@@ -89,7 +90,8 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Empresa</title>
-    <link rel="stylesheet" href="../css/styleDono.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/cadastroBarbearia.css">
     <style>
         /* Inicialmente, as mensagens ficam ocultas */
         .mensagens {
@@ -131,12 +133,12 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
             <div class="modal-conteudo">
                 <span class="fechar" id="fecharModalBtn">&times;</span>
                 <h2>Cadastro de Empresa</h2>
-                <form action="homeDoDono.php" method="POST">
+                <form action="cadastroBarbearia.php" method="POST">
                     <input type="text" name="nome" placeholder="Nome da Empresa" value="<?php echo $_POST['nome'] ?? ''; ?>" required><br>
                     <input type="text" name="endereco" placeholder="Endereço" value="<?php echo $_POST['endereco'] ?? ''; ?>" required><br>
                     <input type="text" name="celular" placeholder="Celular" value="<?php echo $_POST['celular'] ?? ''; ?>" required><br>
                     <input type="text" name="cnpj" placeholder="CNPJ" value="<?php echo $_POST['cnpj'] ?? ''; ?>" required><br>
-                    <input type="hidden" name="id_dono" value="<?php echo $_SESSION['id_dono'] ?? '12'; ?>"> <!-- Verifica se há id_dono na sessão -->
+                    <input type="hidden" name="id_dono" value="<?php echo $_SESSION['id'] ?? '12'; ?>"> <!-- Verifica se há id_dono na sessão -->
                     <button type="submit">Confirmar Cadastro</button>
                 </form>
             </div>
@@ -154,7 +156,7 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
                         <p><strong>Celular:</strong> <?php echo htmlspecialchars($empresa['celular']); ?></p>
                         <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($empresa['cnpj']); ?></p>
                         <hr>
-                        <form method="POST" action="homeDoDono.php">
+                        <form method="POST" action="cadastroBarbearia.php">
                             <input type="hidden" name="id_empresa" value="<?= htmlspecialchars($empresa['id_barbearia']); ?>">
                             <button type="submit" name="excluir" value="1">Excluir</button>
                         </form>
@@ -170,12 +172,12 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
                 $barbeariaDAO->excluirEmpresa($idEmpresa);
                 
                 // Atualizar a lista de empresas após a exclusão
-                $empresasCadastradas = $barbeariaDAO->listarEmpresas($_SESSION['id_dono']);
+                $empresasCadastradas = $barbeariaDAO->listarEmpresas($_SESSION['id']);
                 $msg = "<div style='display: none;'></div>";
             }            
         ?>
 
-        <script src="../js/scriptHomeDono.js"></script>
+        <script src="../js/cadastroBarbearia.js"></script>
 
     </main>
 

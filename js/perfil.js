@@ -19,8 +19,5 @@ function suporte() {
 
 // Função para redirecionar para a página de cadastro ao clicar em "Sair"
 function logout() {
-
-    
-
     window.location.href = "../views/logout.php";
 }
