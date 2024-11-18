@@ -73,6 +73,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$erro) {
         $retorno = $donoDAO->cadastrar($dono);
         $msg[8] = "<div style='color: #28a745; font-weight: bold;'>Dono cadastrado com sucesso</div>"; 
+
+        $dono = new Dono(email: $_POST["email"], senha: md5($_POST["senha"]));
+
+        $donoDAO = new donoDAO();
+        $ret = $donoDAO->login($dono);
+
+        if (count($ret) == 1) {
+            $_SESSION["id_dono"] = $ret[0]->id_dono;
+            $_SESSION["nome"] = $ret[0]->nome;
+            $_SESSION["sobrenome"] = $ret[0]->sobrenome;
+
+            header("location:../views/homeDoDono.php");
+            exit();
+        } else {
+            $msg[2] = "Verifique seus dados";
+        }
     }
 }
 ?>
