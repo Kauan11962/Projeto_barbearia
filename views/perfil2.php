@@ -67,7 +67,7 @@ if ($_POST) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Dono - Barbearia Dark</title>
-    <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="stylesheet" href="../css/perfil2.css">
 </head>
 <body>
     <main>
@@ -137,13 +137,13 @@ if ($_POST) {
                 <label for="data_nasc">Data de nascimento:</label>
                 <input id="inputs" type="text" name="data_nasc" value="<?php echo htmlspecialchars($ret[0]->data_nasc ?? ''); ?>">
             
-                <label for="foto-input">Foto de Perfil:</label>
+                <label for="foto-input" id="labelfoto">Foto de Perfil:</label>
                 <?php if (!empty($ret[0]->imagem)): ?>
-                    <img style="width:10%" src="../imagens/clientes/<?php echo $ret[0]->imagem; ?>" alt="Foto do dono">
+                    <img style="width: 50px;height: 50px;border-radius: 50%;object-fit: cover;" src="../imagens/clientes/<?php echo $ret[0]->imagem; ?>" alt="Foto do dono">
                 <?php else: ?>
-                    <img style="width:10%" src="<?php echo $ftpadrao; ?>" alt="Foto padrão do dono">
+                    <img style="width: 50px;height: 50px;border-radius: 50%;object-fit: cover;" src="<?php echo $ftpadrao; ?>" alt="Foto padrão do dono">
                 <?php endif; ?>
-                <input id="inputs" type="file" name="imagem" id="foto-input">
+                <input id="inputs" type="file" name="imagem" style="margin-left: -3%; width: 17%; background-color: rgb(0 0 0 / 0%);">
             
                 <input style="cursor: pointer" type="submit" class="btn" value="Salvar">
 
