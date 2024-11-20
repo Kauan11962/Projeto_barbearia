@@ -8,7 +8,7 @@
 		
 		public function login($dono)
 		{
-			$sql = "SELECT id_dono, nome FROM dono WHERE email = ? AND senha = ?";
+			$sql = "SELECT id_dono, nome, sobrenome FROM dono WHERE email = ? AND senha = ?";
 			try
 			{
 				$stm = $this->db->prepare($sql);

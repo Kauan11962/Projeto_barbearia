@@ -65,6 +65,8 @@ if ($_POST) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário - Barbearia Dark</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <link rel="stylesheet" href="../css/perfil.css">
 </head>
 <body>
@@ -125,7 +127,7 @@ if ($_POST) {
                 <input id="inputs" type="text" name="email" value="<?php echo htmlspecialchars($ret[0]->email ?? ''); ?>">
 
                 <label for="celular">Celular:</label>
-                <input id="inputs" type="text" name="celular" value="<?php echo htmlspecialchars($ret[0]->celular ?? ''); ?>">
+                <input class="celular" id="inputs" type="text" name="celular" value="<?php echo htmlspecialchars($ret[0]->celular ?? ''); ?>">
 
                 <label for="senha">Senha:</label>
                 <input id="inputs" type="password" name="senha" value="">
@@ -159,5 +161,21 @@ if ($_POST) {
     </div>
 
     <script src="../js/perfil.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            
+            $('.celular').mask('(00) 00000-0000');
+            
+        });
+
+        $('#togglePassword').click(function() {
+                const passwordField = $('#password');
+                const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
+                passwordField.attr('type', type);
+                $(this).toggleClass('bi-eye');
+                $(this).toggleClass('bi-eye-slash');
+            });
+    </script>
 </body>
 </html>

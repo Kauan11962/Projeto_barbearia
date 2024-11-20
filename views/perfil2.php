@@ -38,7 +38,7 @@ if ($_POST) {
         $_POST["email"],
         $_POST["celular"],
         $nova_senha, 
-        $_POST["data_nasc"], 
+        $_POST["cpf"], 
         $_POST["data_nasc"], 
         $nova_imagem
     );  
@@ -67,6 +67,8 @@ if ($_POST) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Dono - Barbearia Dark</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <link rel="stylesheet" href="../css/perfil.css">
 </head>
 <body>
@@ -126,16 +128,16 @@ if ($_POST) {
                 <input id="inputs" type="text" name="email" value="<?php echo htmlspecialchars($ret[0]->email ?? ''); ?>">
 
                 <label for="celular">Celular:</label>
-                <input id="inputs" type="text" name="celular" value="<?php echo htmlspecialchars($ret[0]->celular ?? ''); ?>">
+                <input class="celular" id="inputs" type="text" name="celular" value="<?php echo htmlspecialchars($ret[0]->celular ?? ''); ?>">
 
                 <label for="senha">Senha:</label>
                 <input id="inputs" type="password" name="senha" value="">
 
                 <label for="cpf">CPF:</label>
-                <input id="inputs" type="text" name="cpf" value="<?php echo htmlspecialchars($ret[0]->cpf ?? ''); ?>">
+                <input class="cpf" id="inputs" type="text" name="cpf" value="<?php echo htmlspecialchars($ret[0]->cpf ?? ''); ?>">
 
                 <label for="data_nasc">Data de nascimento:</label>
-                <input id="inputs" type="text" name="data_nasc" value="<?php echo htmlspecialchars($ret[0]->data_nasc ?? ''); ?>">
+                <input class="data_nasc" id="inputs" type="text" name="data_nasc" value="<?php echo htmlspecialchars($ret[0]->data_nasc ?? ''); ?>">
             
                 <label for="foto-input">Foto de Perfil:</label>
                 <?php if (!empty($ret[0]->imagem)): ?>
@@ -163,5 +165,24 @@ if ($_POST) {
     </div>
 
     <script src="../js/perfil.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $('.cpf').mask('000.000.000-00', {reverse: true});
+        
+        $('.celular').mask('(00) 00000-0000');
+        
+        $('.data_nasc').mask('00/00/0000');
+    });
+
+    $('#togglePassword').click(function() {
+            const passwordField = $('#password');
+            const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
+            passwordField.attr('type', type);
+            $(this).toggleClass('bi-eye');
+            $(this).toggleClass('bi-eye-slash');
+        });
+</script>
+
 </body>
 </html>
