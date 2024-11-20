@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION["nome"] = $ret[0]->nome;
             $_SESSION["sobrenome"] = $ret[0]->sobrenome;
 
-            header("location:../views/homeDoDono.php");
+            header("location:../views/dashboard.php");
             exit();
         } else {
             $msg[2] = "Verifique seus dados";

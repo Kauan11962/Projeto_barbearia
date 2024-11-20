@@ -32,7 +32,7 @@ footer .containerDoFooter a
 h4
 {
     margin-top: 5px;
-    color: #fff;
+    color: #F39C12;
     margin-bottom: 5px;
     font-size: 19px;
 }
@@ -61,3 +61,12 @@ h4
     color: #fff;
 }
 
+.redes1 
+{
+    color: #fff;
+}
+
+.redes img
+{
+    cursor: pointer;
+}

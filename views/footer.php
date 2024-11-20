@@ -24,9 +24,11 @@
                 <a href="#">Rafael Duarte</a>
             </div>
             <div class="redes">
-                <h4>Redes Sociais</h4>
-                <img width="32px" src="../imagens/facebook.png"><a href="#"></a>
-                <img width="32px" src="../imagens/instagram.png"><a href="#"></a>
+                <h4 class ="redes1">Redes Sociais</h4>
+                <img width="32px" src="../imagens/iconizer-facebocaSVG.svg"><a href="#"></a>
+                <img width="32px" src="../imagens/iconizer-instagranSVG.svg"><a href="#"></a>
+                <img width="32px" src="../imagens/iconizer-gitHubSVG.svg"><a href="#"></a>
+                <img width="32px" src="../imagens/iconizer-wattsap.svg"><a href="#"></a>
             </div>
         </div>
         <div class="copy">

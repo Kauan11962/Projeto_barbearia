@@ -107,12 +107,12 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
         <section id="EmpresasD">
             <div class="NovaEmpresa">
                 <div class="Nova1">
-                    <img width="180px" src="../imagens/Screenshot_2-removebg-preview.png">
+                    <img width="180px" src="../imagens/iconizer-caradobarSVG.svg">
                 </div>
                 <div class="Nova2">
                     <h1>Cadastre sua empresa</h1>
                     <p>clique em mais para cadastrar</p>
-                    <a href="#" id="abrirModalBtn"><img width="42px" src="../imagens/mais.png"></a>
+                    <a href="#" id="abrirModalBtn"><img width="42px" src="../imagens/iconizer-maisSVG.svg"></a>
                 </div>
             </div>
         </section>
@@ -151,7 +151,7 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
             <ul>
                 <?php foreach ($empresasCadastradas as $empresa) { ?>
                     <li>
-                        <p><strong>Nome:</strong> <?php echo htmlspecialchars($empresa['nome']); ?></p>
+                        <p class = "nomeBarb"><strong>Nome da Barbearia:</strong> <?php echo htmlspecialchars($empresa['nome']); ?></p>
                         <p><strong>Endereço:</strong> <?php echo htmlspecialchars($empresa['endereco']); ?></p>
                         <p><strong>Celular:</strong> <?php echo htmlspecialchars($empresa['celular']); ?></p>
                         <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($empresa['cnpj']); ?></p>
@@ -180,6 +180,17 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
         <script src="../js/cadastroBarbearia.js"></script>
 
     </main>
+
+    <div class="bruxas">
+        <div class="boxDescubra">
+            <div class="bb1">
+                <h4>Descubra o que os seus clientes estão pensando</h4>
+                <h5>Lugar muito bom</h5>
+                <p>Lugar muito bom, ambiente bonito e limpo. Atendimento personalizado, e de consegui expressar o que eu queria no meu corte de cabelo e barba.</p>
+            </div>
+            <img width="220px" src="../imagens/profile data-cuate.png" >
+        </div>
+    </div>
 
     <?php require_once "footer.php"; ?>
 

@@ -84,7 +84,7 @@ main
     padding: 20px;
     background-color: #111;
     border-radius: 10px;
-    width: 80%;
+    /*width: 80%;*/
     margin-bottom: 30px
 }
 
@@ -93,12 +93,20 @@ main
     padding: 0;
 }
 
-#empresasAcumuladas li {
+/*#empresasAcumuladas li {
     margin-bottom: 15px;
     padding: 10px;
     background-color:#432f2f;
     border-radius: 8px;
     border: 1px solid #ccc;
+}*/
+
+#empresasAcumuladas li {
+    background: #1d1d1d;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    padding: 10px;
 }
 
 #empresasAcumuladas hr {
@@ -201,4 +209,50 @@ main
 
 #barbearias {
     color: #f39c12;
+}
+
+.nomeBarb
+{
+    font-size: 25.6px;
+}
+
+li p 
+{
+    font-size: 16px;
+}
+
+.bruxas
+{
+    background-color: #333;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.boxDescubra
+{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    background-color: #111;
+    border-radius: 10px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.boxDescubra h4 
+{
+    font-size: 1.5em;
+}
+
+.bb1
+{
+    width: 50%;
+}
+
+.boxDescubra h5
+{
+    font-size: 1.3rem;
 }
