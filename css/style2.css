@@ -93,16 +93,6 @@ body {
     font-weight: 600;
 }
 
-/* Footer */
-/*footer {
-    background-color: #111;
-    text-align: center;
-    padding: 20px 0;
-}
-
-footer p {
-    margin: 0;
-}*/
 
 /* Avaliações */
 .avaliacoes {
@@ -280,6 +270,11 @@ a .icon
 .promo-imagem img {
     width: 300px; 
     height: auto;
+    transition: all 0.3s ease;
+}
+
+.promo-imagem img:hover {
+    width: 340px;
 }
 
 main{

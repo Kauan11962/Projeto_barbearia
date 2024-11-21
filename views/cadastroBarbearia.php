@@ -5,17 +5,19 @@ require_once "../views/headerDono.php";
 //var_dump($_SESSION);
 
 if (!isset($_SESSION['msg'])) {
-    $_SESSION['msg'] = ["", "", "", ""];
+    $_SESSION['msg'] = ["", "", "", "", ""];
 }
+
+require_once "../models/Conexao.class.php";   // Conexão com o banco
+require_once "../models/Barbearia.class.php";  // Modelo da Barbearia
+require_once "../models/barbeariaDAO.class.php";     // DAO para realizar operações no banco
 
 $msg = ["","","",""];
 $empresasCadastradas = []; // Array para armazenar as empresas cadastradas
 $erro = false; // Inicialize a variável $erro
+$imgpadrao = "../imagens/barbearia/imagens\barbearias\noimage.avif"; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once "../models/Conexao.class.php";   // Conexão com o banco
-    require_once "../models/Barbearia.class.php";  // Modelo da Barbearia
-    require_once "../models/barbeariaDAO.class.php";     // DAO para realizar operações no banco
 
     $_SESSION['$msg'] = ["", "", "", ""];
 
@@ -35,34 +37,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = true;
     }
 
-    // Se não houver erro, continua o processo de cadastro
-    if (!$erro) {
-        // Criação do objeto Barbearia
-        $barbearia = new Barbearia(nome: $_POST["nome"], endereco: $_POST["endereco"], celular: $_POST["celular"], cnpj: $_POST["cnpj"], idDono: $_POST["id_dono"]);
-        $barbeariaDAO = new barbeariaDAO();
-
-        // Verifica se a empresa já foi cadastrada
-        $verificacao = $barbeariaDAO->verificar($barbearia);
-
-        if ($verificacao) {
-            $msg[3] = "<div style='color: red;margin-top: 5%;font-weight: bold;'>Essa empresa já está cadastrada!</div>";
-            $erro = true;
+        $imagem = !empty($ret[0]->imagem) ? $ret[0]->imagem : $imgpadrao;
+        // Lógica de upload da imagem
+        $imagem = $_FILES["imagem"]["name"] ?? ""; 
+        $imagemTemp = $_FILES["imagem"]["tmp_name"];
+    
+        if ($imagemTemp) {
+            $diretorio = "../imagens/barbearias/"; 
+            move_uploaded_file($imagemTemp, $diretorio . $imagem);
+        } else {
+            $imagem = ""; // Caso nenhuma imagem seja enviada
         }
+    
+        // Criação do objeto Barbearia com os novos campos
+        $barbearia = new Barbearia(
+            nome: $_POST["nome"],
+            endereco: $_POST["endereco"],
+            celular: $_POST["celular"],
+            cnpj: $_POST["cnpj"],
+            descricao: $_POST["descricao"] ?? "",
+            imagem: $imagem,
+            instagram: $_POST["instagram"] ?? "",
+            whatsapp: $_POST["whatsapp"] ?? "",
+            horario: $_POST["horario"] ?? "",
+            idDono: $_POST["id_dono"]
+        );
+
+            // Salvar a barbearia no banco
+            // Agora, capturar os horários
+        $horarios = $_POST['horario']; // Isso irá receber o array de horários enviados no formulário
+
+        // Salvar a barbearia no banco
+        $barbeariaDAO = new barbeariaDAO();
+        if (!$barbeariaDAO->verificar($barbearia)) {
+            $retorno = $barbeariaDAO->cadastrar($barbearia);
+
+            // Agora, salvar os horários relacionados à barbearia
+            foreach ($horarios as $dia => $horario) {
+                // Criar o objeto Horario e salvar no banco de dados
+                $horarioObj = new Horario(
+                    dia: $dia,
+                    horario_abrir: $horario['abrir'],
+                    horario_fechar: $horario['fechar'],
+                    id_barbearia: $retorno->idBarbearia // Associa o horário com a barbearia cadastrada
+                );
+
+                // Agora vamos chamar o método para inserir no banco
+                $horarioDAO = new horarioDAO();
+                $horarioDAO->inserir($horarioObj);
+            }
+
+
+    } else {
+        $msg[4] = "<div style='color: red;'>Essa empresa já está cadastrada!</div>";
     }
 
-    // Caso não haja erro, realiza o cadastro
+
+    
+
+
     if (!$erro) {
         $retorno = $barbeariaDAO->cadastrar($barbearia);
-        //$msg[3] = "<div style='color: green;margin-top: 5%; font-weight: bold;'>Empresa cadastrada com sucesso!</div>"; 
+        $msg[3] = "<div style='color: green;margin-top: 5%; font-weight: bold;'>Empresa cadastrada com sucesso!</div>"; 
 
-        var_dump ($retorno);
+       // var_dump ($retorno);
     }
 }
 
 // Recuperar as empresas cadastradas para o dono
-require_once "../models/Conexao.class.php";  
-require_once "../models/barbeariaDAO.class.php";
-require_once "../models/Barbearia.class.php";
 $barbeariaDAO = new barbeariaDAO();
 $idDono = $_POST['id_dono'] ?? null;
 
@@ -111,36 +153,62 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
                 </div>
                 <div class="Nova2">
                     <h1>Cadastre sua empresa</h1>
-                    <p>clique em mais para cadastrar</p>
+                    <p>Junte-se a nós e faça sua barbearia decolar!</p>
                     <a href="#" id="abrirModalBtn"><img width="42px" src="../imagens/iconizer-maisSVG.svg"></a>
                 </div>
             </div>
         </section>
-
-        <div class="mensagens">
-            <?php
-            // Exibe mensagens de erro ou sucesso
-            foreach ($msg as $message) {
-                if (!empty($message)) {
-                    echo $message . "<br>";
-                }
-            }
-            ?>
-        </div>
             
         <!-- Modal com formulário de cadastro -->
         <div id="modal" class="modal">
             <div class="modal-conteudo">
                 <span class="fechar" id="fecharModalBtn">&times;</span>
                 <h2>Cadastro de Empresa</h2>
-                <form action="cadastroBarbearia.php" method="POST">
-                    <input type="text" name="nome" placeholder="Nome da Empresa" value="<?php echo $_POST['nome'] ?? ''; ?>" required><br>
-                    <input type="text" name="endereco" placeholder="Endereço" value="<?php echo $_POST['endereco'] ?? ''; ?>" required><br>
-                    <input type="text" name="celular" placeholder="Celular" value="<?php echo $_POST['celular'] ?? ''; ?>" required><br>
-                    <input type="text" name="cnpj" placeholder="CNPJ" value="<?php echo $_POST['cnpj'] ?? ''; ?>" required><br>
-                    <input type="hidden" name="id_dono" value="<?php echo $_SESSION['id'] ?? '12'; ?>"> <!-- Verifica se há id_dono na sessão -->
+                <form action="cadastroBarbearia.php" method="POST" enctype="multipart/form-data">
+                    <input type="text" name="nome" placeholder="Nome da Empresa" required><br>
+                    <input type="text" name="endereco" placeholder="Endereço" required><br>
+                    <input type="text" name="celular" placeholder="Celular" required><br>
+                    <input type="text" name="cnpj" placeholder="CNPJ" required><br>
+                    <input type="text" name="descricao" placeholder="Descrição da Empresa"><br>
+                    <input type="text" name="instagram" placeholder="Link do Instagram"><br>
+                    <input type="text" name="whatsapp" placeholder="Número do WhatsApp"><br>
+                    <label for="imagem">Foto da Empresa:</label>
+                    <input type="file" name="imagem" id="imagem"><br>
+                    <input type="hidden" name="id_dono" value="<?php echo $_SESSION['id']; ?>">
+
+                    <!-- Campos para adicionar horário -->
+                    <h3>Horários de Funcionamento</h3>
+                        <label for="segunda">Segunda-feira:</label>
+                        <input type="time" name="horarios[segunda][abrir]" required>
+                        <input type="time" name="horarios[segunda][fechar]" required><br>
+
+                        <label for="terca">Terça-feira:</label>
+                        <input type="time" name="horarios[terca][abrir]" required>
+                        <input type="time" name="horarios[terca][fechar]" required><br>
+
+                        <label for="quarta">Quarta-feira:</label>
+                        <input type="time" name="horarios[quarta][abrir]" required>
+                        <input type="time" name="horarios[quarta][fechar]" required><br>
+
+                        <label for="quinta">Quinta-feira:</label>
+                        <input type="time" name="horarios[quinta][abrir]" required>
+                        <input type="time" name="horarios[quinta][fechar]" required><br>
+
+                        <label for="sexta">Sexta-feira:</label>
+                        <input type="time" name="horarios[sexta][abrir]" required>
+                        <input type="time" name="horarios[sexta][fechar]" required><br>
+
+                        <label for="sabado">Sábado:</label>
+                        <input type="time" name="horarios[sabado][abrir]" required>
+                        <input type="time" name="horarios[sabado][fechar]" required><br>
+
+                        <label for="domingo">Domingo:</label>
+                        <input type="time" name="horarios[domingo][abrir]" required>
+                        <input type="time" name="horarios[domingo][fechar]" required><br>
+
                     <button type="submit">Confirmar Cadastro</button>
                 </form>
+
             </div>
         </div>
 
@@ -151,15 +219,15 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
             <ul>
                 <?php foreach ($empresasCadastradas as $empresa) { ?>
                     <li>
-                        <p class = "nomeBarb"><strong>Nome da Barbearia:</strong> <?php echo htmlspecialchars($empresa['nome']); ?></p>
+                        <p><strong>Nome da Barbearia:</strong> <?php echo htmlspecialchars($empresa['nome']); ?></p>
                         <p><strong>Endereço:</strong> <?php echo htmlspecialchars($empresa['endereco']); ?></p>
                         <p><strong>Celular:</strong> <?php echo htmlspecialchars($empresa['celular']); ?></p>
                         <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($empresa['cnpj']); ?></p>
+                        <p><strong>Descrição:</strong> <?php echo htmlspecialchars($empresa['descricao']); ?></p>
+                        <p><strong>Instagram:</strong> <a href="https://instagram.com/<?php echo htmlspecialchars($empresa['instagram']); ?>" target="_blank"><?php echo htmlspecialchars($empresa['instagram']); ?></a></p>
+                        <p><strong>WhatsApp:</strong> <?php echo htmlspecialchars($empresa['whatsapp']); ?></p>
+                        <p><strong>Imagem:</strong> <img src="../imagens/barbearias/<?php echo htmlspecialchars($empresa['imagem']); ?>" alt="Imagem da Barbearia" width="100"></p>
                         <hr>
-                        <form method="POST" action="cadastroBarbearia.php">
-                            <input type="hidden" name="id_empresa" value="<?= htmlspecialchars($empresa['id_barbearia']); ?>">
-                            <button type="submit" name="excluir" value="1">Excluir</button>
-                        </form>
                     </li>
                 <?php } ?>
             </ul>

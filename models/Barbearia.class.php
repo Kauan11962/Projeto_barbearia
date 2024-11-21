@@ -6,6 +6,13 @@ class Barbearia {
         private string $endereco = "",
         private string $celular = "",
         private string $cnpj = "",
+        private string $descricao = "",
+        private string $imagem = "",
+        private string $instagram = "",
+        private string $whatsapp = "",
+        private array $horario = [],
+        //private string $profissional = [],
+        //private string $servico = [],
         private int $idDono = 0
     ) {}
 
@@ -29,8 +36,36 @@ class Barbearia {
         return $this->cnpj;
     }
 
+    public function getDescricao() {
+        return $this->descricao;
+    }
+
+    public function getImagem() {
+        return $this->imagem;
+    }
+
+    public function getInstagram() {
+        return $this->instagram;
+    }
+
+    public function getWhatsapp() {
+        return $this->whatsapp;
+    }
+
     public function getIdDono() {
         return $this->idDono;
+    }
+
+    public function getHorario() {
+        return $this->horario;
+    }
+
+    public function getProfissional() {
+        return $this->profissional;
+    }
+
+    public function getServico() {
+        return $this->servico;
     }
 }
 ?>

@@ -10,6 +10,7 @@ require_once "../views/header.php";
     <title>Barbearia Dark - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style2.css">
+    
 </head>
 <body>
 
@@ -94,7 +95,7 @@ require_once "../views/header.php";
                     <a href="../views/empresa.php" class="btn-promo">Saiba mais</a>
                 </div>
                 <div class="promo-imagem">
-                    <img src="../imagens/barbershop.svg" alt="Imagem Promocional">
+                    <a href="../views/empresa.php"><img src="../imagens/barbershop.svg" alt="Imagem Promocional"></a>
                 </div>
             </div>
         </section>
@@ -128,9 +129,12 @@ require_once "../views/header.php";
         </section>
     </main>
 
+
+
     <?php require_once "footer.php"; ?>
 
     <script src="../js/script.js"></script>
     <script src="../js/banner.js"></script>
+
 </body>
 </html>

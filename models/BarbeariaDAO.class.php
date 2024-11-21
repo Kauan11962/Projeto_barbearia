@@ -15,14 +15,18 @@ class barbeariaDAO extends Conexao {
 
     // Método para cadastrar uma nova empresa
     public function cadastrar($barbearia) {
-        $sql = "INSERT INTO barbearia (nome, endereco, celular, cnpj, id_dono) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO barbearia (nome, endereco, celular, cnpj, descricao, imagem, instagram, whatsapp, id_dono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             $stm = $this->db->prepare($sql);  // Usando $this->db
             $stm->bindValue(1, $barbearia->getNome());
             $stm->bindValue(2, $barbearia->getEndereco());
             $stm->bindValue(3, $barbearia->getCelular());
             $stm->bindValue(4, $barbearia->getCnpj());
-            $stm->bindValue(5, $barbearia->getIdDono());
+            $stm->bindValue(5, $barbearia->getDescricao());
+            $stm->bindValue(6, $barbearia->getImagem());
+            $stm->bindValue(7, $barbearia->getInstagram());
+            $stm->bindValue(8, $barbearia->getWhatsapp());
+            $stm->bindValue(9, $barbearia->getIdDono());
             $stm->execute();
             return "Cadastro realizado com sucesso!";
         } catch (PDOException $e) {
