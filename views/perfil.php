@@ -135,13 +135,13 @@ if ($_POST) {
                 <label for="preferencias">Preferências:</label>
                 <input id="inputs" type="text" name="preferencias" value="<?php echo htmlspecialchars($ret[0]->preferencias ?? ''); ?>">
             
-                <label for="foto-input">Foto de Perfil:</label>
+                <label for="foto-input" id="labelfoto">Foto de Perfil:</label>
                 <?php if (!empty($ret[0]->imagem)): ?>
-                    <img style="width:10%" src="../imagens/clientes/<?php echo $ret[0]->imagem; ?>" alt="Foto do cliente">
+                    <img style="width: 50px;height: 50px;border-radius: 50%;object-fit: cover;" src="../imagens/clientes/<?php echo $ret[0]->imagem; ?>" alt="Foto do cliente">
                 <?php else: ?>
-                    <img style="width:10%" src="<?php echo $ftpadrao; ?>" alt="Foto padrão do cliente">
+                    <img style="width: 50px;height: 50px;border-radius: 50%;object-fit: cover;" src="<?php echo $ftpadrao; ?>" alt="Foto padrão do cliente">
                 <?php endif; ?>
-                <input id="inputs" type="file" name="imagem" id="foto-input">
+                <input id="inputs" type="file" name="imagem" id="foto-input" style="margin-left: -3%; width: 17%; background-color: rgb(0 0 0 / 0%);">
             
                 <input style="cursor: pointer" type="submit" class="btn" value="Salvar">
 
@@ -156,7 +156,7 @@ if ($_POST) {
             
             <button id="sair" onclick="logout()">Sair</button>
             
-            <button id="voltar" onclick="fecharModal('modal-sair')">Voltar</button>
+            <button id="sair" onclick="fecharModal('modal-sair')">Voltar</button>
         </div>
     </div>
 

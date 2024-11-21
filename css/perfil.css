@@ -84,7 +84,7 @@
     margin: auto;
     padding: 20px;
     border-radius: 10px;
-    width: 40%;
+    width: 30%;
     color: #fff;
     position: relative;
 }
@@ -130,7 +130,6 @@ h2{
 
 form{
     display: flex;
-    gap: 5px;
     flex-direction: column;
     align-items: center;
 }
@@ -139,4 +138,21 @@ label{
     display: flex;
     width: 74%;
     justify-content: flex-start;
+}
+
+#labelfoto {
+    display: flex;
+    justify-content: center; 
+}
+
+#sair{
+    background-color: #f39c12;
+    color: #111;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 15px;
+    width: 20%;
 }

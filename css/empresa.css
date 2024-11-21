@@ -354,12 +354,14 @@ main{
 .vantagem-footer {
     position: absolute;
     bottom: 0;
+    display: flex;
+    justify-content: center;
     width: 100%;
-    padding: 0.8rem;
+    align-items: center;
+    height: 40px;
     background: rgba(0, 0, 0, 0.5);
     color: #f39c12;
     font-size: 1.1rem;
-    text-align: center;
 }
 
 .estatisticas {
