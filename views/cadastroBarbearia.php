@@ -125,15 +125,23 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
                 <span class="fechar" id="fecharModalBtn">&times;</span>
                 <h2>Cadastro de Empresa</h2>
                 <form action="cadastroBarbearia.php" method="POST" enctype="multipart/form-data">
+                    <label for="text" id="label">Nome:</label>
                     <input type="text" name="nome" placeholder="Nome da Empresa" required><br>
+                    <label for="text" id="label">Endereço:</label>
                     <input type="text" name="endereco" placeholder="Endereço" required><br>
+                    <label for="text" id="label">Celular:</label>
                     <input type="text" name="celular" placeholder="Celular" required><br>
+                    <label for="text" id="label">CNPJ:</label>
                     <input type="text" name="cnpj" placeholder="CNPJ" required><br>
+                    <label for="text" id="label">Descrição:</label>
                     <input type="text" name="descricao" placeholder="Descrição da Empresa"><br>
+                    <label for="text" id="label">Instagram:</label>
                     <input type="text" name="instagram" placeholder="@ do Instagram"><br>
+                    <label for="text" id="label">Whatsapp:</label>
                     <input type="text" name="whatsapp" placeholder="Número do WhatsApp"><br>
+                    <label for="text" id="label">Horário:</label>
                     <textarea name="horario" placeholder="Descreva os horários da semana"></textarea>
-                    <label for="imagem">Foto da Empresa:</label>
+                    <label for="imagem" id="label">Foto da Empresa:</label>
                     <input type="file" name="imagem" id="imagem"><br>
                     <input type="hidden" name="id_dono" value="<?php echo $_SESSION['id']; ?>">
                     <button type="submit">Confirmar Cadastro</button>
