@@ -74,6 +74,7 @@ button:hover {
 
 main 
 {
+    background: linear-gradient(180deg, rgb(30 30 30) 0%, rgb(30 30 30) 80%, rgb(39 39 39) 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -223,12 +224,13 @@ li p
 
 .bruxas
 {
-    background-color: #333;
+    background: linear-gradient(360deg, rgb(30 30 30) 0%, rgb(30 30 30) 50%, rgb(39 39 39) 100%);
     width: 100%;
     display: flex;
     justify-content: center;
     padding-top: 3%;
     padding-bottom: 3%;
+    border-top: #f39c12;
 }
 
 .boxDescubra
