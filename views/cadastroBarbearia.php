@@ -8,7 +8,7 @@ if (!isset($_SESSION['msg'])) {
 $msg = ["", "", "", ""];
 $empresasCadastradas = [];
 $erro = false;
-$imgpadrao = "../imagens/barbearias/noimage.avif"; // Corrigido o caminho
+$imgpadrao = "noimage.avif"; // Corrigido o caminho
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "../models/Conexao.class.php";
