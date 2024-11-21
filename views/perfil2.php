@@ -160,7 +160,7 @@ if ($_POST) {
             
             <button id="sair" onclick="logout()">Sair</button>
             
-            <button id="voltar" onclick="fecharModal('modal-sair')">Voltar</button>
+            <button id="sair" onclick="fecharModal('modal-sair')">Voltar</button>
         </div>
     </div>
 

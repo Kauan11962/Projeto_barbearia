@@ -87,6 +87,9 @@
     width: 30%;
     color: #fff;
     position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .btn{
