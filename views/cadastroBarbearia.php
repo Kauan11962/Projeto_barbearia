@@ -1,27 +1,21 @@
 <?php
-require_once "../views/headerDono.php"; 
-
-//var_dump($_POST);
-//var_dump($_SESSION);
+require_once "../views/headerDono.php";
 
 if (!isset($_SESSION['msg'])) {
     $_SESSION['msg'] = ["", "", "", "", ""];
 }
 
-require_once "../models/Conexao.class.php";   // Conexão com o banco
-require_once "../models/Barbearia.class.php";  // Modelo da Barbearia
-require_once "../models/barbeariaDAO.class.php";     // DAO para realizar operações no banco
-
-$msg = ["","","",""];
-$empresasCadastradas = []; // Array para armazenar as empresas cadastradas
-$erro = false; // Inicialize a variável $erro
-$imgpadrao = "../imagens/barbearia/imagens\barbearias\noimage.avif"; 
+$msg = ["", "", "", ""];
+$empresasCadastradas = [];
+$erro = false;
+$imgpadrao = "../imagens/barbearias/noimage.avif"; // Corrigido o caminho
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once "../models/Conexao.class.php";
+    require_once "../models/Barbearia.class.php";
+    require_once "../models/barbeariaDAO.class.php";
 
-    $_SESSION['$msg'] = ["", "", "", ""];
-
-    // Validação dos campos
+    // Validação dos campos obrigatórios
     if (empty($_POST["nome"])) {
         $msg[0] = "Preencha o nome da empresa";
         $erro = true;
@@ -37,19 +31,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = true;
     }
 
-        $imagem = !empty($ret[0]->imagem) ? $ret[0]->imagem : $imgpadrao;
-        // Lógica de upload da imagem
-        $imagem = $_FILES["imagem"]["name"] ?? ""; 
-        $imagemTemp = $_FILES["imagem"]["tmp_name"];
-    
-        if ($imagemTemp) {
-            $diretorio = "../imagens/barbearias/"; 
-            move_uploaded_file($imagemTemp, $diretorio . $imagem);
-        } else {
-            $imagem = ""; // Caso nenhuma imagem seja enviada
-        }
-    
-        // Criação do objeto Barbearia com os novos campos
+    // Upload da imagem
+    $imagem = $imgpadrao;
+    if (isset($_FILES["imagem"]) && $_FILES["imagem"]["tmp_name"]) {
+        $diretorio = "../imagens/barbearias/";
+        $imagem = basename($_FILES["imagem"]["name"]);
+        move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $imagem);
+    }
+
+    if (!$erro) {
+        // Criação do objeto Barbearia
         $barbearia = new Barbearia(
             nome: $_POST["nome"],
             endereco: $_POST["endereco"],
@@ -63,69 +54,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             idDono: $_POST["id_dono"]
         );
 
-            // Salvar a barbearia no banco
-            // Agora, capturar os horários
-        $horarios = $_POST['horario']; // Isso irá receber o array de horários enviados no formulário
-
         // Salvar a barbearia no banco
         $barbeariaDAO = new barbeariaDAO();
         if (!$barbeariaDAO->verificar($barbearia)) {
-            $retorno = $barbeariaDAO->cadastrar($barbearia);
-
-            // Agora, salvar os horários relacionados à barbearia
-            foreach ($horarios as $dia => $horario) {
-                // Criar o objeto Horario e salvar no banco de dados
-                $horarioObj = new Horario(
-                    dia: $dia,
-                    horario_abrir: $horario['abrir'],
-                    horario_fechar: $horario['fechar'],
-                    id_barbearia: $retorno->idBarbearia // Associa o horário com a barbearia cadastrada
-                );
-
-                // Agora vamos chamar o método para inserir no banco
-                $horarioDAO = new horarioDAO();
-                $horarioDAO->inserir($horarioObj);
-            }
-
-
-    } else {
-        $msg[4] = "<div style='color: red;'>Essa empresa já está cadastrada!</div>";
-    }
-
-
-    
-
-
-    if (!$erro) {
-        $retorno = $barbeariaDAO->cadastrar($barbearia);
-        $msg[3] = "<div style='color: green;margin-top: 5%; font-weight: bold;'>Empresa cadastrada com sucesso!</div>"; 
-
-       // var_dump ($retorno);
+            $barbeariaDAO->cadastrar($barbearia);
+            $msg[3] = "<div style='color: green; margin-top: 5%; font-weight: bold;'>Empresa cadastrada com sucesso!</div>";
+        } else {
+            $msg[4] = "<div style='color: red;'>Essa empresa já está cadastrada!</div>";
+        }
     }
 }
+
+require_once "../models/Conexao.class.php";
+require_once "../models/Barbearia.class.php";
+require_once "../models/barbeariaDAO.class.php";
 
 // Recuperar as empresas cadastradas para o dono
 $barbeariaDAO = new barbeariaDAO();
-$idDono = $_POST['id_dono'] ?? null;
-
-if ($idDono !== null) {
+$idDono = $_SESSION['id'] ?? null;
+if ($idDono) {
     $empresasCadastradas = $barbeariaDAO->listarEmpresas($idDono);
-} else {
-    $empresasCadastradas = [];
 }
 
 // Lógica para exclusão
-if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
+if (isset($_POST['excluir'], $_POST['id_empresa'])) {
     $idEmpresa = (int)$_POST['id_empresa'];
     $barbeariaDAO->excluirEmpresa($idEmpresa);
-    
-    // Atualizar a lista de empresas após a exclusão
-    $empresasCadastradas = $barbeariaDAO->listarEmpresas($_SESSION['id']);
-    $msg[3] = "<div style='color: green;margin-top: 5%; font-weight: bold;'>Empresa excluída com sucesso!</div>";
+    $empresasCadastradas = $barbeariaDAO->listarEmpresas($idDono);
+    $msg[3] = "<div style='color: green; margin-top: 5%; font-weight: bold;'>Empresa excluída com sucesso!</div>";
 }
-
-//$empresasCadastradas = $barbeariaDAO->listarEmpresas($_POST['id_dono']); // Passando o ID do dono para buscar as empresas relacionadas
 ?>
+
 
 <html lang="pt-BR">
 <head>
@@ -170,42 +129,12 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
                     <input type="text" name="celular" placeholder="Celular" required><br>
                     <input type="text" name="cnpj" placeholder="CNPJ" required><br>
                     <input type="text" name="descricao" placeholder="Descrição da Empresa"><br>
-                    <input type="text" name="instagram" placeholder="Link do Instagram"><br>
+                    <input type="text" name="instagram" placeholder="@ do Instagram"><br>
                     <input type="text" name="whatsapp" placeholder="Número do WhatsApp"><br>
+                    <textarea name="horario" placeholder="Descreva os horários da semana"></textarea>
                     <label for="imagem">Foto da Empresa:</label>
                     <input type="file" name="imagem" id="imagem"><br>
                     <input type="hidden" name="id_dono" value="<?php echo $_SESSION['id']; ?>">
-
-                    <!-- Campos para adicionar horário -->
-                    <h3>Horários de Funcionamento</h3>
-                        <label for="segunda">Segunda-feira:</label>
-                        <input type="time" name="horarios[segunda][abrir]" required>
-                        <input type="time" name="horarios[segunda][fechar]" required><br>
-
-                        <label for="terca">Terça-feira:</label>
-                        <input type="time" name="horarios[terca][abrir]" required>
-                        <input type="time" name="horarios[terca][fechar]" required><br>
-
-                        <label for="quarta">Quarta-feira:</label>
-                        <input type="time" name="horarios[quarta][abrir]" required>
-                        <input type="time" name="horarios[quarta][fechar]" required><br>
-
-                        <label for="quinta">Quinta-feira:</label>
-                        <input type="time" name="horarios[quinta][abrir]" required>
-                        <input type="time" name="horarios[quinta][fechar]" required><br>
-
-                        <label for="sexta">Sexta-feira:</label>
-                        <input type="time" name="horarios[sexta][abrir]" required>
-                        <input type="time" name="horarios[sexta][fechar]" required><br>
-
-                        <label for="sabado">Sábado:</label>
-                        <input type="time" name="horarios[sabado][abrir]" required>
-                        <input type="time" name="horarios[sabado][fechar]" required><br>
-
-                        <label for="domingo">Domingo:</label>
-                        <input type="time" name="horarios[domingo][abrir]" required>
-                        <input type="time" name="horarios[domingo][fechar]" required><br>
-
                     <button type="submit">Confirmar Cadastro</button>
                 </form>
 
@@ -226,6 +155,7 @@ if (isset($_POST['excluir']) && isset($_POST['id_empresa'])) {
                         <p><strong>Descrição:</strong> <?php echo htmlspecialchars($empresa['descricao']); ?></p>
                         <p><strong>Instagram:</strong> <a href="https://instagram.com/<?php echo htmlspecialchars($empresa['instagram']); ?>" target="_blank"><?php echo htmlspecialchars($empresa['instagram']); ?></a></p>
                         <p><strong>WhatsApp:</strong> <?php echo htmlspecialchars($empresa['whatsapp']); ?></p>
+                        <p><strong>Horários:</strong> <?php echo htmlspecialchars($empresa['horario']); ?></p>
                         <p><strong>Imagem:</strong> <img src="../imagens/barbearias/<?php echo htmlspecialchars($empresa['imagem']); ?>" alt="Imagem da Barbearia" width="100"></p>
                         <hr>
                     </li>

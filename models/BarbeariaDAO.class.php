@@ -3,9 +3,9 @@ class barbeariaDAO extends Conexao {
 
     // Método para verificar se a empresa já está cadastrada
     public function verificar($barbearia) {
-        $sql = "SELECT * FROM barbearia WHERE nome = ? AND endereco = ?";
+        $sql = "SELECT * FROM barbearia WHERE cnpj = ? OR endereco = ?";
         $stm = $this->db->prepare($sql);  // Usando $this->db
-        $stm->bindValue(1, $barbearia->getNome());
+        $stm->bindValue(1, $barbearia->getCnpj());
         $stm->bindValue(2, $barbearia->getEndereco());
         $stm->execute();
 
@@ -15,7 +15,7 @@ class barbeariaDAO extends Conexao {
 
     // Método para cadastrar uma nova empresa
     public function cadastrar($barbearia) {
-        $sql = "INSERT INTO barbearia (nome, endereco, celular, cnpj, descricao, imagem, instagram, whatsapp, id_dono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO barbearia (nome, endereco, celular, cnpj, descricao, imagem, instagram, whatsapp, horario, id_dono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             $stm = $this->db->prepare($sql);  // Usando $this->db
             $stm->bindValue(1, $barbearia->getNome());
@@ -26,7 +26,8 @@ class barbeariaDAO extends Conexao {
             $stm->bindValue(6, $barbearia->getImagem());
             $stm->bindValue(7, $barbearia->getInstagram());
             $stm->bindValue(8, $barbearia->getWhatsapp());
-            $stm->bindValue(9, $barbearia->getIdDono());
+            $stm->bindValue(9, $barbearia->getHorario());
+            $stm->bindValue(10, $barbearia->getIdDono());
             $stm->execute();
             return "Cadastro realizado com sucesso!";
         } catch (PDOException $e) {

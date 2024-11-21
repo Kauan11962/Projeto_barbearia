@@ -10,7 +10,7 @@ class Barbearia {
         private string $imagem = "",
         private string $instagram = "",
         private string $whatsapp = "",
-        private array $horario = [],
+        private string $horario = "",
         //private string $profissional = [],
         //private string $servico = [],
         private int $idDono = 0

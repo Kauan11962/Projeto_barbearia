@@ -51,8 +51,8 @@
     cursor: pointer;
 }
 
-input, textarea {
-    width: 100%;
+input {
+    width: 90%;
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -255,4 +255,13 @@ li p
 .boxDescubra h5
 {
     font-size: 1.3rem;
+}
+
+textarea {
+    width: 80%; /* Adapta ao tamanho do elemento pai */
+    height: 100px; /* Define uma altura padrão */
+    padding: 10px; /* Espaçamento interno */
+    font-size: 14px; /* Tamanho de fonte */
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
