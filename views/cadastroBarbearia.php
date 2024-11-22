@@ -1,5 +1,10 @@
 <?php
 require_once "../views/headerDono.php";
+require_once "../models/Conexao.class.php";
+require_once "../models/Barbearia.class.php";
+require_once "../models/barbeariaDAO.class.php";
+require_once "../models/profissionalDAO.php";
+require_once "../models/profissional.class.php";
 
 if (!isset($_SESSION['msg'])) {
     $_SESSION['msg'] = ["", "", "", "", ""];
@@ -12,11 +17,6 @@ $imgpadrao = "noimage.avif";
 $imgcliente = "ftpadrao.webp"; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once "../models/Conexao.class.php";
-    require_once "../models/Barbearia.class.php";
-    require_once "../models/barbeariaDAO.class.php";
-    require_once "../models/profissionalDAO.php";
-    require_once "../models/profissional.class.php";
 
     // Validação dos campos obrigatórios
     if (empty($_POST["nome"])) {
@@ -54,37 +54,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             instagram: $_POST["instagram"] ?? "",
             whatsapp: $_POST["whatsapp"] ?? "",
             horario: $_POST["horario"] ?? "",
-            idDono: $_POST["id_dono"]
+            idDono: $_POST["id_dono"],
         );
-
-        // Salvar a barbearia no banco
+        
+        // Chama a função cadastrar para inserir a barbearia e associar profissionais
         $barbeariaDAO = new barbeariaDAO();
-        if (!$barbeariaDAO->verificar($barbearia)) {
-            $barbeariaDAO->cadastrar($barbearia);
-            $msg[3] = "<div style='color: green; margin-top: 5%; font-weight: bold;'>Empresa cadastrada com sucesso!</div>";
 
+        // Chama a função cadastrar para inserir a barbearia e associar profissionais
+        $resultado = $barbeariaDAO->cadastrar($barbearia); // Chama a função do DAO para cadastrar a barbearia
+     
+        // Verifica o resultado do cadastro
+        if ($resultado === "Barbearia cadastrada com sucesso!") {
+            echo "Barbearia cadastrada com sucesso!";
         } else {
-            $msg[4] = "<div style='color: red;'>Essa empresa já está cadastrada!</div>";
+            echo "Erro ao cadastrar barbearia: " . $resultado;
         }
+        
     }
-
-    $imagem_pro = $imgcliente;
-    if (isset($_FILES["imagem"]) && $_FILES["imagem"]["tmp_name"]) {
-        $diretorio = "../imagens/barbearias/";
-        $imagem_pro = basename($_FILES["imagem"]["name"]);
-        move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $imagem_pro);
-    }
-
-    if(!$erro) {
-        $profissional = new Profissional(
-            nome: $_POST["nome"],
-            imagem: $imagem_pro,
-            id_barbearia: $_POST["id_barbearia"]
-        );
-
-        $profissionalDAO = new profissionalDAO();
-        $profissionalDAO->inserir($profissional);
-    }
+    
 }
 
 require_once "../models/Conexao.class.php";
@@ -170,10 +157,10 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
                     <label for="text" id="label">Funcionários:</label>
                         <div id="funcionarios-container">
                             <div class="funcionario-group">
-                                <input type="text" name="nome_pro" placeholder="Nome e foto do funcionário">
-                                <input type="file" name="imagem_pro">
-                                <button id="btn-funcionario" type="button" onclick="adicionarCampo()">➕</button>
+                                <input type="text" name="profissionais[0][nome]" placeholder="Nome do Funcionário">
+                                <input type="file" name="profissionais[0][imagem]">
                             </div>
+                            <button id="btn-funcionario" type="button" onclick="adicionarCampo()">+</button>
                         </div>
 
                     <label for="text" id="label">Horário:</label>

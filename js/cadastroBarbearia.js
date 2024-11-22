@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+let count = 1; // Variável para contar o número de campos
+
+// Função para adicionar um novo campo de funcionário
 function adicionarCampo() {
     // Seleciona o container onde os grupos de campos serão adicionados
     const container = document.getElementById('funcionarios-container');
@@ -31,17 +34,21 @@ function adicionarCampo() {
     const novoGrupo = document.createElement('div');
     novoGrupo.classList.add('funcionario-group');
 
-    // Adiciona os novos campos
+    // Cria o HTML para os novos campos de nome e imagem do profissional
     novoGrupo.innerHTML = `
-        <input type="text" name="nome_pro" placeholder="Nome do funcionário">
-        <input type="file" name="imagem_pro">
-        <button type="button" id="btn-funcionario" onclick="removerCampo(this)">➖</button>
+        <input type="text" name="profissionais[${count}][nome]" placeholder="Nome do Funcionário">
+        <input type="file" name="profissionais[${count}][imagem]">
+        <button type="button" onclick="removerCampo(this)">-</button>
     `;
 
     // Adiciona o novo grupo de campos ao container
     container.appendChild(novoGrupo);
+
+    // Incrementa o contador para o próximo campo
+    count++;
 }
 
+// Função para remover um campo de funcionário
 function removerCampo(botao) {
     // Remove o grupo de campos correspondente ao botão clicado
     botao.parentElement.remove();

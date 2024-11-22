@@ -60,11 +60,19 @@ CREATE TABLE `barbearia` (
   `endereco` varchar(100) NOT NULL,
   `celular` varchar(20) NOT NULL,
   `cnpj` varchar(20) NOT NULL,
+  `descricao` text DEFAULT NULL,
+  `imagem` blob DEFAULT NULL,
+  `instagram` varchar(45) DEFAULT NULL,
+  `whatsapp` varchar(45) DEFAULT NULL,
+  `horario` text DEFAULT NULL,
   `id_dono` int(11) DEFAULT NULL,
+  `id_profissional` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_barbearia`),
   KEY `id_dono` (`id_dono`),
-  CONSTRAINT `barbearia_ibfk_1` FOREIGN KEY (`id_dono`) REFERENCES `dono` (`id_dono`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `id_profissional` (`id_profissional`),
+  CONSTRAINT `barbearia_ibfk_1` FOREIGN KEY (`id_dono`) REFERENCES `dono` (`id_dono`),
+  CONSTRAINT `barbearia_ibfk_2` FOREIGN KEY (`id_profissional`) REFERENCES `profissional` (`id_profissional`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +81,7 @@ CREATE TABLE `barbearia` (
 
 LOCK TABLES `barbearia` WRITE;
 /*!40000 ALTER TABLE `barbearia` DISABLE KEYS */;
+INSERT INTO `barbearia` VALUES (32,'Barbearia Elisangela','Rua João Pênis 666','(14) 99765-3211','123.456.78/0001','Barbearia top',_binary 'barberialogo.avif','feortigoza','(14) 99765-3211','Seg a sex - 9h às 18h\r\nSáb - 10h às 18h\r\nDom - 10h às 16h',1,NULL),(38,'a','a','a','a','a',_binary 'noimage.avif','a','a','dasdsa',1,NULL);
 /*!40000 ALTER TABLE `barbearia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +103,7 @@ CREATE TABLE `cliente` (
   `preferencias` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +112,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (3,'Felipe','Ortigoza','felipe@gmail.com','(14) 99840-5428','202cb962ac59075b964b07152d234b70',_binary 'calleri.jpeg','');
+INSERT INTO `cliente` VALUES (4,'FELIPe','Ortigoza','felipe@gmail.com','(14) 99840-5428','202cb962ac59075b964b07152d234b70',_binary 'nj.jpg','');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +144,7 @@ CREATE TABLE `dono` (
 
 LOCK TABLES `dono` WRITE;
 /*!40000 ALTER TABLE `dono` DISABLE KEYS */;
-INSERT INTO `dono` VALUES (1,'Felipe','Ortigoza','felipe@gmail.com','(14) 99840-5428','202cb962ac59075b964b07152d234b70','549.421.848-19','09/03/2005',NULL);
+INSERT INTO `dono` VALUES (1,'Felipe','Ortigoza','felipe@gmail.com','(14) 99840-5428','202cb962ac59075b964b07152d234b70','549.421.848-19','09/03/2005',_binary 'ftperfil.webp');
 /*!40000 ALTER TABLE `dono` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,12 +158,12 @@ DROP TABLE IF EXISTS `profissional`;
 CREATE TABLE `profissional` (
   `id_profissional` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(20) NOT NULL,
-  `foto` blob NOT NULL,
+  `imagem` blob NOT NULL,
   `id_barbearia` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_profissional`),
   KEY `id_barbearia` (`id_barbearia`),
   CONSTRAINT `profissional_ibfk_1` FOREIGN KEY (`id_barbearia`) REFERENCES `barbearia` (`id_barbearia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +186,7 @@ CREATE TABLE `servico` (
   `id_servico` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(100) DEFAULT NULL,
-  `tempo` time NOT NULL,
+  `tempo` varchar(10) NOT NULL,
   `preco` decimal(10,2) NOT NULL,
   `id_barbearia` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_servico`),
@@ -204,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-18 16:28:12
+-- Dump completed on 2024-11-22 18:16:52

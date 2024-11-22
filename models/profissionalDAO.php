@@ -25,13 +25,12 @@
 		}
 		public function inserir($profissional)
 		{
-			$sql = "INSERT INTO profissional (nome, imagem) VALUES(?,?,?)";
+			$sql = "INSERT INTO profissional (nome, imagem) VALUES(?,?)";
 			try
 			{
 				$stm = $this->db->prepare($sql);
 				$stm->bindValue(1, $profissional->getNome());
 				$stm->bindValue(2, $profissional->getImagem());
-				$stm->bindValue(3, $profissional->getId_barbearia());
 				$stm->execute();
 				$this->db = null;
 				return "Profissionais inseridos com sucesso";

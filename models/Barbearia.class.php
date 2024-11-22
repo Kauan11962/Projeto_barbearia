@@ -20,6 +20,10 @@ class Barbearia {
         return $this->idBarbearia;
     }
 
+    public function setIdBarbearia($idBarbearia) {
+        $this->idBarbearia = $idBarbearia;
+    }
+
     public function getNome() {
         return $this->nome;
     }

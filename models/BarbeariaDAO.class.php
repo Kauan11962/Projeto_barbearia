@@ -13,11 +13,14 @@ class barbeariaDAO extends Conexao {
         return $stm->rowCount() > 0;
     }
 
-    // Método para cadastrar uma nova empresa
     public function cadastrar($barbearia) {
-        $sql = "INSERT INTO barbearia (nome, endereco, celular, cnpj, descricao, imagem, instagram, whatsapp, horario, id_dono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $this->db->beginTransaction(); // Inicia a transação
+    
         try {
-            $stm = $this->db->prepare($sql);  // Usando $this->db
+            // Cadastro da barbearia
+            $sql = "INSERT INTO barbearia (nome, endereco, celular, cnpj, descricao, imagem, instagram, whatsapp, horario, id_dono) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stm = $this->db->prepare($sql);
             $stm->bindValue(1, $barbearia->getNome());
             $stm->bindValue(2, $barbearia->getEndereco());
             $stm->bindValue(3, $barbearia->getCelular());
@@ -29,11 +32,29 @@ class barbeariaDAO extends Conexao {
             $stm->bindValue(9, $barbearia->getHorario());
             $stm->bindValue(10, $barbearia->getIdDono());
             $stm->execute();
-            return "Cadastro realizado com sucesso!";
+    
+            // Recuperar o ID da barbearia cadastrada
+            $idBarbearia = $this->db->lastInsertId();
+    
+            // Associar profissionais à barbearia
+            $profissionais = $barbearia->getProfissional(); // Espera-se que retorne um array de objetos Profissional
+            foreach ($profissionais as $profissional) {
+                $sqlProf = "UPDATE profissionais SET id_barbearia = ? WHERE id = ?";
+                $stmProf = $this->db->prepare($sqlProf);
+                $stmProf->bindValue(1, $idBarbearia);
+                $stmProf->bindValue(2, $profissional->getId());
+                $stmProf->execute();
+            }
+    
+            $this->db->commit(); // Confirma a transação
+            return "Barbearia cadastrada com sucesso!";
         } catch (PDOException $e) {
-            return "Erro ao cadastrar empresa: " . $e->getMessage();
+            $this->db->rollBack(); // Reverte a transação em caso de erro
+            return "Erro ao cadastrar barbearia: " . $e->getMessage();
         }
     }
+    
+    
 
     // Método para listar empresas com base no id_dono
     public function listarEmpresas($id_dono) {
