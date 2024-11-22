@@ -44,34 +44,28 @@ require_once "../views/header.php";
         <h2>Nossos Serviços</h2>
         <div class="container-servicos">
             <div class="servico">
-                <img src="icone-barba.png" alt="Barba">
                 <h3>Barba</h3>
                 <p>Modelagem e cuidados especiais para barba com produtos de alta qualidade.</p>
             </div>
             <div class="servico">
-                <img src="icone-cabelo.png" alt="Cabelo">
                 <h3>Corte de Cabelo</h3>
                 <p>Cortes modernos e clássicos para todos os tipos de cabelo.</p>
             </div>
             <div class="servico">
-                <img src="icone-sobrancelha.png" alt="Sobrancelha">
                 <h3>Sobrancelha</h3>
                 <p>Design de sobrancelhas que destaca sua expressão natural.</p>
             </div>
         </div>
         <div class="container-servicos">
             <div class="servico">
-                <img src="icone-relaxamento.png" alt="Relaxamento">
                 <h3>Relaxamento</h3>
                 <p>Tratamento capilar para alisar e cuidar da saúde dos fios.</p>
             </div>
             <div class="servico">
-                <img src="icone-massagem.png" alt="Massagem">
                 <h3>Massagem Facial</h3>
                 <p>Massagem relaxante para revitalizar o rosto e promover o bem-estar.</p>
             </div>
             <div class="servico">
-                <img src="icone-tratamento.png" alt="Tratamento">
                 <h3>Tratamento Capilar</h3>
                 <p>Hidratação e cuidados intensivos para manter seu cabelo saudável.</p>
             </div>
@@ -79,11 +73,10 @@ require_once "../views/header.php";
     </section>
      <!-- Seção Nossos Valores -->
      <section id="nossos-valores" class="servicos-detalhes">
-        <div class="container">
+        <div class="container-valores">
             <h2>Nossos Valores</h2>
 
             <div class="servico-detalhe">
-                <img src="imagens/barba-detalhe.jpg" alt="Serviço de Barba">
                 <div>
                     <h3>Barba</h3>
                     <p>Desde o corte clássico até o design moderno, cuidamos da sua barba com os melhores produtos e técnicas.</p>
@@ -93,7 +86,6 @@ require_once "../views/header.php";
             </div>
 
             <div class="servico-detalhe">
-                <img src="imagens/cabelo-detalhe.jpg" alt="Serviço de Cabelo">
                 <div>
                     <h3>Cabelo</h3>
                     <p>Oferecemos cortes personalizados que se adequam ao seu estilo. Modernos ou tradicionais, você escolhe.</p>
@@ -103,7 +95,6 @@ require_once "../views/header.php";
             </div>
 
             <div class="servico-detalhe">
-                <img src="imagens/sobrancelha-detalhe.jpg" alt="Serviço de Sobrancelha">
                 <div>
                     <h3>Sobrancelha</h3>
                     <p>Design de sobrancelhas masculino, garantindo um visual alinhado e impactante.</p>
@@ -113,7 +104,6 @@ require_once "../views/header.php";
             </div>
 
             <div class="servico-detalhe">
-                <img src="imagens/relaxamento-detalhe.jpg" alt="Serviço de Relaxamento">
                 <div>
                     <h3>Relaxamento</h3>
                     <p>Tratamento capilar para relaxar os fios e proporcionar maciez e brilho.</p>
@@ -123,7 +113,6 @@ require_once "../views/header.php";
             </div>
 
             <div class="servico-detalhe">
-                <img src="imagens/massagem-detalhe.jpg" alt="Serviço de Massagem">
                 <div>
                     <h3>Massagem Facial</h3>
                     <p>Massagem relaxante para aliviar o estresse e proporcionar bem-estar.</p>
@@ -133,7 +122,6 @@ require_once "../views/header.php";
             </div>
 
             <div class="servico-detalhe">
-                <img src="imagens/tratamento-detalhe.jpg" alt="Serviço de Tratamento Capilar">
                 <div>
                     <h3>Tratamento Capilar</h3>
                     <p>Hidratação profunda e tratamento especializado para garantir cabelos saudáveis.</p>
