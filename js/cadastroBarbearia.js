@@ -23,3 +23,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+function adicionarCampo() {
+    // Seleciona o container onde os grupos de campos serão adicionados
+    const container = document.getElementById('funcionarios-container');
+
+    // Cria um novo div para o grupo de campos
+    const novoGrupo = document.createElement('div');
+    novoGrupo.classList.add('funcionario-group');
+
+    // Adiciona os novos campos
+    novoGrupo.innerHTML = `
+        <input type="text" name="nome_pro" placeholder="Nome do funcionário">
+        <input type="file" name="imagem_pro">
+        <button type="button" id="btn-funcionario" onclick="removerCampo(this)">➖</button>
+    `;
+
+    // Adiciona o novo grupo de campos ao container
+    container.appendChild(novoGrupo);
+}
+
+function removerCampo(botao) {
+    // Remove o grupo de campos correspondente ao botão clicado
+    botao.parentElement.remove();
+}

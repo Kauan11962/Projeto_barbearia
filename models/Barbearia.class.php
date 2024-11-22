@@ -11,8 +11,8 @@ class Barbearia {
         private string $instagram = "",
         private string $whatsapp = "",
         private string $horario = "",
-        //private string $profissional = [],
-        //private string $servico = [],
+        private array $profissional = [],
+        //private array $servico = [],
         private int $idDono = 0
     ) {}
 
@@ -52,20 +52,21 @@ class Barbearia {
         return $this->whatsapp;
     }
 
-    public function getIdDono() {
-        return $this->idDono;
-    }
-
+    
     public function getHorario() {
         return $this->horario;
     }
-
+    
     public function getProfissional() {
         return $this->profissional;
     }
-
+    
     public function getServico() {
         return $this->servico;
+    }
+    
+    public function getIdDono() {
+        return $this->idDono;
     }
 }
 ?>

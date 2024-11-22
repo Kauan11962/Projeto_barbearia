@@ -25,15 +25,16 @@
 		}
 		public function inserir($profissional)
 		{
-			$sql = "INSERT INTO profissional (nome, imagem) VALUES(?,?)";
+			$sql = "INSERT INTO profissional (nome, imagem) VALUES(?,?,?)";
 			try
 			{
 				$stm = $this->db->prepare($sql);
 				$stm->bindValue(1, $profissional->getNome());
 				$stm->bindValue(2, $profissional->getImagem());
+				$stm->bindValue(3, $profissional->getId_barbearia());
 				$stm->execute();
 				$this->db = null;
-				return "Horários inseridos com sucesso";
+				return "Profissionais inseridos com sucesso";
 			}
 			catch(PDOException $e)
 			{
@@ -43,5 +44,24 @@
 				die();
 			}
 		}
-	}//fim da classe
+
+		public function buscarPorBarbearia($id_barbearia)
+		{
+			$sql = "SELECT * FROM profissional WHERE id_barbearia = :id_barbearia";
+			try
+			{
+				$stm = $this->db->prepare($sql);
+				$stm->bindValue(':id_barbearia', $id_barbearia, PDO::PARAM_INT);
+				$stm->execute();
+				$this->db = null;
+				return $stm->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch (PDOException $e)
+			{
+				echo $e->getMessage();
+				echo $e->getCode();
+				die();
+			}
+		}
+	}
 ?>

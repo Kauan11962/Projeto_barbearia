@@ -8,12 +8,15 @@ if (!isset($_SESSION['msg'])) {
 $msg = ["", "", "", ""];
 $empresasCadastradas = [];
 $erro = false;
-$imgpadrao = "noimage.avif"; // Corrigido o caminho
+$imgpadrao = "noimage.avif"; 
+$imgcliente = "ftpadrao.webp"; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "../models/Conexao.class.php";
     require_once "../models/Barbearia.class.php";
     require_once "../models/barbeariaDAO.class.php";
+    require_once "../models/profissionalDAO.php";
+    require_once "../models/profissional.class.php";
 
     // Validação dos campos obrigatórios
     if (empty($_POST["nome"])) {
@@ -63,6 +66,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $msg[4] = "<div style='color: red;'>Essa empresa já está cadastrada!</div>";
         }
+    }
+
+    $imagem_pro = $imgcliente;
+    if (isset($_FILES["imagem"]) && $_FILES["imagem"]["tmp_name"]) {
+        $diretorio = "../imagens/barbearias/";
+        $imagem_pro = basename($_FILES["imagem"]["name"]);
+        move_uploaded_file($_FILES["imagem"]["tmp_name"], $diretorio . $imagem_pro);
+    }
+
+    if(!$erro) {
+        $profissional = new Profissional(
+            nome: $_POST["nome"],
+            imagem: $imagem_pro,
+            id_barbearia: $_POST["id_barbearia"]
+        );
+
+        $profissionalDAO = new profissionalDAO();
+        $profissionalDAO->inserir($profissional);
     }
 }
 
@@ -127,23 +148,43 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
                 <form action="cadastroBarbearia.php" method="POST" enctype="multipart/form-data">
                     <label for="text" id="label">Nome:</label>
                     <input type="text" name="nome" placeholder="Nome da Empresa" required><br>
+
                     <label for="text" id="label">Endereço:</label>
                     <input type="text" name="endereco" placeholder="Endereço" required><br>
+
                     <label for="text" id="label">Celular:</label>
                     <input type="text" name="celular" placeholder="Celular" required><br>
+
                     <label for="text" id="label">CNPJ:</label>
                     <input type="text" name="cnpj" placeholder="CNPJ" required><br>
+
                     <label for="text" id="label">Descrição:</label>
                     <input type="text" name="descricao" placeholder="Descrição da Empresa"><br>
+
                     <label for="text" id="label">Instagram:</label>
                     <input type="text" name="instagram" placeholder="@ do Instagram"><br>
+
                     <label for="text" id="label">Whatsapp:</label>
                     <input type="text" name="whatsapp" placeholder="Número do WhatsApp"><br>
+
+                    <label for="text" id="label">Funcionários:</label>
+                        <div id="funcionarios-container">
+                            <div class="funcionario-group">
+                                <input type="text" name="nome_pro" placeholder="Nome e foto do funcionário">
+                                <input type="file" name="imagem_pro">
+                                <button id="btn-funcionario" type="button" onclick="adicionarCampo()">➕</button>
+                            </div>
+                        </div>
+
                     <label for="text" id="label">Horário:</label>
                     <textarea name="horario" placeholder="Descreva os horários da semana"></textarea>
+
                     <label for="imagem" id="label">Foto da Empresa:</label>
                     <input type="file" name="imagem" id="imagem"><br>
+
                     <input type="hidden" name="id_dono" value="<?php echo $_SESSION['id']; ?>">
+                    <input type="hidden" name="id_barbearia" value="<?php echo $idBarbearia; ?>">
+
                     <button type="submit">Confirmar Cadastro</button>
                 </form>
 
@@ -168,6 +209,8 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
                             </p>
                             <p><strong>WhatsApp:</strong> <?php echo htmlspecialchars($empresa['whatsapp']); ?></p>
                             <p><strong>Horários:</strong> <?php echo htmlspecialchars($empresa['horario']); ?></p>
+                            
+
                             <p><strong>Imagem:</strong> 
                                 <img src="../imagens/barbearias/<?php echo htmlspecialchars($empresa['imagem']); ?>" alt="Imagem da Barbearia" width="100">
                             </p>
