@@ -86,5 +86,20 @@ class barbeariaDAO extends Conexao {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    
+    public function buscarBarbeariaPorId($idBarbearia)
+    {
+        $sql = "SELECT b.*, d.nome AS nome_dono 
+                FROM barbearia b 
+                INNER JOIN dono d ON b.id_dono = d.id_dono 
+                WHERE b.id_barbearia = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $idBarbearia, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    
+
 }
 ?>

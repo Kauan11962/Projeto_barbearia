@@ -1,0 +1,72 @@
+*{padding: 0; margin: 0;}
+
+li a
+{
+    text-decoration: none;
+    color: beige;
+}
+
+li
+{
+    margin-bottom:4%;
+}
+
+ul
+{
+    list-style: none;
+}
+
+.FlexBarber
+{
+    display: flex;
+    background-color: #111;
+    border-radius: 10px;
+}
+
+.Corpo {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    margin-top: 5%;
+}
+
+#EmpresasD
+{
+        margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flexTeste
+{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nomeBaber
+{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.p
+{
+    font-size: 12px;
+}
+
+.imgBaber 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgBaber img
+{
+    padding: 10px;
+    border-radius: 100%;
+}
