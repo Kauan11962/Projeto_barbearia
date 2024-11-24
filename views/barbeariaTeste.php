@@ -22,14 +22,14 @@ $empresasCadastradas = $barbeariaDAO->listarTodasEmpresas();
     <main>
         <section id="EmpresasD">
             <div class="divH1">    
-                <h1>Empresas Cadastradas</h1>
+                <h1>Nossas Barbearias</h1>
             </div>
             <div class="Corpo">
                 <?php if (!empty($empresasCadastradas)) { ?>
                     <div id="empresasAcumuladas">
-                        <ul>
+                        <ul class= "ul">
                             <?php foreach ($empresasCadastradas as $empresa) { ?>
-                                <li>
+                                <li class = "li">
                                     <a href="../views/baberTeste.php?id_barbearia=<?php echo $empresa['id_barbearia']; ?>">
                                         <div class="FlexBarber">
                                             <div class="imgBaber">

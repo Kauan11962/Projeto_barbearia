@@ -53,3 +53,11 @@ function removerCampo(botao) {
     // Remove o grupo de campos correspondente ao botão clicado
     botao.parentElement.remove();
 }
+
+document.querySelectorAll('.abrirFormularioProfissionais').forEach(button => {
+    button.addEventListener('click', () => {
+        const idBarbearia = button.getAttribute('data-id');
+        const form = document.getElementById(`form-${idBarbearia}`);
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+});
