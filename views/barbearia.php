@@ -1,5 +1,13 @@
 <?php
-require_once "../views/header.php"; 
+require_once "../models/Conexao.class.php";
+require_once "../models/Barbearia.class.php";
+require_once "../models/BarbeariaDAO.class.php";
+require_once "../views/header.php";
+// Criar uma instância do barbeariaDAO
+$barbeariaDAO = new barbeariaDAO();
+
+// Obter todas as empresas cadastradas
+$empresasCadastradas = $barbeariaDAO->listarTodasEmpresas();
 ?>
 
 <!DOCTYPE html>
@@ -13,81 +21,27 @@ require_once "../views/header.php";
 </head>
 <body>
 <main>
-<section id="barbearias" class="barbearias">
+    <section id="barbearias" class="barbearias">
         <div class="container">
             <h2>Nossas Barbearias</h2>
             <div class="barbearias-grid">
-                <!-- Card 1 -->
-                <div class="barbearia-card">
-                    <img src="../imagens/pexels-photo-2076932.jpeg" alt="Barbearia 1">
-                    <div class="barbearia-info">
-                        <h3>Barbearia Dark - Centro</h3>
-                        <p><strong>Endereço:</strong> Rua das Flores, 123 - Centro</p>
-                        <p><strong>Horário:</strong> Seg-Sáb, 09:00 - 18:00</p>
-                        <p><strong>Telefone:</strong> +55 11 1234-5678</p>
-                    </div>
-                    <a href="../views/barber.php" class="btn-link"><span>→</span></a>
-                </div>
-                <!-- Card 2 -->
-                <div class="barbearia-card">
-                    <img src="../imagens/barbearia2.jpg" alt="Barbearia 2">
-                    <div class="barbearia-info">
-                        <h3>Barbearia Dark - Bairro Norte</h3>
-                        <p><strong>Endereço:</strong> Av. Brasil, 456 - Bairro Norte</p>
-                        <p><strong>Horário:</strong> Seg-Sáb, 09:00 - 18:00</p>
-                        <p><strong>Telefone:</strong> +55 11 8765-4321</p>
-                    </div>
-                    <a href="#" class="btn-link"><span>→</span></a>
-                </div>
-                <!-- Card 3 -->
-                <div class="barbearia-card">
-                    <img src="../imagens/barbearia3.jpg" alt="Barbearia 3">
-                    <div class="barbearia-info">
-                        <h3>Barbearia Dark - Shopping Sul</h3>
-                        <p><strong>Endereço:</strong> Shopping Sul, Loja 789</p>
-                        <p><strong>Horário:</strong> Seg-Dom, 10:00 - 22:00</p>
-                        <p><strong>Telefone:</strong> +55 11 1122-3344</p>
-                    </div>
-                    <a href="#" class="btn-link"><span>→</span></a>
-                </div>
-                <div class="barbearia-card">
-                    <img src="../imagens/pexels-photo-2076932.jpeg" alt="Barbearia 1">
-                    <div class="barbearia-info">
-                        <h3>Barbearia Dark - Centro</h3>
-                        <p><strong>Endereço:</strong> Rua das Flores, 123 - Centro</p>
-                        <p><strong>Horário:</strong> Seg-Sáb, 09:00 - 18:00</p>
-                        <p><strong>Telefone:</strong> +55 11 1234-5678</p>
-                    </div>
-                    <a href="../views/barber.php" class="btn-link"><span>→</span></a>
-                </div>
-                <div class="barbearia-card">
-                    <img src="../imagens/pexels-photo-2076932.jpeg" alt="Barbearia 1">
-                    <div class="barbearia-info">
-                        <h3>Barbearia Dark - Centro</h3>
-                        <p><strong>Endereço:</strong> Rua das Flores, 123 - Centro</p>
-                        <p><strong>Horário:</strong> Seg-Sáb, 09:00 - 18:00</p>
-                        <p><strong>Telefone:</strong> +55 11 1234-5678</p>
-                    </div>
-                    <a href="../views/barber.php" class="btn-link"><span>→</span></a>
-                </div>
-                <div class="barbearia-card">
-                    <img src="../imagens/pexels-photo-2076932.jpeg" alt="Barbearia 1">
-                    <div class="barbearia-info">
-                        <h3>Barbearia Dark - Centro</h3>
-                        <p><strong>Endereço:</strong> Rua das Flores, 123 - Centro</p>
-                        <p><strong>Horário:</strong> Seg-Sáb, 09:00 - 18:00</p>
-                        <p><strong>Telefone:</strong> +55 11 1234-5678</p>
-                    </div>
-                    <a href="../views/barber.php" class="btn-link"><span>→</span></a>
-                </div>
-                <!-- Outros Cards... -->
-            </div>
-            <!-- Paginação -->
-            <div class="next">
-                <a href="barbearia.php"><button class="estou-aki">1</button></a>
-                <a href="barbearia2.php"><button>2</button></a>
-                <a href="barbearia3.php"><button>3</button></a>
-                <a href="#"><button>...</button></a>
+                <?php if (!empty($empresasCadastradas)) { ?>
+                    <?php foreach ($empresasCadastradas as $empresa) { ?>
+                        <a href="../views/barber.php?id_barbearia=<?php echo $empresa['id_barbearia']; ?>">
+                            <div class="barbearia-card">
+                                    <img src="../imagens/barbearias/<?php echo htmlspecialchars($empresa['imagem']); ?>" alt="Imagem da Barbearia" width="100" height="100">
+                                    <div class="barbearia-info">
+                                        <h3><?php echo htmlspecialchars($empresa['nome']); ?></h3>
+                                        <p><strong>Nome do Dono:</strong> <?php echo htmlspecialchars($empresa['nome_dono']); ?></p>
+                                        <p><strong>Endereço:</strong> <?php echo htmlspecialchars($empresa['endereco']); ?></p>
+                                    </div>
+                                    <img src="../imagens/setaDireita.svg">
+                            </div>
+                        </a>
+                    <?php } ?>
+                <?php } else { ?>
+                    <p><strong>Nenhuma empresa cadastrada.</strong></p>
+                <?php } ?>
             </div>
         </div>
     </section>

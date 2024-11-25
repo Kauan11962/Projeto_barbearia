@@ -1,5 +1,8 @@
 <?php
-require_once "../views/header.php"; 
+require_once "../models/Conexao.class.php";
+require_once "../models/Barbearia.class.php";
+require_once "../models/BarbeariaDAO.class.php";
+require_once "../views/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -15,30 +18,58 @@ require_once "../views/header.php";
 <main>
     <section class="detalhes-barbearia">
         <div class="container">
-            <div class="barbearia-info">
-                <img src="imagens/barbearia1-grande.jpg" alt="Barbearia Centro">
-                <div class="info-text">
-                    <h2>RendezVous - Centro</h2>
-                    <p><strong>Endereço:</strong> 309 Queen St W, Toronto, ON M5V 2A4, Canada</p>
-                    <p><strong>Horário:</strong></p>
-                    <ul>
-                        <li>Segunda - Sexta: 10:00 - 20:00</li>
-                        <li>Sábado: 10:00 - 18:00</li>
-                        <li>Domingo: 11:00 - 18:00</li>
-                    </ul>
-                    <div class="avaliacao">
-                        <p><strong>Avaliação:</strong></p>
-                        <span>4.9</span>
-                        <div class="stars">
-                            &#9733; &#9733; &#9733; &#9733; &#9733;
+            <?php
+                if (isset($_GET['id_barbearia'])) {
+                    $idBarbearia = intval($_GET['id_barbearia']); // Sanitiza o ID para evitar injeção SQL
+                
+                    // Consulta para obter os dados da barbearia
+                    $dao = new BarbeariaDAO(); // Cria uma instância do DAO
+                    $barbearia = $dao->buscarBarbeariaPorId($idBarbearia);
+                
+                    if ($barbearia) {
+                        // Exibir detalhes da barbearia
+                        ?>
+                        <div class="barbearia-info">
+                            <img src="../imagens/barbearias/<?php echo htmlspecialchars($barbearia['imagem']); ?>" alt="Imagem da Barbearia" width="100">
+                            <div class="info-text">
+                                <h2><?php echo htmlspecialchars($barbearia['nome']); ?> </h2>
+                                <p><strong>Nome do Dono:</strong> <?php echo htmlspecialchars($barbearia['nome_dono']); ?></p>
+                                <p><strong>Endereço:</strong><?php echo htmlspecialchars($barbearia['endereco']); ?> </p>
+                                <p><strong>Celular:</strong> <?php echo htmlspecialchars($barbearia['celular']); ?></p>
+
+                                <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($barbearia['cnpj']); ?></p>
+                                <p><strong>Horário:</strong></p>
+                                <ul>
+                                    <li><?php echo htmlspecialchars($barbearia['horario']); ?></li>
+                                </ul>
+                                <p><strong>Descrição:</strong> <?php echo htmlspecialchars($barbearia['descricao']); ?></p>
+                                <p><strong>Instagram:</strong> 
+                                    <a href="https://instagram.com/<?php echo htmlspecialchars($barbearia['instagram']); ?>" target="_blank">
+                                        <?php echo htmlspecialchars($barbearia['instagram']); ?>
+                                    </a>
+                                </p>
+                                <div class="avaliacao">
+                                    <p><strong>Avaliação:</strong></p>
+                                    <span>4.9</span>
+                                    <div class="stars">
+                                        &#9733; &#9733; &#9733; &#9733; &#9733;
+                                    </div>
+                                    <p>Baseado em 631 avaliações</p>
+                                </div>
+                                <a href="#nossos-valores" class="btn">Agendar Agora</a>
+                            </div>
                         </div>
-                        <p>Baseado em 631 avaliações</p>
-                    </div>
-                    <a href="#nossos-valores" class="btn">Agendar Agora</a>
-                </div>
-            </div>
+                        <?php
+                    } else {
+                        echo "<p>Barbearia não encontrada.</p>";
+                    }
+                } else {
+                    echo "<p>ID de barbearia não fornecido.</p>";
+                }
+            ?>   
         </div>
     </section>
+    <a href="../views/barbearia.php">Voltar</a>
     <!-- Seção Nossos Serviços -->
     <section class="servicos">
         <h2>Nossos Serviços</h2>

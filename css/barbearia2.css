@@ -87,7 +87,12 @@
     margin-top: 0.5rem;
     display: inline-block;
 }
-  
+
+a
+{
+    text-decoration: none;
+}
+
 .btn-link {
     text-decoration: none;
     background-color: #f39c12;
