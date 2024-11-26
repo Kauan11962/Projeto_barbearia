@@ -1,5 +1,5 @@
 <?php
-require_once "../views/headerDono.php"; 
+require_once "../views/header.php"; 
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@ require_once "../views/headerDono.php";
         <!-- Tabela de Agendamentos -->
         <div class="tabela-agendamentos">
             <div class="tabela-header">
-                <span>Cliente</span>
+                <span>Barbeiro</span>
                 <span>Serviço</span>
                 <span>Horário</span>
                 <span>Status</span>
@@ -48,21 +48,21 @@ require_once "../views/headerDono.php";
 
             <!-- Agendamento individual em cards -->
             <div class="tabela-linha" data-horario="manhã" data-servico="corte">
-                <span class="cliente">João Silva</span>
+                <span class="barbeiro">João Silva</span>
                 <span class="servico">Corte de Cabelo</span>
                 <span class="horario">09:00</span>
                 <span class="status">Confirmado</span>
             </div>
 
             <div class="tabela-linha" data-horario="tarde" data-servico="barba">
-                <span class="cliente">Ana Pereira</span>
+                <span class="barbeiro">Ana Pereira</span>
                 <span class="servico">Barba</span>
                 <span class="horario">14:00</span>
                 <span class="status">Confirmado</span>
             </div>
 
             <div class="tabela-linha" data-horario="noite" data-servico="sobrancelha">
-                <span class="cliente">Carlos Santos</span>
+                <span class="barbeiro">Carlos Santos</span>
                 <span class="servico">Sobrancelha</span>
                 <span class="horario">18:30</span>
                 <span class="status">Confirmado</span>
