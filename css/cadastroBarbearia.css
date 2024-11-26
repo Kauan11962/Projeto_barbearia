@@ -261,6 +261,7 @@ li p
 }
 
 textarea {
+    color: white;
     width: 80%; /* Adapta ao tamanho do elemento pai */
     height: 100px; /* Define uma altura padrão */
     padding: 10px; /* Espaçamento interno */

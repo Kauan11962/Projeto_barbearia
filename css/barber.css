@@ -45,6 +45,7 @@ main {
 }
 
 .barbearia-info img {
+    object-fit: cover;
     width: 50%;
     border-radius: 10px;
 }
@@ -103,16 +104,6 @@ main {
     background-color: #333;
     color: #ffcc00;
     cursor: pointer;
-}
-
-footer {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
-}
-
-footer p {
-    color: #fff;
 }
 
 /* Seção Serviços */

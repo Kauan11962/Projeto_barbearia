@@ -1,5 +1,5 @@
 <?php
-require_once "../views/headerDono.php"; 
+require_once "../views/header.php"; 
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ require_once "../views/headerDono.php";
 
         <!-- Filtros de Agendamento -->
         <div class="filtros">
-            <label for="horario">Filtrar por Horário:</label>
+            <label for="horario">Filtrar por horário:</label>
             <select id="horario">
                 <option value="">Todos</option>
                 <option value="manhã">Manhã</option>
@@ -26,7 +26,7 @@ require_once "../views/headerDono.php";
                 <option value="noite">Noite</option>
             </select>
 
-            <label for="servico">Filtrar por Serviço:</label>
+            <label for="servico">Filtrar por serviço:</label>
             <select id="servico">
                 <option value="">Todos</option>
                 <option value="corte">Corte de Cabelo</option>
@@ -40,32 +40,32 @@ require_once "../views/headerDono.php";
         <!-- Tabela de Agendamentos -->
         <div class="tabela-agendamentos">
             <div class="tabela-header">
-                <span>Cliente</span>
+                <span>Funcionário</span>
                 <span>Serviço</span>
                 <span>Horário</span>
-                <span>Status</span>
+                <span>Preço</span>
             </div>
 
             <!-- Agendamento individual em cards -->
             <div class="tabela-linha" data-horario="manhã" data-servico="corte">
-                <span class="cliente">João Silva</span>
+                <span class="barbeiro">João Silva</span>
                 <span class="servico">Corte de Cabelo</span>
                 <span class="horario">09:00</span>
-                <span class="status">Confirmado</span>
+                <span class="preco">R$40,00</span>
             </div>
 
             <div class="tabela-linha" data-horario="tarde" data-servico="barba">
-                <span class="cliente">Ana Pereira</span>
+                <span class="barbeiro">Ana Pereira</span>
                 <span class="servico">Barba</span>
                 <span class="horario">14:00</span>
-                <span class="status">Confirmado</span>
+                <span class="preco">R$20,00</span>
             </div>
 
             <div class="tabela-linha" data-horario="noite" data-servico="sobrancelha">
-                <span class="cliente">Carlos Santos</span>
+                <span class="barbeiro">Carlos Santos</span>
                 <span class="servico">Sobrancelha</span>
                 <span class="horario">18:30</span>
-                <span class="status">Confirmado</span>
+                <span class="preco">R$15,00</span>
             </div>
 
             <!-- Mais agendamentos podem ser adicionados aqui -->

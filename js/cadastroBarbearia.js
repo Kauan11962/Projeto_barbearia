@@ -23,26 +23,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+let contador = 1;
 function adicionarCampo() {
-    // Seleciona o container onde os grupos de campos serão adicionados
     const container = document.getElementById('funcionarios-container');
-
-    // Cria um novo div para o grupo de campos
     const novoGrupo = document.createElement('div');
-    novoGrupo.classList.add('funcionario-group');
-
-    // Adiciona os novos campos
+    novoGrupo.className = 'funcionario-group';
     novoGrupo.innerHTML = `
-        <input type="text" name="nome_pro" placeholder="Nome do funcionário">
-        <input type="file" name="imagem_pro">
-        <button type="button" id="btn-funcionario" onclick="removerCampo(this)">➖</button>
+        <input type="text" name="profissionais[${contador}][nomePro]" placeholder="Nome do Funcionário" required>
+        <input type="file" name="profissionais[${contador}][imagemPro]">
     `;
-
-    // Adiciona o novo grupo de campos ao container
     container.appendChild(novoGrupo);
+    contador++;
 }
 
+
+// Função para remover um campo de funcionário
 function removerCampo(botao) {
     // Remove o grupo de campos correspondente ao botão clicado
     botao.parentElement.remove();
 }
+
+document.querySelectorAll('.abrirFormularioProfissionais').forEach(button => {
+    button.addEventListener('click', () => {
+        const idBarbearia = button.getAttribute('data-id');
+        const form = document.getElementById(`form-${idBarbearia}`);
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+});
