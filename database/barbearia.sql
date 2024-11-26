@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: barbearia
+-- Host: 127.0.0.1    Database: barbearia 
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.32-MariaDB
 

@@ -35,7 +35,7 @@ $empresasCadastradas = $barbeariaDAO->listarTodasEmpresas();
                                         <p><strong>Nome do Dono:</strong> <?php echo htmlspecialchars($empresa['nome_dono']); ?></p>
                                         <p><strong>Endereço:</strong> <?php echo htmlspecialchars($empresa['endereco']); ?></p>
                                     </div>
-                                    <img src="../imagens/setaDireita.svg">
+                                    <img class="seta" src="../imagens/setaDireita.svg">
                             </div>
                         </a>
                     <?php } ?>

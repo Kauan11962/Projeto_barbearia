@@ -198,14 +198,14 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
                             <p><strong>Horários:</strong> <?php echo htmlspecialchars($empresa['horario']); ?></p>
                             
 
-                            <p><strong>Imagem:</strong> 
+                            <p><strong></strong> 
                                 <img src="../imagens/barbearias/<?php echo htmlspecialchars($empresa['imagem']); ?>" alt="Imagem da Barbearia" width="100">
                             </p>
                             <form action="cadastroBarbearia.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta empresa?');">
                                 <input type="hidden" name="id_empresa" value="<?php echo $empresa['id_barbearia']; ?>">
                                 <button type="submit" name="excluir">Excluir Empresa</button>
                             </form>
-                            <hr>
+                        
                         </li>
                     <?php } ?>
                 </ul>

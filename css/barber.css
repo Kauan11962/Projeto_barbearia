@@ -45,6 +45,7 @@ main {
 }
 
 .barbearia-info img {
+    object-fit: cover;
     width: 50%;
     border-radius: 10px;
 }
