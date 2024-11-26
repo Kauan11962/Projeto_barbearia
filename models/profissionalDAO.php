@@ -32,8 +32,8 @@ require_once "../models/BarbeariaDAO.class.php";
 			try
 			{
 				$stm = $this->db->prepare($sql);
-				$stm->bindValue(1, $profissional->getNome());
-				$stm->bindValue(2, $profissional->getImagem());
+				$stm->bindValue(1, $profissional->getNomePro());
+				$stm->bindValue(2, $profissional->getImagemPro());
 				$stm->bindValue(3, $profissional->getId_barbearia());
 				$stm->execute();
 				$this->db = null;
@@ -66,5 +66,7 @@ require_once "../models/BarbeariaDAO.class.php";
 				die();
 			}
 		}
+
+		
 	}
 ?>

@@ -43,8 +43,8 @@ if (!isset($_SESSION)) {
 
                     echo "<li><a href='perfil2.php'>Bem-vindo, $nome <img src='$imagemPerfil' alt='Imagem do cliente' class='imagem-perfil'></a></li>";  // Exibe o nome do dono
                 } else {
-                    echo '<li><a href="../views/login.php" id="login">Login</a></li>';
-                    echo '<li><a href="../views/cadastro.php" class="btn-cadastrar">Cadastrar-se</a></li>';
+                    echo '<li><a href="../views/login2.php" id="login">Login</a></li>';
+                    echo '<li><a href="../views/cadastro2.php" class="btn-cadastrar">Cadastrar-se</a></li>';
                 }
                 ?>
             </ul>

@@ -61,20 +61,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $barbeariaDAO = new barbeariaDAO();
         $idBarbearia = $barbeariaDAO->cadastrar($barbearia); 
        
-       // $idBarbearia = $db->lastInsertId();
-                
-        $profissional = new Profissional(
-            nome: $_POST["nome"],          
-            imagem: $imagemPro,            
-            id_barbearia: $idBarbearia      
-        );
+        $profissionais = $_POST['profissionais'] ?? [];
+        $diretorio = "../imagens/barbearias/";
+
+        foreach ($profissionais as $indice => $profissionalData) {
+
+            $nomePro = $profissionalData['nomePro'] ?? '';
+            $imagemPro = $imgpadrao; // Valor padrão
+
+            if (isset($_FILES['profissionais']['tmp_name'][$indice]['imagemPro']) && 
+                !empty($_FILES['profissionais']['tmp_name'][$indice]['imagemPro'])) {
+                $imagemPro = basename($_FILES['profissionais']['name'][$indice]['imagemPro']);
+                move_uploaded_file(
+                    $_FILES['profissionais']['tmp_name'][$indice]['imagemPro'], 
+                    $diretorio . $imagemPro
+                );
+            }
+
+            $profissional = new Profissional(
+                nomePro: $nomePro,          
+                imagemPro: $imagemPro,            
+                id_barbearia: $idBarbearia      
+            );
+
         
         
         $profissionalDAO = new profissionalDAO();
         $profissionalDAO->inserir($profissional);
         
     }
-    
+}
 }
 
 require_once "../models/Conexao.class.php";
@@ -93,7 +109,7 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
     $idEmpresa = (int)$_POST['id_empresa'];
     $barbeariaDAO->excluirEmpresa($idEmpresa);
     $empresasCadastradas = $barbeariaDAO->listarEmpresas($idDono);
-    $msg[3] = "<div style='color: green; margin-top: 5%; font-weight: bold;'>Empresa excluída com sucesso!</div>";
+    //$msg[3] = "<div style='color: green; margin-top: 5%; font-weight: bold;'>Empresa excluída com sucesso!</div>";
 }
 ?>
 
@@ -157,14 +173,15 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
                     <label for="text" id="label">Whatsapp:</label>
                     <input type="text" name="whatsapp" placeholder="Número do WhatsApp"><br>
 
-                    <label for="text" id="label">Funcionários:</label>
                     <div id="funcionarios-container">
                         <div class="funcionario-group">
-                            <input type="text" name="profissionais[0][nome]" placeholder="Nome do Funcionário">
-                            <input type="file" name="profissionais[0][imagem]">
+                            <input type="text" name="profissionais[0][nomePro]" placeholder="Nome do Funcionário" required>
+                            <input type="file" name="profissionais[0][imagemPro]">
                         </div>
                         <button id="btn-funcionario" type="button" onclick="adicionarCampo()">+</button>
                     </div>
+
+
 
 
                     <label for="text" id="label">Horário:</label>
@@ -184,38 +201,61 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
         </div>
 
         <?php if (!empty($empresasCadastradas)) { ?>
-            <div id="empresasAcumuladas">
-                <h3>Empresas Cadastradas:</h3>
-                <ul>
-                    <?php foreach ($empresasCadastradas as $empresa) { ?>
-                        <li>
-                            <p><strong>Nome da Barbearia:</strong> <?php echo htmlspecialchars($empresa['nome']); ?></p>
-                            <p><strong>Endereço:</strong> <?php echo htmlspecialchars($empresa['endereco']); ?></p>
-                            <p><strong>Celular:</strong> <?php echo htmlspecialchars($empresa['celular']); ?></p>
-                            <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($empresa['cnpj']); ?></p>
-                            <p><strong>Descrição:</strong> <?php echo htmlspecialchars($empresa['descricao']); ?></p>
-                            <p><strong>Instagram:</strong> 
-                                <a href="https://instagram.com/<?php echo htmlspecialchars($empresa['instagram']); ?>" target="_blank">
-                                    <?php echo htmlspecialchars($empresa['instagram']); ?>
-                                </a>
-                            </p>
-                            <p><strong>WhatsApp:</strong> <?php echo htmlspecialchars($empresa['whatsapp']); ?></p>
-                            <p><strong>Horários:</strong> <?php echo htmlspecialchars($empresa['horario']); ?></p>
-                            
-
-                            <p><strong></strong> 
-                                <img src="../imagens/barbearias/<?php echo htmlspecialchars($empresa['imagem']); ?>" alt="Imagem da Barbearia" width="100">
-                            </p>
-                            <form action="cadastroBarbearia.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta empresa?');">
-                                <input type="hidden" name="id_empresa" value="<?php echo $empresa['id_barbearia']; ?>">
-                                <button type="submit" name="excluir">Excluir Empresa</button>
-                            </form>
-                        
-                        </li>
+    <div id="empresasAcumuladas">
+        <h3>Empresas Cadastradas:</h3>
+        <ul>
+            <?php foreach ($empresasCadastradas as $idBarbearia => $dados) { 
+                $empresa = $dados[0]; // Dados da barbearia
+            ?>
+                <li>
+                    <p><strong>Nome da Barbearia:</strong> <?php echo htmlspecialchars($empresa['nome_empresa']); ?></p>
+                    <p><strong>Endereço:</strong> <?php echo htmlspecialchars($empresa['endereco']); ?></p>
+                    <p><strong>Celular:</strong> <?php echo htmlspecialchars($empresa['celular']); ?></p>
+                    <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($empresa['cnpj']); ?></p>
+                    <p><strong>Descrição:</strong> <?php echo htmlspecialchars($empresa['descricao']); ?></p>
+                    <p><strong>Instagram:</strong> 
+                        <a href="https://instagram.com/<?php echo htmlspecialchars($empresa['instagram']); ?>" target="_blank">
+                            <?php echo htmlspecialchars($empresa['instagram']); ?>
+                        </a>
+                    </p>
+                    <p><strong>WhatsApp:</strong> <?php echo htmlspecialchars($empresa['whatsapp']); ?></p>
+                    <p><strong>Horários:</strong> <?php echo htmlspecialchars($empresa['horario']); ?></p>
+                    <p>
+                        <strong>Imagem da Barbearia:</strong><br>
+                        <img src="../imagens/barbearias/<?php echo htmlspecialchars($empresa['imagem_empresa']); ?>" alt="Imagem da Barbearia" width="100">
+                    </p>
+                    
+                    <!-- Listagem de Funcionários -->
+                    <?php if (count($dados) > 1 || !empty($dados[0]['nome_profissional'])) { ?>
+                        <h4>Funcionários:</h4>
+                        <ul>
+                            <?php foreach ($dados as $profissional) { ?>
+                                <?php if (!empty($profissional['nome_profissional'])) { ?>
+                                    <li>
+                                        <p><strong>Nome:</strong> <?php echo htmlspecialchars($profissional['nome_profissional']); ?></p>
+                                        <p>
+                                            <img src="../imagens/barbearias/<?php echo htmlspecialchars($profissional['imagem_profissional']); ?>" 
+                                                 alt="Imagem do Funcionário" width="80">
+                                        </p>
+                                    </li>
+                                <?php } ?>
+                            <?php } ?>
+                        </ul>
+                    <?php } else { ?>
+                        <p><em>Não há funcionários cadastrados.</em></p>
                     <?php } ?>
-                </ul>
-            </div>
+
+                    <!-- Botão de exclusão -->
+                    <form action="cadastroBarbearia.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta empresa?');">
+                        <input type="hidden" name="id_empresa" value="<?php echo $idBarbearia; ?>">
+                        <button type="submit" name="excluir">Excluir Empresa</button>
+                    </form>
+                </li>
             <?php } ?>
+        </ul>
+    </div>
+<?php } ?>
+
 
 
         <?php                       

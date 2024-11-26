@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: barbearia 
+-- Host: 127.0.0.1    Database: barbearia
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.32-MariaDB
 
@@ -66,13 +66,10 @@ CREATE TABLE `barbearia` (
   `whatsapp` varchar(45) DEFAULT NULL,
   `horario` text DEFAULT NULL,
   `id_dono` int(11) DEFAULT NULL,
-  `id_profissional` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_barbearia`),
   KEY `id_dono` (`id_dono`),
-  KEY `id_profissional` (`id_profissional`),
-  CONSTRAINT `barbearia_ibfk_1` FOREIGN KEY (`id_dono`) REFERENCES `dono` (`id_dono`),
-  CONSTRAINT `barbearia_ibfk_2` FOREIGN KEY (`id_profissional`) REFERENCES `profissional` (`id_profissional`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `barbearia_ibfk_1` FOREIGN KEY (`id_dono`) REFERENCES `dono` (`id_dono`)
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +78,7 @@ CREATE TABLE `barbearia` (
 
 LOCK TABLES `barbearia` WRITE;
 /*!40000 ALTER TABLE `barbearia` DISABLE KEYS */;
-INSERT INTO `barbearia` VALUES (32,'Barbearia Elisangela','Rua João Pênis 666','(14) 99765-3211','123.456.78/0001','Barbearia top',_binary 'barberialogo.avif','feortigoza','(14) 99765-3211','Seg a sex - 9h às 18h\r\nSáb - 10h às 18h\r\nDom - 10h às 16h',1,NULL),(38,'a','a','a','a','a',_binary 'noimage.avif','a','a','dasdsa',1,NULL);
+INSERT INTO `barbearia` VALUES (142,'Barber SHOP','Rua Mario Sergio 980','(14) 99865-8821','42.845.678/0001-00','Cortes para todas as idades pelo melhor preço!',_binary 'barberialogo.avif','barbershop','(14) 99566-9176','Seg à sex - 9h às 18h / \r\nSáb - 10h às 17h /\r\nDom - Fechado',1);
 /*!40000 ALTER TABLE `barbearia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +160,7 @@ CREATE TABLE `profissional` (
   PRIMARY KEY (`id_profissional`),
   KEY `id_barbearia` (`id_barbearia`),
   CONSTRAINT `profissional_ibfk_1` FOREIGN KEY (`id_barbearia`) REFERENCES `barbearia` (`id_barbearia`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,6 +169,7 @@ CREATE TABLE `profissional` (
 
 LOCK TABLES `profissional` WRITE;
 /*!40000 ALTER TABLE `profissional` DISABLE KEYS */;
+INSERT INTO `profissional` VALUES (78,'Messi',_binary 'messi.jpg',142),(79,'Neymar',_binary 'nj.jpg',142),(80,'Arboleda',_binary 'arbolenda.png',142);
 /*!40000 ALTER TABLE `profissional` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-22 18:16:52
+-- Dump completed on 2024-11-26 18:46:39
