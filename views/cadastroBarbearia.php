@@ -15,6 +15,7 @@ $empresasCadastradas = [];
 $erro = false;
 $imgpadrao = "noimage.avif"; 
 $imgcliente = "ftpadrao.webp"; 
+$imagemPro = "ftpadrao.webp"; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -56,19 +57,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             horario: $_POST["horario"] ?? "",
             idDono: $_POST["id_dono"],
         );
-        
-        // Chama a função cadastrar para inserir a barbearia e associar profissionais
-        $barbeariaDAO = new barbeariaDAO();
 
-        // Chama a função cadastrar para inserir a barbearia e associar profissionais
-        $resultado = $barbeariaDAO->cadastrar($barbearia); // Chama a função do DAO para cadastrar a barbearia
-     
-        // Verifica o resultado do cadastro
-        if ($resultado === "Barbearia cadastrada com sucesso!") {
-            echo "Barbearia cadastrada com sucesso!";
-        } else {
-            echo "Erro ao cadastrar barbearia: " . $resultado;
-        }
+        $barbeariaDAO = new barbeariaDAO();
+        $idBarbearia = $barbeariaDAO->cadastrar($barbearia); 
+       
+       // $idBarbearia = $db->lastInsertId();
+                
+        $profissional = new Profissional(
+            nome: $_POST["nome"],          
+            imagem: $imagemPro,            
+            id_barbearia: $idBarbearia      
+        );
+        
+        
+        $profissionalDAO = new profissionalDAO();
+        $profissionalDAO->inserir($profissional);
         
     }
     
@@ -155,13 +158,14 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
                     <input type="text" name="whatsapp" placeholder="Número do WhatsApp"><br>
 
                     <label for="text" id="label">Funcionários:</label>
-                        <div id="funcionarios-container">
-                            <div class="funcionario-group">
-                                <input type="text" name="profissionais[0][nome]" placeholder="Nome do Funcionário">
-                                <input type="file" name="profissionais[0][imagem]">
-                            </div>
-                            <button id="btn-funcionario" type="button" onclick="adicionarCampo()">+</button>
+                    <div id="funcionarios-container">
+                        <div class="funcionario-group">
+                            <input type="text" name="profissionais[0][nome]" placeholder="Nome do Funcionário">
+                            <input type="file" name="profissionais[0][imagem]">
                         </div>
+                        <button id="btn-funcionario" type="button" onclick="adicionarCampo()">+</button>
+                    </div>
+
 
                     <label for="text" id="label">Horário:</label>
                     <textarea name="horario" placeholder="Descreva os horários da semana"></textarea>
@@ -171,6 +175,7 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
 
                     <input type="hidden" name="id_dono" value="<?php echo $_SESSION['id']; ?>">
                     <input type="hidden" name="id_barbearia" value="<?php echo $idBarbearia; ?>">
+                    <input type="hidden" name="id_profissional" value="<?php echo $idProfissional; ?>">
 
                     <button type="submit">Confirmar Cadastro</button>
                 </form>

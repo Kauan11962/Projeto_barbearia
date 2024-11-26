@@ -8,6 +8,11 @@
 			return $this->id_profissional;
 		}
 
+		public function setId_profissional($id_profissional)
+		{
+			$this->id_profissional = $id_profissional;
+		}
+
 		public function getNome()
 		{
 			return $this->nome;

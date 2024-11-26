@@ -34,20 +34,14 @@ class barbeariaDAO extends Conexao {
             $stm->execute();
     
             // Recuperar o ID da barbearia cadastrada
-            $idBarbearia = $this->db->lastInsertId();
-    
-            // Associar profissionais à barbearia
-            $profissionais = $barbearia->getProfissional(); // Espera-se que retorne um array de objetos Profissional
-            foreach ($profissionais as $profissional) {
-                $sqlProf = "UPDATE profissionais SET id_barbearia = ? WHERE id = ?";
-                $stmProf = $this->db->prepare($sqlProf);
-                $stmProf->bindValue(1, $idBarbearia);
-                $stmProf->bindValue(2, $profissional->getId());
-                $stmProf->execute();
-            }
+            $idBarbearia = $this->db->lastInsertId();          
+
     
             $this->db->commit(); // Confirma a transação
-            return "Barbearia cadastrada com sucesso!";
+
+            return $idBarbearia;
+
+            //return "Barbearia cadastrada com sucesso!";
         } catch (PDOException $e) {
             $this->db->rollBack(); // Reverte a transação em caso de erro
             return "Erro ao cadastrar barbearia: " . $e->getMessage();
