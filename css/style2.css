@@ -36,7 +36,7 @@ body {
 /* Estilo das Unidades */
 .unidades {
     text-align: center;
-    padding: 50px 0;
+    padding: 100px 0;
 }
 
 .unidades h2 {
@@ -47,9 +47,7 @@ body {
 .unidades-lista {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 0 5%;
+    gap: 50px;
 }
 
 .unidade {
@@ -72,8 +70,9 @@ body {
 }
 
 .unidade img {
-    width: 100%;
-    height: auto;
+    width: 100%; /* Ajusta a largura ao contêiner */
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Corta a imagem proporcionalmente para preencher o espaço */
     border-radius: 10px;
     margin-bottom: 15px;
 }

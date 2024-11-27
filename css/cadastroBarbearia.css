@@ -103,7 +103,6 @@ main
     border-radius: 8px;
     overflow: hidden;
     padding: 15px;
-    border: 1px solid #333;
     color: #fff;
     transition: transform 0.3s ease; /* Efeito ao passar o mouse */
 }

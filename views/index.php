@@ -72,14 +72,14 @@ require_once "../views/header.php";
                         <h3>Barbearia Dark - Bairro Norte</h3>
                         <p>Endereço: Av. Brasil, 456 - Bairro Norte</p>
                         <p>Horário: Seg-Sáb, 09:00 - 18:00</p>
-                        <img src="../imagens/imagemIndex.jpg" alt="">
+                        <img src="../imagens/shop2.webp" alt="">
                         <a href="https://goo.gl/maps/centro" target="_blank"><img class="icon" src="../imagens/iconGoogleMaps.png" alt="Barbearia Dark Centro"></a>
                     </div>
                     <div class="unidade">
                         <h3>Barbearia Dark - Shopping Sul</h3>
                         <p>Endereço: Shopping Sul, Loja 789</p>
                         <p>Horário: Seg-Dom, 10:00 - 22:00</p>
-                        <img src="../imagens/imagemIndex.jpg" alt="">
+                        <img src="../imagens/pexels-photo-9704669.jpeg" alt="">
                         <a href="https://goo.gl/maps/centro" target="_blank"><img class="icon" src="../imagens/iconGoogleMaps.png" alt="Barbearia Dark Centro"></a>
                     </div>
                 </div>
