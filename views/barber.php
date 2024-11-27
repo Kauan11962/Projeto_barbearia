@@ -13,6 +13,7 @@ require_once "../views/header.php";
     <title>Barbearia Dark - Detalhes</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/barber.css">
+    
 </head>
 <body>
 <main>
@@ -32,7 +33,9 @@ require_once "../views/header.php";
                         <div class="barbearia-info">
                             <img src="../imagens/barbearias/<?php echo htmlspecialchars($barbearia['imagem']); ?>" alt="Imagem da Barbearia" width="100">
                             <div class="info-text">
+                                <a href="../views/barbearia.php" class="btn-img"><img src="../imagens/setaDireita.svg" alt="Voltar" class="icone-voltar"></a>
                                 <h2><?php echo htmlspecialchars($barbearia['nome']); ?> </h2>
+
                                 <p><strong>Nome do Dono:</strong> <?php echo htmlspecialchars($barbearia['nome_dono']); ?></p>
                                 <p><strong>Endereço:</strong><?php echo htmlspecialchars($barbearia['endereco']); ?> </p>
                                 <p><strong>Celular:</strong> <?php echo htmlspecialchars($barbearia['celular']); ?></p>
@@ -44,7 +47,7 @@ require_once "../views/header.php";
                                 </ul>
                                 <p><strong>Descrição:</strong> <?php echo htmlspecialchars($barbearia['descricao']); ?></p>
                                 <p><strong>Instagram:</strong> 
-                                    <a href="https://instagram.com/<?php echo htmlspecialchars($barbearia['instagram']); ?>" target="_blank">
+                                    <a href="https://instagram.com/<?php echo htmlspecialchars($barbearia['instagram']); ?>" target="_blank" id="insta">
                                         <?php echo htmlspecialchars($barbearia['instagram']); ?>
                                     </a>
                                 </p>
@@ -69,7 +72,7 @@ require_once "../views/header.php";
             ?>   
         </div>
     </section>
-    <a href="../views/barbearia.php">Voltar</a>
+
     <!-- Seção Nossos Serviços -->
     <section class="servicos">
         <h2>Nossos Serviços</h2>
@@ -163,67 +166,6 @@ require_once "../views/header.php";
 
         </div>
     </section>
-    <!-- Nova Seção: Prestadores -->
-    <section id="prestadores" class="prestadores">
-        <h2>Equipe de Prestadores</h2>
-        <div class="container-cards">
-            <!-- Aqui será exibido um exemplo estático. Você pode integrá-lo ao banco de dados -->
-            <div class="card">
-                <div class="imge">
-                <div class="Usericon">
-                    <img src="../imagens/barbearias/barberialogo.avif" alt="Foto do usuário" id="ftbarber">
-                </div>
-                    <p class="UserName">João Silva</p>
-                    <p class="Id">Barbeiro</p>
-                </div>
-                <div class="Description">
-                    <img src="../imagens/clientes/brad.webp" alt="Foto de exemplo" id="ftclt">
-                </div>
-                <div class="social-media">
-                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M459.37..."></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1..."></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504..."></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M100.28..."></path></svg></a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="imge">
-                <div class="Usericon">
-                    <img src="../imagens/barbearias/barberialogo.avif" alt="Foto do usuário" id="ftbarber">
-                </div>
-                    <p class="UserName">João Silva</p>
-                    <p class="Id">Barbeiro</p>
-                </div>
-                <div class="Description">
-                    <img src="../imagens/clientes/brad.webp" alt="Foto de exemplo" id="ftclt">
-                </div>
-                <div class="social-media">
-                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M459.37..."></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1..."></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504..."></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M100.28..."></path></svg></a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="imge">
-                <div class="Usericon">
-                    <img src="../imagens/barbearias/barberialogo.avif" alt="Foto do usuário" id="ftbarber">
-                </div>
-                    <p class="UserName">João Silva</p>
-                    <p class="Id">Barbeiro</p>
-                </div>
-                <div class="Description">
-                    <img src="../imagens/clientes/brad.webp" alt="Foto de exemplo" id="ftclt">
-                </div>
-                <div class="social-media">
-                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M459.37..."></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1..."></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504..."></path></svg></a>
-                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M100.28..."></path></svg></a>
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 
 <?php
@@ -234,18 +176,18 @@ require_once "../views/header.php";
 <div id="agendamentoModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="fecharModal()">&times;</span>
-        <h2>Escolha a data e horário</h2>
+        <h2>Escolha a Data e Horário</h2>
         
         <!-- Navegação de Datas -->
         <div class="navegacao-datas">
-            <button class="seta" onclick="mudarData(-1)">&#8592;</button>
+            <button class="seta seta-esquerda" onclick="mudarData(-1)">&#8592;</button>
             <span id="dataAtual"></span>
-            <button class="seta" onclick="mudarData(1)">&#8594;</button>
+            <button class="seta seta-direita" onclick="mudarData(1)">&#8594;</button>
         </div>
         
         <!-- Seleção de Profissional -->
         <div class="profissionais">
-            <h3>Selecione o profissional</h3>
+            <h3>Selecione o Profissional</h3>
             <div class="lista-profissionais">
                 <img src="../imagens/clientes/calleri.jpeg" alt="Profissional 1" onclick="selecionarProfissional(1)">
                 <img src="../imagens/clientes/messi.jpg" alt="Profissional 2" onclick="selecionarProfissional(2)">
