@@ -163,6 +163,67 @@ require_once "../views/header.php";
 
         </div>
     </section>
+    <!-- Nova Seção: Prestadores -->
+    <section id="prestadores" class="prestadores">
+        <h2>Equipe de Prestadores</h2>
+        <div class="container-cards">
+            <!-- Aqui será exibido um exemplo estático. Você pode integrá-lo ao banco de dados -->
+            <div class="card">
+                <div class="imge">
+                <div class="Usericon">
+                    <img src="../imagens/barbearias/barberialogo.avif" alt="Foto do usuário" id="ftbarber">
+                </div>
+                    <p class="UserName">João Silva</p>
+                    <p class="Id">Barbeiro</p>
+                </div>
+                <div class="Description">
+                    <img src="../imagens/clientes/brad.webp" alt="Foto de exemplo" id="ftclt">
+                </div>
+                <div class="social-media">
+                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M459.37..."></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1..."></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504..."></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M100.28..."></path></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="imge">
+                <div class="Usericon">
+                    <img src="../imagens/barbearias/barberialogo.avif" alt="Foto do usuário" id="ftbarber">
+                </div>
+                    <p class="UserName">João Silva</p>
+                    <p class="Id">Barbeiro</p>
+                </div>
+                <div class="Description">
+                    <img src="../imagens/clientes/brad.webp" alt="Foto de exemplo" id="ftclt">
+                </div>
+                <div class="social-media">
+                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M459.37..."></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1..."></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504..."></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M100.28..."></path></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="imge">
+                <div class="Usericon">
+                    <img src="../imagens/barbearias/barberialogo.avif" alt="Foto do usuário" id="ftbarber">
+                </div>
+                    <p class="UserName">João Silva</p>
+                    <p class="Id">Barbeiro</p>
+                </div>
+                <div class="Description">
+                    <img src="../imagens/clientes/brad.webp" alt="Foto de exemplo" id="ftclt">
+                </div>
+                <div class="social-media">
+                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M459.37..."></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1..."></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504..."></path></svg></a>
+                    <a href="#"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M100.28..."></path></svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 
 <?php
