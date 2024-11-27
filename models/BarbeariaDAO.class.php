@@ -121,17 +121,6 @@ class barbeariaDAO extends Conexao {
         }
     }
     
-    
-
-    public function listarTodasEmpresas() {
-        $sql = "
-        SELECT barbearia.*, dono.nome AS nome_dono
-        FROM barbearia
-        INNER JOIN dono ON barbearia.id_dono = dono.id_dono;";
-        $stmt = $this->db->prepare($sql);  // Usando $this->db
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
 }
 ?>
