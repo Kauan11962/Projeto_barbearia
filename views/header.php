@@ -18,6 +18,17 @@ if (!isset($_SESSION)) {
                 <li><a id="home" href="../views/index.php">Home</a></li>
                 <li><a id="barbearias" href="../views/barbearia.php">Barbearias</a></li>
                 <li><a id="empresa" href="../views/empresa.php">Empresa</a></li>
+                <?php 
+                require_once "../models/Conexao.class.php"; 
+                require_once "../models/Cliente.class.php"; 
+                require_once "../models/clienteDAO.php";
+
+                if (isset($_SESSION["id"])) {
+                    echo "<li><a id='empresa' href='../views/reservas.php'>Reservas</a></li>";
+                } else {
+                    echo "<li><a id='empresa' href='../views/login.php'>Reservas</a></li>";
+                }
+                ?>
             </ul>
             <ul>
             <?php

@@ -35,6 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = true;
     }
 
+    if (empty($_POST["cnpj"])) {
+        $msg[3] = "Preencha a CNPJ";
+        $erro = true;
+    }
+
     // Upload da imagem
     $imagem = $imgpadrao;
     if (isset($_FILES["imagem"]) && $_FILES["imagem"]["tmp_name"]) {

@@ -46,6 +46,74 @@ class barbeariaDAO extends Conexao {
             return "Erro ao cadastrar barbearia: " . $e->getMessage();
         }
     }
+
+    public function buscar_uma_barbearia($barbearia)
+		{
+			$sql = "SELECT * FROM barbearia WHERE idBarbearia = ?";
+			try
+			{
+				$stm = $this->db->prepare($sql);
+				$stm->bindValue(1, $barbearia->getIdBarbearia());
+				$stm->execute();
+				$this->db = null;
+				return $stm->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e)
+			{
+				$this->db = null;
+				echo $e->getMessage();
+				echo $e->getCode();
+				die();
+			}
+		}
+
+        public function alterar($barbearia)
+        {
+            // Prepara a consulta SQL para atualização
+            $sql = "UPDATE barbearia SET 
+                        nome = ?, 
+                        endereco = ?, 
+                        email = ?, 
+                        cnpj = ?, 
+                        descricao = ?, 
+                        imagem = ?, 
+                        instagram = ?, 
+                        whatsapp = ?, 
+                        horario = ? WHERE idBarbearia = ?";
+        
+            try {
+                // Prepara o comando SQL para execução
+                $stm = $this->db->prepare($sql);
+        
+                // Faz a associação dos valores nos respectivos índices
+                $stm->bindValue(1, $barbearia->getNome());
+                $stm->bindValue(2, $barbearia->getEndereco());
+                $stm->bindValue(3, $barbearia->getEmail());
+                $stm->bindValue(4, $barbearia->getCnpj());
+                $stm->bindValue(5, $barbearia->getDescricao());
+                $stm->bindValue(6, $barbearia->getImagem());
+                $stm->bindValue(7, $barbearia->getInstagram());
+                $stm->bindValue(8, $barbearia->getWhatsapp());
+                $stm->bindValue(9, $barbearia->getHorario());
+                $stm->bindValue(10, $barbearia->getIdBarbearia()); // O ID da barbearia
+        
+                // Executa o comando
+                $stm->execute();
+        
+                // Fecha a conexão com o banco
+                $this->db = null;
+        
+                // Retorna mensagem de sucesso
+                return "Dados alterados com sucesso";
+            } catch (PDOException $e) {
+                // Fecha a conexão e exibe o erro
+                $this->db = null;
+                echo "Erro: " . $e->getMessage();
+                echo "Código: " . $e->getCode();
+                die();
+            }
+        }
+        
     
     
 

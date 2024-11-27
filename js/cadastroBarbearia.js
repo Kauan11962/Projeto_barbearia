@@ -24,24 +24,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 let contador = 1;
+
 function adicionarCampo() {
     const container = document.getElementById('funcionarios-container');
     const novoGrupo = document.createElement('div');
     novoGrupo.className = 'funcionario-group';
+    novoGrupo.id = `funcionario-${contador}`;
+
     novoGrupo.innerHTML = `
         <input type="text" name="profissionais[${contador}][nomePro]" placeholder="Nome do Funcionário" required>
         <input type="file" name="profissionais[${contador}][imagemPro]">
+        <button type="button" onclick="removerCampo('funcionario-${contador}')">Remover</button>
     `;
+
     container.appendChild(novoGrupo);
     contador++;
 }
 
-
-// Função para remover um campo de funcionário
-function removerCampo(botao) {
-    // Remove o grupo de campos correspondente ao botão clicado
-    botao.parentElement.remove();
+function removerCampo(id) {
+    const campo = document.getElementById(id);
+    if (campo) {
+        campo.remove();
+    }
 }
+
 
 document.querySelectorAll('.abrirFormularioProfissionais').forEach(button => {
     button.addEventListener('click', () => {
@@ -50,3 +56,21 @@ document.querySelectorAll('.abrirFormularioProfissionais').forEach(button => {
         form.style.display = form.style.display === 'none' ? 'block' : 'none';
     });
 });
+
+// Função para abrir o modal
+function abrirModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+}
+
+// Função para fechar o modal
+function fecharModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// Fechar o modal se o usuário clicar fora da janela do modal
+window.onclick = function(event) {
+    var modal = document.getElementById("modal-editar-barbearia");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
