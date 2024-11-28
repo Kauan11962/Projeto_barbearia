@@ -5,7 +5,8 @@
 		{
 			parent:: __construct();
 		}
-		
+
+		//Este método é usado para autenticar um dono no sistema.
 		public function login($dono)
 		{
 			$sql = "SELECT id_dono, nome, sobrenome FROM dono WHERE email = ? AND senha = ?";
@@ -27,6 +28,8 @@
 			}
 		}
 
+
+		//Este método insere um novo dono no banco de dados.
 		public function cadastrar($dono)
 		{
 			$sql = "INSERT INTO dono (nome, sobrenome, email, celular, senha, cpf, data_nasc) VALUES (?,?,?,?,?,?,?)";
@@ -47,6 +50,7 @@
 			}
 		}
 
+		//Este método verifica se um dono já está registrado com base no email, celular ou CPF.
 		public function verificar($dono)
 		{
 			$sql = "SELECT email, celular, cpf FROM dono WHERE email = ? OR celular = ? OR cpf = ?";
@@ -65,6 +69,7 @@
 			}
 		}
 
+		//Este método busca um dono específico pelo ID.
 		public function buscar_um_dono($dono)
 		{
 			$sql = "SELECT * FROM dono WHERE id_dono = ?";
@@ -85,6 +90,7 @@
 			}
 		}
 
+		//Este método atualiza os dados de um dono existente.
 		public function alterar($dono)
 		{
 

@@ -5,7 +5,8 @@
 		{
 			parent:: __construct();
 		}
-		
+
+		//Verifica as credenciais do cliente com base no e-mail e senha.
 		public function login($cliente)
 		{
 			$sql = "SELECT id_cliente, nome, sobrenome FROM cliente WHERE email = ? AND senha = ?";
@@ -27,6 +28,7 @@
 			}
 		}
 
+		//Insere um novo cliente no banco com os dados fornecidos
 		public function cadastrar($cliente)
 		{
 			$sql = "INSERT INTO cliente (nome, sobrenome, email, celular, senha) VALUES (?,?,?,?,?)";
@@ -44,7 +46,8 @@
 				die();
 			}
 		}
-
+        
+		//Verifica a existência de um cliente com o e-mail e celular fornecidos.
 		public function verificar($cliente)
 		{
 			$sql = "SELECT email, celular FROM cliente WHERE email = ? AND celular = ?";
@@ -62,6 +65,7 @@
 			}
 		}
 
+		//Busca todas as informações de um cliente pelo id_cliente.
 		public function buscar_um_cliente($cliente)
 		{
 			$sql = "SELECT * FROM cliente WHERE id_cliente = ?";
@@ -82,6 +86,7 @@
 			}
 		}
 
+		//Atualiza as informações de um cliente existente no banco de dados.
 		public function alterar($cliente)
 		{
 

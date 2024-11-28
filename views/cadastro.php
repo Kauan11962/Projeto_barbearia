@@ -1,8 +1,9 @@
 <?php
 require_once "../views/header.php"; 
 
-$msg = ["","","","","","",""];
+$msg = ["","","","","","",""];//Este array armazenará as mensagens de erro e sucesso.
 
+// Este bloco verifica se o formulário foi enviado através do método POST.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "../models/Conexao.class.php";
     require_once "../models/Cliente.class.php";
@@ -10,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $erro = false;
 
+    //Validações de campo vazio
     if(empty($_POST["nome"])) {
         $msg[0] = "Preencha o nome";
         $erro = true;
@@ -46,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if(!$erro) {
-        
+        //código verifica se o cliente já existe no banco de dados.
         $cliente = new Cliente(nome: $_POST["nome"], sobrenome: $_POST["sobrenome"], email: $_POST["email"], celular: $_POST["celular"], senha:md5($_POST["senha"]));
         $clienteDAO = new ClienteDAO();
 
