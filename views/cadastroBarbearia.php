@@ -98,10 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 }
 
-require_once "../models/Conexao.class.php";
-require_once "../models/Barbearia.class.php";
-require_once "../models/barbeariaDAO.class.php";
-
 // Recuperar as empresas cadastradas para o dono
 $barbeariaDAO = new barbeariaDAO();
 $idDono = $_SESSION['id'] ?? null;

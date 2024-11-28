@@ -22,7 +22,7 @@ if (!isset($_SESSION)) {
                     color:#f39c12;
                 }
             </style>
-            <h1><a id="logo" href="../views/index.php">Barbearia Dark</a></h1>
+            <h1><a id="logo" href="../views/index.php">Barbearia X</a></h1>
             <ul>
                 <li><a id="home" href="../views/index.php">Home</a></li>
                 <li><a id="barbearias" href="../views/barbearia.php">Barbearias</a></li>
@@ -35,7 +35,7 @@ if (!isset($_SESSION)) {
                 if (isset($_SESSION["id"])) {
                     echo "<li><a id='reservas' href='../views/reservas.php'>Reservas</a></li>";
                 } else {
-                    echo "<li><a href='../views/login.php'>Reservas</a></li>";
+                    echo "<li><a href='../views/login2.php'>Reservas</a></li>";
                 }
                 ?>
             </ul>

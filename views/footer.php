@@ -5,7 +5,7 @@
     <footer>
         <div class="containerDoFooter">
             <div class="texto">
-                <p>A [Nome da Empresa] se dedica a oferecer [descrever o tipo de produto/serviço oferecido] de alta qualidade e excelência. Nosso compromisso é com a inovação, a satisfação dos nossos clientes e a melhoria contínua de nossos serviços.</p>
+                <p>A Barbearia X se dedica a oferecer o melhor serviço de alta qualidade e excelência. Nosso compromisso é com a inovação, a satisfação dos nossos clientes e a melhoria contínua de nossos serviços.</p>
             </div>
             <div class="mapa">
                 <h4>Mapa do site</h4>

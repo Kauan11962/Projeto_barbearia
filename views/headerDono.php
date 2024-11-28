@@ -13,7 +13,7 @@ if (!isset($_SESSION)) {
 <body>
     <header>
         <div class="container-header">
-            <h1><a style="text-decoration: none; color: #fff;" href="../views/dashboard.php">Barbearia Dark</a></h1>
+            <h1><a style="text-decoration: none; color: #fff;" href="../views/dashboard.php">Barbearia X    </a></h1>
             <ul>
                 <li><a id="dashboard" href="../views/dashboard.php">Dashboard</a></li>
                 <li><a id="agendamentos" href="../views/agendamentosbarbeiro.php">Agendamentos</a></li>

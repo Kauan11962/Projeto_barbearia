@@ -18,9 +18,11 @@ class barbeariaDAO extends Conexao {
     
         try {
             // Cadastro da barbearia
+            // inserindo os valores
             $sql = "INSERT INTO barbearia (nome, endereco, celular, cnpj, descricao, imagem, instagram, whatsapp, horario, id_dono) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stm = $this->db->prepare($sql);
+            // associando os valores
             $stm->bindValue(1, $barbearia->getNome());
             $stm->bindValue(2, $barbearia->getEndereco());
             $stm->bindValue(3, $barbearia->getCelular());
@@ -49,13 +51,16 @@ class barbeariaDAO extends Conexao {
 
     public function buscar_uma_barbearia($barbearia)
 		{
+            // consultar sql
 			$sql = "SELECT * FROM barbearia WHERE idBarbearia = ?";
 			try
 			{
 				$stm = $this->db->prepare($sql);
+                // susbstitui o primeiro placeholder pelo valor retornado pelo método 
 				$stm->bindValue(1, $barbearia->getIdBarbearia());
 				$stm->execute();
 				$this->db = null;
+                // retorno dos dados
 				return $stm->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e)
