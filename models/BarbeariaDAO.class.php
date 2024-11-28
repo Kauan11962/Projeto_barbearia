@@ -136,7 +136,7 @@ class barbeariaDAO extends Conexao {
         return $stmt->fetchAll(PDO::FETCH_GROUP);  // Retorna os resultados agrupados
     }
 
-
+    // Lista todas as barbearias existentes, incluindo o nome dos donos.
     public function listarTodasEmpresas() {
         $sql = "
         SELECT barbearia.*, dono.nome AS nome_dono
@@ -147,7 +147,7 @@ class barbeariaDAO extends Conexao {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    
+    // Busca os detalhes de uma barbearia pelo seu ID, incluindo informações do dono.
     public function buscarBarbeariaPorId($idBarbearia)
     {
         $sql = "SELECT b.*, d.nome AS nome_dono 

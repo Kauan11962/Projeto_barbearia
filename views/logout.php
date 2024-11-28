@@ -1,4 +1,5 @@
 <?php
+//verifica se a sessão foi iniciada. Remove ou destroi a sessao 
 	if(!isset($_SESSION))
 	{
 		session_start();

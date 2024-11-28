@@ -9,6 +9,7 @@ require_once "../models/BarbeariaDAO.class.php";
 			parent:: __construct();
 		}
 		
+		//Este método retorna todos os registros da tabela profissional.
 		public function buscar_todas()
 		{
 			$sql = "SELECT * FROM profissional";
@@ -26,6 +27,8 @@ require_once "../models/BarbeariaDAO.class.php";
 				die();
 			}
 		}
+
+		//Este método insere um novo profissional na tabela profissional.
 		public function inserir($profissional)
 		{
 			$sql = "INSERT INTO profissional (nome, imagem, id_barbearia) VALUES(?,?,?)";
@@ -48,6 +51,7 @@ require_once "../models/BarbeariaDAO.class.php";
 			}
 		}
 
+		//Este método retorna todos os profissionais vinculados a uma barbearia específica com base no ID fornecido.
 		public function buscarPorBarbearia($id_barbearia)
 		{
 			$sql = "SELECT * FROM profissional WHERE id_barbearia = :id_barbearia";

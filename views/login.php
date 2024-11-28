@@ -1,12 +1,13 @@
 <?php
 session_start();
-$msg = ["", "", ""];
+$msg = ["", "", ""];// armazenar mensagens de erro ou sucesso
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once "../models/Conexao.class.php";
     require_once "../models/Cliente.class.php";
     require_once "../models/clienteDAO.php";
 
+    //valida se os campos de entrada do formulário foram preenchidos
     function validarFormulario() {
         global $msg;
         $erro = false;

@@ -6,6 +6,7 @@
 			parent:: __construct();
 		}
 		
+		//Este método retorna todos os registros da tabela servico.
 		public function buscar_todas()
 		{
 			$sql = "SELECT * FROM servico";
@@ -23,6 +24,8 @@
 				die();
 			}
 		}
+
+		//Este método insere um novo serviço na tabela servico.
 		public function inserir($servico)
 		{
 			$sql = "INSERT INTO servico (nome, descricao, tempo, preco) VALUES(?,?,?,?)";

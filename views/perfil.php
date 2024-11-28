@@ -14,9 +14,11 @@ $id_cliente = $_SESSION["id"];
 $cliente = new Cliente($id_cliente);
 $clienteDAO = new clienteDAO();
 $ret = $clienteDAO->buscar_um_cliente($cliente);
-
+//Se a imagem do cliente não estiver definida, a imagem padrão é usada.
 $imagem = !empty($ret[0]->imagem) ? $ret[0]->imagem : $ftpadrao;
 
+
+//Se o formulário for submetido via POST, o código começa a tratar a imagem de perfil e os dados do cliente.
 if ($_POST) {
     $nova_imagem = $_FILES["imagem"]["name"] ?? ""; 
     $imagemTemp = $_FILES["imagem"]["tmp_name"];
