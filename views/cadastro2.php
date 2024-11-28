@@ -108,32 +108,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="input-group">
                     <div class="input-box">
                         <label for="firstname">Primeiro Nome</label>
-                        <input id="firstname" type="text" name="nome" placeholder="Digite seu primeiro nome" required>
+                        <input id="firstname" type="text" name="nome" placeholder="Digite seu primeiro nome" >
                         <div style="color: red;"><?php echo $msg[0]; ?></div>
                     </div>
 
                     <div class="input-box">
                         <label for="lastname">Sobrenome</label>
-                        <input id="lastname" type="text" name="sobrenome" placeholder="Digite seu sobrenome" required>
+                        <input id="lastname" type="text" name="sobrenome" placeholder="Digite seu sobrenome" >
                         <div style="color: red;"><?php echo $msg[1]; ?></div>
                     </div>
                     
                     <div class="input-box">
                         <label for="email">E-mail</label>
-                        <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
+                        <input id="email" type="email" name="email" placeholder="Digite seu e-mail" >
                         <div style="color: red;"><?php echo $msg[2]; ?></div>
                     </div>
 
                     <div class="input-box">
                         <label for="number">Celular</label>
-                        <input id="celular" type="tel" name="celular" placeholder="(xx) xxxx-xxxx" required>
+                        <input id="celular" type="tel" name="celular" placeholder="(xx) xxxx-xxxx" >
                         <div style="color: red;"><?php echo $msg[3]; ?></div>
                     </div>
 
                     <div class="input-box">
                         <label for="password">Senha</label>
                         <div id="container-senha">
-                            <input id="password" type="password" name="senha" placeholder="Digite sua senha" required>
+                            <input id="password" type="password" name="senha" placeholder="Digite sua senha" >
                             <i style="cursor: pointer; margin: 0 auto;" class="bi bi-eye-slash" id="togglePassword"></i>
                         </div>
                         <div style="color: red;"><?php echo $msg[4]; ?></div>
@@ -141,19 +141,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="input-box">
                         <label for="confirmPassword">Confirme sua Senha</label>
-                        <input id="confirmPassword" type="password" name="confirmar_senha" placeholder="Digite sua senha novamente" required>
+                        <input id="confirmPassword" type="password" name="confirmar_senha" placeholder="Digite sua senha novamente" >
                         <div style="color: red;"><?php echo $msg[5]; ?></div>
                     </div>
 
                     <div class="input-box">
                         <label for="cpf">CPF</label>
-                        <input id="cpf" type="text" name="cpf" placeholder="Digite seu CPF" required>
+                        <input id="cpf" type="text" name="cpf" placeholder="Digite seu CPF" >
                         <div style="color: red;"><?php echo $msg[6]; ?></div>
                     </div>
 
                     <div class="input-box">
                         <label for="data_nasc">Data de nascimento</label>
-                        <input id="data_nasc" type="text" name="data_nasc" placeholder="Digite sua data de nascimento" required>
+                        <input id="data_nasc" type="text" name="data_nasc" placeholder="Digite sua data de nascimento" >
                         <div style="color: red;"><?php echo $msg[7]; ?></div>
                     </div>
                 </div>

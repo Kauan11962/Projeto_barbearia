@@ -126,6 +126,9 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
     <title>Cadastro de Empresa</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/cadastroBarbearia.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <style>
         /* Inicialmente, as mensagens ficam ocultas */
         .mensagens {
@@ -164,10 +167,10 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
                     <input type="text" name="endereco" placeholder="Endereço" required><br>
 
                     <label for="text" id="label">Celular:</label>
-                    <input type="text" name="celular" placeholder="Celular" required><br>
+                    <input type="text" id="celular" name="celular" placeholder="Celular" required><br>
 
                     <label for="text" id="label">CNPJ:</label>
-                    <input type="text" name="cnpj" placeholder="CNPJ" required><br>
+                    <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" required><br>
 
                     <label for="text" id="label">Descrição:</label>
                     <input type="text" name="descricao" placeholder="Descrição da Empresa"><br>
@@ -176,7 +179,7 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
                     <input type="text" name="instagram" placeholder="@ do Instagram"><br>
 
                     <label for="text" id="label">Whatsapp:</label>
-                    <input type="text" name="whatsapp" placeholder="Número do WhatsApp"><br>
+                    <input type="text" id="whatsapp" name="whatsapp" placeholder="Número do WhatsApp"><br>
 
                     <div id="funcionarios-container">
                         <div class="funcionario-group">
@@ -290,6 +293,17 @@ if (isset($_POST['excluir'], $_POST['id_empresa'])) {
 
 
     <?php require_once "footer.php"; ?>
+
+    <script>
+        $(document).ready(function(){
+        
+        $('#celular').mask('(00) 00000-0000');
+        $('#whatsapp').mask('(00) 00000-0000');
+        $('#cnpj').mask('00.000.000/0000-00');
+    
+            
+    });
+    </script>
 
 </body>
 </html>

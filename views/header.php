@@ -13,7 +13,16 @@ if (!isset($_SESSION)) {
 <body>
     <header>
         <div class="container-header">
-            <h1><a style="text-decoration: none; color: #fff;" href="../views/index.php">Barbearia Dark</a></h1>
+            <style>
+                #logo {
+                text-decoration: none; color: #fff; transition: all 0.3s ease;
+                }
+
+                #logo:hover {
+                    color:#f39c12;
+                }
+            </style>
+            <h1><a id="logo" href="../views/index.php">Barbearia Dark</a></h1>
             <ul>
                 <li><a id="home" href="../views/index.php">Home</a></li>
                 <li><a id="barbearias" href="../views/barbearia.php">Barbearias</a></li>
@@ -24,9 +33,9 @@ if (!isset($_SESSION)) {
                 require_once "../models/clienteDAO.php";
 
                 if (isset($_SESSION["id"])) {
-                    echo "<li><a id='empresa' href='../views/reservas.php'>Reservas</a></li>";
+                    echo "<li><a id='reservas' href='../views/reservas.php'>Reservas</a></li>";
                 } else {
-                    echo "<li><a id='empresa' href='../views/login.php'>Reservas</a></li>";
+                    echo "<li><a href='../views/login.php'>Reservas</a></li>";
                 }
                 ?>
             </ul>
